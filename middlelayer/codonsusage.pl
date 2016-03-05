@@ -1,9 +1,8 @@
 use strict;
 use warnings;
 
-# This is just a simple script to divide the coding sequence into codons
-# and to divide the translated sequence in single amino acids;
-# I will need to find a way to merge the two arrays.
+# It starts by creating an array with all codons of a sequence;
+# I will need a string with the sequence from the sql query of an entry.
 
 my $nucleo_seq = <>;
 my $aa_seq = <>;
