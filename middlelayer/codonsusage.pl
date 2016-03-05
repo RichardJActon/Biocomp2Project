@@ -1,8 +1,13 @@
+### THIS SCRIPT CALCULATE BOTH FREQUENCIES AND USAGE RATIO FOR CODONS IN A CODING SEQUENCE ####
+
 use strict;
 use warnings;
 
-# It starts by creating an array with all codons of a sequence;
-# I will need a string with the extracted and joined coding sequence for an entry.
+# It starts by creating an array with all codons of a given coding sequence;
+# I will need a string with the extracted and joined coding sequence (exons) for an entry.
+# It also creates a second array for the translated sequence; each value is a single amino acid from 
+# the translated sequence; the translated sequence should be easily
+# retrievable from the database.
 
 my $nucleo_seq = <>;
 my $aa_seq = <>;
@@ -41,6 +46,7 @@ foreach my $codon (@codons)   {
 
 my $codons_total = scalar(@codons);
 
+print "Codons Frequency:\n";
 
 foreach my $cod (keys %codon_count)   {
    my $frequency = ($codon_count{$cod} * 100) / $codons_total;
@@ -48,4 +54,35 @@ foreach my $cod (keys %codon_count)   {
 }
 
 
-# Now I need to find a way to calculate the ration of each codon encoding its corresponding amino acid.
+# Now I create an hash to count how many of each amino acid type there are in the translated sequence.
+# I need this count because for the usage ratio I need to know essentialy 3 things:
+# How many of each codon type there are, how many of its corresponding amino acid there are
+# and most importantly which one is the corresponding amino acid for a codon, which is resolved in the next step.
+
+my %aa_count;
+
+foreach my $value (@aminos)   {
+    $aa_count{$value}++;
+}
+
+
+# In the 2 lines below I join my 2 original arrays in an hash called translation; this is useful because
+# eack key in the hash will be a codon (so no duplicates), while each value will be
+# the amino acid which each codon translate. This way I can use this new hash to connect
+# each codon count to the correspondin amino acid count;
+# for my calculation i simply calculate the ratio by using the total number of each codon type and
+# the total number of its corresponding amino acid; i.e. a codon encoding Tyr could appear 3 times, while in
+# the translated sequence there are 10 Tyr. This means that the other 7 Tyr are encoded by others codons.
+# SO I use this informations for my calculation.
+
+my %translation;
+
+
+@translation{@codons} = @aminos;
+
+print "Codons ratio:\n";
+
+foreach my $codon (keys %translation)   {
+   my $ratio = ($codon_count{$codon} * 100) / ($aa_count{$translation{$codon}});
+   print "$codon = $translation{$codon} = $ratio\n";
+}
