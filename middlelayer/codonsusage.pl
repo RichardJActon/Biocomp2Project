@@ -15,8 +15,9 @@ my $aa_seq = <>;
 
 my @codons = $nucleo_seq =~ /[A-Z]{3}/gi;
 
-my @aminos = $aa_seq =~ /[A-Z]/gi;
-
+my @aminos = $aa_seq =~ /[A-Z\*]/gi;
+#Note from Richard[06/03/2016_00:47]: STOP codon(TAA,TGA,TAG) are denoted in aa sequnce as '*' so a backslashed asterix should
+#be included in the aa characterset. 
 
 # Below I calculate the frequency of each codon within the coding regions of an entry;
 # To do this I need to count how many of each codon there are in the coding sequence; I do it by iterating
