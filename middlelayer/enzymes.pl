@@ -51,15 +51,15 @@ print "<h2> Your sequence restictrion sites for $type:</h2>\n";
 
 
 if ($type eq "EcoRI")   {
-   $val =~ s{gaattc}{<b>gaattc</b>}g;
+   $val =~ s{gaattc}{<b>gaattc</b>}gi;
 }
 
 elsif ($type eq "BamHI")   {
-   $val =~ s{ggatcc}{<b>ggatcc</b>}g;
+   $val =~ s{ggatcc}{<b>ggatcc</b>}gi;
 }
 
 elsif ($type eq "BsuMI")   {
-   $val =~ s{ctcgag}{<b>ctcgag</b>}g;
+   $val =~ s{ctcgag}{<b>ctcgag</b>}gi;
 }
 
 print "<p>$val</p>";
