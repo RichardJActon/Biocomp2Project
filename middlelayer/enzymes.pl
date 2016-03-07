@@ -51,7 +51,6 @@ print "<h2> Your sequence restictrion sites for $type:</h2>\n";
 
 my $lenght = length($val);
 
-my $seq = "gaatcc";
 
 
 if ($type eq "EcoRI")   {
