@@ -38,3 +38,6 @@ for (my $i = 0; $i < scalar @sql ; $i++) {
 
 ## foreign key related error, maybe because they are emty?
 
+## indexing after data load
+
+
