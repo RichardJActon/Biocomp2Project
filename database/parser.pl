@@ -30,24 +30,29 @@ for (my $i = 0; $i < scalar @loci; $i++)
 ########################################################
 my @seqs;
 my $seq = "";
+my $subline = "";
 for (my $i = 0; $i < scalar @loci; $i++) 
 {
-	my $subline = "";
-	for (my $j = 0; $j < scalar @lines; $j++) {
+	for (my $j = 0; $j < scalar @lines ; $j++) 
+	{
 		if ($lines[$j] =~ /^LOCUS\s{7}${loci[$i]}/) 
 		{	
-			until ($lines[$j] =~ /^ORIGIN/) 
+			while ($lines[$j] !~ /^ORIGIN/ and defined $lines[$j]) 
 			{
+				$j++;	
+			}
+			while ($lines[$j] !~/^\/\// and defined $lines[$j])
+			{				
 				$j++;
-				if ($lines[$j] =~/\/\// )
-				{				
-					$subline = $lines[$j];
-					print "$lines[$j]\n\n";
-					$subline =~ s/[0-9]|\n|\s//g;
-					$seq = $seq . $subline;
-					$j++;
+				$subline = $lines[$j];
+				if ($subline =~/^\/\//) 
+				{
+					$subline = "";
 				}
-				
+				$subline =~ s/[0-9]|\n|\s//g;
+				#print "$subline\n";
+				$seq .= $subline;
+				$subline = "";
 			}
 			push @seqs, $seq;
 			#print "$seq\n";
@@ -55,11 +60,12 @@ for (my $i = 0; $i < scalar @loci; $i++)
 		}
 	}
 }
-print "@seqs[0]\n\n";
-print "@seqs[1]\n\n";
-print "@seqs[2]\n\n";
-print "@seqs[20]\n\n";
-print "@seqs[20]\n\n";
+
+for (my $i = 0; $i < scalar @seqs; $i++) {
+	print "$seqs[$i]\n";
+}
+#print "$seqs[0]\n\n";
+
 ########################################################
 # my %attributes;
 # my $attribute = "";
