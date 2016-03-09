@@ -56,16 +56,19 @@ my $substittions = qr/[0-9]|\n|\s/;
 #######################
 #FOR MOUDLE
 {
-	my @outarray;
-	my $attributes = "";
-	my $subattribute = "";
-
+# input variables	
 	my @lines = @{$_[0]}; 			# array of all the lines form the input file
 	my @loci = @{$_[1]}; 			# array of unique identifiers of the locus
 	my $locusMarker = $_[2];		# regex of characteristic markup adjacent to the locus identifiers
 	my $featuerStartMarker = $_[3];	# regex of characteristic markup preceding the feature of interest
 	my $featuerEndMarker = $_[4];	# regex of characteristic markup following the feature of interest
-	my $substittions = $_[5];		# regex of any features to removed from the 
+	my $substittions = $_[5];		# regex of any features recurrent characters e.g. whitespace newline to removed from the string
+
+# local variables
+	my @outarray;
+	my $attributes = "";
+	my $subattribute = "";
+
 
 	for (my $i = 0; $i < scalar @loci; $i++) 
 	{
@@ -85,7 +88,7 @@ my $substittions = qr/[0-9]|\n|\s/;
 					{
 						$subattribute = "";
 					}
-					$subattribute =~ s/${substittions}//g; # possible conflict with detecting and removing start and end markers
+					$subattribute =~ s/${substittions}//g; # possible conflict with detecting and removing start and end markers  - markers could be changed by this move to after marker check?
 					$attribute .= $subattribute;
 					$subattribute = "";
 				}
