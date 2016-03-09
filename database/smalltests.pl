@@ -52,7 +52,7 @@ my $subline = "";
 my $locusMarker = qr/^LOCUS\s{7}/;
 my $featuerStartMarker = qr/^ORIGIN/;
 my $featuerEndMarker = qr/^\/\//;
-my $substittions = qrs/[0-9]|\n|\s//g;
+my $substittions = qr/[0-9]|\n|\s/;
 #######################
 #FOR MOUDLE
 {
@@ -60,12 +60,12 @@ my $substittions = qrs/[0-9]|\n|\s//g;
 	my $attributes = "";
 	my $subattribute = "";
 
-	my @lines = @{$_[0]};
-	my @loci = @{$_[1]};
-	my $locusMarker = $_[2];
-	my $featuerStartMarker = $_[3];
-	my $featuerEndMarker = $_[4];
-	my $substittions = $_[5];
+	my @lines = @{$_[0]}; 			# array of all the lines form the input file
+	my @loci = @{$_[1]}; 			# array of unique identifiers of the locus
+	my $locusMarker = $_[2];		# regex of characteristic markup adjacent to the locus identifiers
+	my $featuerStartMarker = $_[3];	# regex of characteristic markup preceding the feature of interest
+	my $featuerEndMarker = $_[4];	# regex of characteristic markup following the feature of interest
+	my $substittions = $_[5];		# regex of any features to removed from the 
 
 	for (my $i = 0; $i < scalar @loci; $i++) 
 	{
@@ -85,10 +85,12 @@ my $substittions = qrs/[0-9]|\n|\s//g;
 					{
 						$subattribute = "";
 					}
-					$subattribute =~ s/[0-9]|\n|\s//g;
+					$subattribute =~ s/${substittions}//g; # possible conflict with detecting and removing start and end markers
 					$attribute .= $subattribute;
 					$subattribute = "";
 				}
+				$attribute =~ /${featuerStartMarker}//g;
+				$attribute =~ /${featuerEndMarker}//g;
 				push @outarray, $attribute;
 				$attribute = "";
 			}
