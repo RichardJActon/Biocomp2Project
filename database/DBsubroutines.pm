@@ -14,9 +14,8 @@ sub EXTRACT_LOCUS_FEATURE(\@\@\$\$\$\$)
 
 # local variables
 	my @outarray;
-	my $attributes = "";
+	my $attribute = "";
 	my $subattribute = "";
-
 
 	for (my $i = 0; $i < scalar @loci; $i++) 
 	{
@@ -30,18 +29,14 @@ sub EXTRACT_LOCUS_FEATURE(\@\@\$\$\$\$)
 				}
 				while ($lines[$j] !~ /${featuerEndMarker}/ and defined $lines[$j])
 				{				
-					$j++;
 					$subattribute = $lines[$j];
-					if ($subattribute =~/${featuerEndMarker}/) 
-					{
-						$subattribute = "";
-					}
 					$subattribute =~ s/${substittions}//g; # possible conflict with detecting and removing start and end markers  - markers could be changed by this move to after marker check?
 					$attribute .= $subattribute;
 					$subattribute = "";
+					$j++;
 				}
-				$attribute =~ /${featuerStartMarker}//g;
-				$attribute =~ /${featuerEndMarker}//g;
+				$attribute =~ s/${featuerStartMarker}//g;
+				$attribute =~ s/${featuerEndMarker}//g;
 				push @outarray, $attribute;
 				$attribute = "";
 			}

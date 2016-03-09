@@ -33,6 +33,7 @@ print "\n";
 my @seqs;
 my $seq = "";
 my $subline = "";
+
 for (my $i = 0; $i < scalar @loci; $i++) 
 {
 	for (my $j = 0; $j < scalar @lines ; $j++) 
