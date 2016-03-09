@@ -27,6 +27,7 @@ push @lines, $line;
 	if ($line =~ /^LOCUS\s{7}(\w{8})/) 
 	{
 		push @loci, $1;
+		print "$1\n";
 	}	
 }
 
@@ -39,8 +40,9 @@ my $substittions = qr/[0-9]|\n|\s/;
 
 #######################
 
-my @test = DBsubroutines::EXTRACT_LOCUS_FEATURE(@lines,@loci,$locusMarker,$featuerStartMarker,$featuerEndMarker,$substittions);
+my @array;
+@array = DBsubroutines::EXTRACT_LOCUS_FEATURE(@lines,@loci,$locusMarker,$featuerStartMarker,$featuerEndMarker,$substittions);
 
-for (my $i = 0; $i < scalar @test; $i++) {
-	print "$test[$i]\n";
+for (my $i = 0; $i < scalar @array; $i++) {
+	print "$array[$i]\n";
 }

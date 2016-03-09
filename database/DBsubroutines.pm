@@ -23,6 +23,7 @@ sub EXTRACT_LOCUS_FEATURE(\@\@\$\$\$\$)
 		{
 			if ($lines[$j] =~ /${locusMarker}${loci[$i]}/) 
 			{	
+			#print "$lines[$j]\n";
 				while ($lines[$j] !~ /${featuerStartMarker}/ and defined $lines[$j]) 
 				{
 					$j++;	
@@ -42,7 +43,7 @@ sub EXTRACT_LOCUS_FEATURE(\@\@\$\$\$\$)
 			}
 		}
 	}
-return @outarray;
+	return @outarray;
 }
 
 1;
