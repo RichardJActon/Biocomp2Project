@@ -40,3 +40,7 @@ sub get_accession
 # The subroutine will return an hash, which can be used in the front end to print out the query results.
 # By having the accession numbers as keys it will be possible to add some tags arounde the keys to make
 # each accession clickable.
+
+# I could return the 2 arrays without creating the final hash, but I think if I return an hash it will be more front-end friendly
+# and easier to print out. It could ge tricky to print 2 arrays next to each other, while with an hash we will just
+# have to iterate through each key and printing out each key and value.
