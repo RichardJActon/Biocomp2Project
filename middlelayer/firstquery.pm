@@ -24,7 +24,7 @@ sub get_accession
 
    if($sth && $sth->execute)   {
         
-      while(my ( $accession ) = $sth->fetchrow_array)   {
+      while (my ($accession) = $sth->fetchrow_array)   {
          push @genebank, $accession;
       }
       return @genebank;
