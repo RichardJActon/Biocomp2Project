@@ -20,14 +20,14 @@ sub get_accession
 
    my $sth = $dbh->prepare($sql);
 
-   my @array;
+   my @genebank;
 
    if($sth && $sth->execute)   {
         
-      while(my ($name ) = $sth->fetchrow_array)   {
-         push @array, $name;
+      while(my $accession ) = $sth->fetchrow_array)   {
+         push @genebank, $accession;
       }
-      return @array;
+      return @genebank;
    }
 }
 
