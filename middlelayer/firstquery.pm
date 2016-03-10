@@ -31,3 +31,12 @@ sub get_accession
    }
 }
 
+# Next step subroutine will be taking the array of accession numbers and will use it to retrieve (gene id, product and location).
+# Those 3 attributes for each entry will be concatenated, and the concatenated attributes for each entry will be inserted into a 
+# second array.
+
+# Following that I will have one last short subroutine which will create an hash where keys are the accession and
+# values are the other 3 concatenated attributes for each accession.
+# The subroutine will return an hash, which can be used in the front end to print out the query results.
+# By having the accession numbers as keys it will be possible to add some tags arounde the keys to make
+# each accession clickable.
