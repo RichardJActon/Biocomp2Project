@@ -1,15 +1,17 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-#use DBsubroutines;
+use DBsubroutines;
 #use DBI;
 #
 #test script
-########################################################
+####################################################################################################
+###################################  Extract Genebank Accessions  ##################################
+####################################################################################################
 my @loci;
 my $line;
 my @lines;
-my %seqs;
+
 while ($line = <>) 
 {
 push @lines, $line;
@@ -18,6 +20,7 @@ push @lines, $line;
 		push @loci, $1;
 	}	
 }
+
 for (my $i = 0; $i < scalar @loci; $i++) 
 {
 	print "$loci[$i]\n";
@@ -30,74 +33,41 @@ print "\n";
 # 	print "$lines[$i]\n";
 # }
 ########################################################
-my @seqs;
-my $seq = "";
-my $subline = "";
 
-for (my $i = 0; $i < scalar @loci; $i++) 
-{
-	for (my $j = 0; $j < scalar @lines ; $j++) 
-	{
-		if ($lines[$j] =~ /^LOCUS\s{7}${loci[$i]}/) 
-		{	
-			while ($lines[$j] !~ /^ORIGIN/ and defined $lines[$j]) 
-			{
-				$j++;
-			}
-			while ($lines[$j] !~/^\/\// and defined $lines[$j])
-			{				
-				$subline = $lines[$j];
-				$subline =~ s/[0-9]|\n|\s//g;
-				$seq .= $subline;
-				$subline = "";
-				$j++;
-			}
-			$seq =~ s/^ORIGIN//g;
-			$seq =~ s/^\/\///g;
-			push @seqs, $seq;
-			$seq = "";
-		}
-	}
+
+
+####################################################################################################
+#####################################  Extract DNA sequences   #####################################
+####################################################################################################
+
+my $locusMarker = qr/^LOCUS\s{7}/;
+
+my $DNA_seq_StartMarker = qr/^ORIGIN/;
+my $DNA_seq_EndMarker = qr/^\/\//;
+my $DNA_seq_substittions = qr/[0-9]|\n|\s/;
+
+#######################
+
+my @DNA_seqs;
+@DNA_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$DNA_seq_StartMarker,$DNA_seq_EndMarker,$DNA_seq_substittions);
+
+for (my $i = 0; $i < scalar @DNA_seqs; $i++) {
+	print "@DNA_seqs[$i]\n";
 }
+###########
 
-for (my $i = 0; $i < scalar @seqs; $i++) {
-	print "$seqs[$i]\n";
+####################################################################################################
+
+####################################################################################################
+my $Protein_seq_StartMarker = qr/\/translation="/;
+my $Protein_seq_EndMarker = qr/\"/;
+my $Protein_seq_substittions = qr/[0-9]|\n|\s/;
+
+#######################
+
+my @Protein_seqs;
+@Protein_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$Protein_seq_StartMarker,$Protein_seq_EndMarker,$Protein_seq_substittions);
+
+for (my $i = 0; $i < scalar @Protein_seqs; $i++) {
+	print "@Protein_seqs[$i]\n";
 }
-
-print "\n";
-
-########################################################
-# my @seqs;
-# my $seq = "";
-# my $subline = "";
-# for (my $i = 0; $i < scalar @loci; $i++) 
-# {
-# 	for (my $j = 0; $j < scalar @lines ; $j++) 
-# 	{
-# 		if ($lines[$j] =~ /^LOCUS\s{7}${loci[$i]}/) 
-# 		{	
-# 			while ($lines[$j] !~ /^ORIGIN/ and defined $lines[$j]) 
-# 			{
-# 				$j++;
-# 			}
-# 			while ($lines[$j] !~/^\/\// and defined $lines[$j])
-# 			{				
-# 				$j++; ## problem for generalisablity to matches on same line
-# 				$subline = $lines[$j];
-# 				if ($subline =~/^\/\//) 
-# 				{
-# 					$subline = "";
-# 				}
-# 				$subline =~ s/[0-9]|\n|\s//g;
-# 				$seq .= $subline;
-# 				$subline = "";
-# 			}
-# 			push @seqs, $seq;
-# 			$seq = "";
-# 		}
-# 	}
-# }
-
-# for (my $i = 0; $i < scalar @seqs; $i++) {
-# 	print "$seqs[$i]\n";
-# }
