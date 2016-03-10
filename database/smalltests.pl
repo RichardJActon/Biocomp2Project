@@ -41,8 +41,10 @@ my $substittions = qr/[0-9]|\n|\s/;
 #######################
 
 my @array;
-@array = DBsubroutines::EXTRACT_LOCUS_FEATURE(@lines,@loci,$locusMarker,$featuerStartMarker,$featuerEndMarker,$substittions);
+@array = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$featuerStartMarker,$featuerEndMarker,$substittions);
 
 for (my $i = 0; $i < scalar @array; $i++) {
 	print "$array[$i]\n";
 }
+###########
+

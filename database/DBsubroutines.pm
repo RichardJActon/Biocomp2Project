@@ -2,10 +2,10 @@ package DBsubroutines;
 use strict;
 use warnings;
 #
-sub EXTRACT_LOCUS_FEATURE(\@\@\$\$\$\$)
+sub EXTRACT_LOCUS_FEATURE
 {
 # input variables	
-	my @lines = @{$_[0]}; 			# array of all the lines form the input file
+	my @lines = @{$_[0]};	 		# array of all the lines form the input file
 	my @loci = @{$_[1]}; 			# array of unique identifiers of the locus
 	my $locusMarker = $_[2];		# regex of characteristic markup adjacent to the locus identifiers
 	my $featuerStartMarker = $_[3];	# regex of characteristic markup preceding the feature of interest
@@ -23,7 +23,6 @@ sub EXTRACT_LOCUS_FEATURE(\@\@\$\$\$\$)
 		{
 			if ($lines[$j] =~ /${locusMarker}${loci[$i]}/) 
 			{	
-			#print "$lines[$j]\n";
 				while ($lines[$j] !~ /${featuerStartMarker}/ and defined $lines[$j]) 
 				{
 					$j++;	
