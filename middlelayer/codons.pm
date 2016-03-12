@@ -83,4 +83,29 @@ sub calc_cod_ratio
 
 }
 
+
+# Subroutine: map_codons
+# Purpose: connect each codon in a coding sequence with its corresponding
+# amino acid in the translated sequence.
+# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence.
+# Returns: an hash where the keys are the codons (no duplicates) and the values are
+# the corresponding amino acids.
+
+sub map_codons
+
+{
+
+  my @codons = $_[0] =~ /[A-Z]{3}/gi;
+
+  my @aminos = $_[1] =~ /[A-Z\*]/gi;
+
+  my %translation;
+
+  @translation{@codons} = @aminos;
+
+  return %translation;
+
+}
+
+
 1;
