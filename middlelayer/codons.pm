@@ -32,3 +32,53 @@ sub calc_cod_freq
 }
 
 
+# Subroutine: calc_cod_ratio
+# Purpose: calculate the ration of each codon encoding its amino acid in a given sequence.
+# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence.
+# Returns: an hash where the keys are the codons and the values are
+# the corresponding usage ratio.
+
+
+sub calc_cod_ratio
+
+{
+
+   my @codons = $_[0] =~ /[A-Z]{3}/gi;
+
+   my @aminos = $_[1] =~ /[A-Z]/gi;
+
+
+   my %aa_count;
+
+   foreach my $value (@aminos)   {
+     $aa_count{$value}++;
+   }
+
+   my %cod_count;
+
+   foreach my $value (@codons)   {
+      $cod_count{$value}++;
+   }
+
+
+# In the 2 lines below I join my 2 original arrays in an hash called translation; 
+# eack key in the hash will be a codon (so no duplicates), while each value will be
+# the amino acid which each codon translate. This way I can use this new hash to connect
+# each codon count to the correspondin amino acid count.
+
+   my %translation;
+
+
+   @translation{@codons} = @aminos;
+
+   my %codonratio;
+
+   foreach my $codon (keys %translation)   {
+      my $ratio = ($cod_count{$codon} * 100) / ($aa_count{$translation{$codon}});
+         $codonratio{$codon} = $ratio;
+   }
+
+
+   return %codonratio;
+
+}
