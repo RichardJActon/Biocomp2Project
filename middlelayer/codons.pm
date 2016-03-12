@@ -82,3 +82,5 @@ sub calc_cod_ratio
    return %codonratio;
 
 }
+
+1;
