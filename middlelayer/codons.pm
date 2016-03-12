@@ -45,7 +45,7 @@ sub calc_cod_ratio
 
    my @codons = $_[0] =~ /[A-Z]{3}/gi;
 
-   my @aminos = $_[1] =~ /[A-Z]/gi;
+   my @aminos = $_[1] =~ /[A-Z\*]/gi;
 
 
    my %aa_count;
