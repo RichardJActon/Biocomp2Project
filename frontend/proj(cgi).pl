@@ -83,13 +83,15 @@ foreach my $Accession_key (sort keys %OrderedAccessions){
 		</tr>";
 
 }
-print "
+print <<__EOF;
 <br />
 <br />
 <input type='submit' value='SUBMIT' />
 </form>
 </body>
-</html>";
+</html>"
+
+__EOF
 
 
 
