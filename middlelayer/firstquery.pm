@@ -38,9 +38,4 @@ sub get_accession
 
 # and with 4 arrays Dolapo can print each array in a column of a table to display result?
 
-# something like:
-# foreach $value (@accessions)   {
-#   print "<table column tag> $value\n</table column tag>";}
-# and he could to this for all 4 arrays? and he can put another tag around
-# the accessions so to make them clickable?
 1;
