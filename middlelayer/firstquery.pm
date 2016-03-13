@@ -15,9 +15,6 @@ sub get_accession
 
    my $sql = "SELECT Genebank_Accession FROM Loci WHERE $_[0] = '$_[1]'";
 
-   my $dbh = DBI->connect($dbsource, $username, $password);
-
-
    my $sth = $dbh->prepare($sql);
 
    my @genebank;
