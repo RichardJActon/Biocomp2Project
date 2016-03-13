@@ -89,7 +89,7 @@ print "
 <input type='submit' value='SUBMIT' />
 </form>
 </body>
-</html>" 
+</html>";
 
 
 
