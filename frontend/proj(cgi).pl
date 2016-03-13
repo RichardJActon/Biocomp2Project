@@ -14,7 +14,7 @@ print $cgi->header();
 my $Search_type = $cgi->param('Search_type');
 
 #This is the actual string inputed by the user
-my $User_input = $cgi->param('$User_input');
+my $User_input = $cgi->param('User_input');
 	 
 
 
@@ -45,6 +45,7 @@ __EOF
 my @Accessions = get_accession($Search_type, $User_input)
 
 
+my %OrderedAccessions = subroutine2(@Accessions);
 
 
 foreach my $key (keys %OrderedAccessions){
