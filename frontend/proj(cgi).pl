@@ -89,7 +89,7 @@ print <<__EOF;
 <input type='submit' value='SUBMIT' />
 </form>
 </body>
-</html>"
+</html>
 
 __EOF
 
