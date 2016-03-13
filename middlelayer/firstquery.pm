@@ -44,4 +44,7 @@ sub get_accession
 # I could return the 2 arrays without creating the final hash, but I think if I return an hash it will be more front-end friendly
 # and easier to print out. It could ge tricky to print 2 arrays next to each other, while with an hash we will just
 # have to iterate through each key and printing out each key and value.
+
+
+# or maybe with 4 arrays Dolapo can print each array in a column of a table to display result?
 1;
