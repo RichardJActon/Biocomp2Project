@@ -1,12 +1,12 @@
 #!/usr/bin/perl
 use strict;
-############################################################
+########################### CGI ############################
 use CGI;
 use middle::firstquery;
 my $cgi = new CGI;
 print $cgi->header();
 
-############################################################
+########################### DBI ############################
 use DBI;
 
 my $dbname = "Chromosome17";
@@ -17,11 +17,11 @@ my $dbsource = "dbi:mysql:database=$dbname;host=$dbhost";
 my $username = "database-user";
 my $password = "database-password";
 
-$dbh = DBI->connect($dbsource, $username, $password);
+$dbh = DBI->connect($dbsource17, $username, $password);
 #############################################################
 
-#This section uses the firstquery module and displays what is returned from
-#the module in a results html page.
+#This CGI script uses the firstquery module and displays what is returned from
+#the module in a results page.
 
 
 #The following are the 2 strings captured from the user
@@ -49,9 +49,18 @@ h1   { color: black;
 -->
 <title>Search result(s)</title>
 </head>	
-
 </style>
-</html>
+
+<body>
+<form method="post" action="http://student.cryst.bbk.ac.uk/ad002/WWW/cgi-bin/proj(cgi2).pl">
+<br />
+<br />
+<table border ="1">
+	<tr>
+	<td><b>Accessions</b></td>
+	<td><b>Gene ID Product Location</b></td>
+	<td><b>Select Gene<b><td>
+	</tr>
 
 __EOF
 
@@ -66,9 +75,21 @@ my @Accessions = get_accession($Search_type, $User_input);
 my %OrderedAccessions = subroutine2(@Accessions);
 
 
-foreach my $key (sort keys %OrderedAccessions){
-	print "<p>$key = $OrderedAccessions{$key}</p>";
+foreach my $Accession_key (sort keys %OrderedAccessions){
+	print "<tr>
+		<td>$Accession_key </td>
+		<td> $OrderedAccessions{$Accession_key} </td>
+		<td><input type='radio' name='Specific_gene' value='$Accession_key'/></td>
+		</tr>";
+
 }
+print "
+<br />
+<br />
+<input type='submit' value='SUBMIT' />
+</form>
+</body>
+</html>" 
 
 
 
