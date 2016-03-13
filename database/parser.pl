@@ -52,7 +52,7 @@ my @DNA_seqs;
 @DNA_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$DNA_seq_StartMarker,$DNA_seq_EndMarker,$DNA_seq_substittions);
 
 for (my $i = 0; $i < scalar @DNA_seqs; $i++) {
-	print "@DNA_seqs[$i]\n";
+	print "$DNA_seqs[$i]\n";
 }
 ###########
 
@@ -69,5 +69,5 @@ my @Protein_seqs;
 @Protein_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$Protein_seq_StartMarker,$Protein_seq_EndMarker,$Protein_seq_substittions);
 
 for (my $i = 0; $i < scalar @Protein_seqs; $i++) {
-	print "@Protein_seqs[$i]\n";
+	print "$Protein_seqs[$i]\n";
 }

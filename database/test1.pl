@@ -1,8 +1,31 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-#use DBsubroutines;
+use DBsubroutines;
 use DBI;
+################################################################################
+###accession
+my @loci;
+my $line;
+my @lines;
+
+while ($line = <>) 
+{
+push @lines, $line;
+	if ($line =~ /^LOCUS\s{7}(\w{8})/) 
+	{
+		push @loci, $1;
+	}	
+}
+
+for (my $i = 0; $i < scalar @loci; $i++) 
+{
+	print "$loci[$i]\n";
+}
+print "\n";
+
+
+
 ################################################################################
 my $dbname = "Chromosome17";
 my $dbserver = "localhost";
@@ -12,7 +35,16 @@ my $username = "RichardActon";
 my $password = "314159";
 
 my $dbh = DBI->connect($datasource, $username, $password);
+################################################################################
+for (my $i = 0; $i < sclar @loci; $i++) {
+	my $sql = ("
+		INSERT INTO Loci (Genebank_Accession)
+			VALUES ('$loci[$i]');
+		")
+}
 
+
+################################################################################
 my @sql = (
 "
 INSERT INTO Chromosome_Locations (Chromosome_Location_ID)
