@@ -31,8 +31,6 @@ sub get_accession
 # what to do next?
 # we could follow what we wrote in the API.
 # or maybe we could just create 4 arrays (1 for each result attribute)
-
-
 # and with 4 arrays Dolapo can print each array in a column of a table to display result?
 
 1;
