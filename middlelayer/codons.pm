@@ -1,11 +1,11 @@
 package middle::codons;
-
-# Subroutine: calc_cod_freq
-# Purpose: calculate the frequency of each codon in a given sequence.
-# Input paramater: 1 string, the coding sequence.
-# Returns: an hash where the keys are the codons and the values are
-# the corresponding frequencies.
-
+######################################################################
+# Subroutine: calc_cod_freq                                          #
+# Purpose: calculate the frequency of each codon in a given sequence.#
+# Input paramater: 1 string, the coding sequence.                    #
+# Returns: an hash where the keys are the codons and the values are  #
+# the corresponding frequencies.                                     #
+######################################################################
 
 sub calc_cod_freq
 
@@ -31,13 +31,13 @@ sub calc_cod_freq
 
 }
 
-
-# Subroutine: calc_cod_ratio
-# Purpose: calculate the ration of each codon encoding its amino acid in a given sequence.
-# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence.
-# Returns: an hash where the keys are the codons and the values are
-# the corresponding usage ratio.
-
+###########################################################################################
+# Subroutine: calc_cod_ratio                                                              #
+# Purpose: calculate the ration of each codon encoding its amino acid in a given sequence.#
+# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence. #
+# Returns: an hash where the keys are the codons and the values are                       #
+# the corresponding usage ratio.                                                          #
+###########################################################################################
 
 sub calc_cod_ratio
 
@@ -61,10 +61,10 @@ sub calc_cod_ratio
    }
 
 
-# In the 2 lines below I join my 2 original arrays in an hash called translation; 
-# eack key in the hash will be a codon (so no duplicates), while each value will be
-# the amino acid which each codon translate. This way I can use this new hash to connect
-# each codon count to the correspondin amino acid count.
+# In the 2 lines below I join my 2 original arrays in an hash called translation;        
+# eack key in the hash will be a codon (so no duplicates), while each value will be      
+# the amino acid which each codon translate. This way I can use this new hash to connect 
+# each codon count to the correspondin amino acid count.                                 
 
    my %translation;
 
@@ -83,14 +83,14 @@ sub calc_cod_ratio
 
 }
 
-
-# Subroutine: map_codons
-# Purpose: connect each codon in a coding sequence with its corresponding
-# amino acid in the translated sequence.
-# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence.
-# Returns: an hash where the keys are the codons (no duplicates) and the values are
-# the corresponding amino acids.
-
+###########################################################################################
+# Subroutine: map_codons                                                                  #
+# Purpose: connect each codon in a coding sequence with its corresponding                 #
+# amino acid in the translated sequence.                                                  #
+# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence. #
+# Returns: an hash where the keys are the codons (no duplicates) and the values are       #
+# the corresponding amino acids.                                                          #
+###########################################################################################
 sub map_codons
 
 {
