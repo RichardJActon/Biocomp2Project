@@ -42,13 +42,13 @@ __EOF
 #This line calls on a function in the firstquery.pm module called the get_accessions subroutine
 #which processes the 2 inputs of the user.
 
-my @Accessions = get_accession($Search_type, $User_input);
+my @Accessions = get_accession($Search_type, $User_input)
 
 
 my %OrderedAccessions = subroutine2(@Accessions);
 
 
-foreach my $key (keys %OrderedAccessions){
+foreach my $key (sort keys %OrderedAccessions){
 	print "<p>$key = $OrderedAccessions{$key}</p>";
 }
 
