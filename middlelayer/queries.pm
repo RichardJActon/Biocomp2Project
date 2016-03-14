@@ -15,7 +15,7 @@ sub get_sequences
 
    my $sql = "SELECT DNA_sequence, 
                      CDS_translated 
-              FROM protein WHERE Genebank_Accession = '$_[0]'";
+              FROM Loci WHERE Genebank_Accession = '$_[0]'";
 
 
 # We know this query will only return 1 row.
