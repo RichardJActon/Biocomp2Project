@@ -1,4 +1,8 @@
 package middle::codons;
+
+use strict;
+use warnings;
+
 ######################################################################
 # Subroutine: calc_cod_freq                                          #
 # Purpose: calculate the frequency of each codon in a given sequence.#
