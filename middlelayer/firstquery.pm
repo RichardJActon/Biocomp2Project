@@ -5,7 +5,7 @@ package middle::firstquery;
 # Input paramater: 2 strings; the 1st string is the type of search (product                                  #          
 # name, genbank_accession, gene_id or location) captured from the dropdown                                   #
 # box of the application; the second string is what the user types in the searchbox of the application.      #
-# Returns: an hash wehre the keys are accession numbers and values are the corresponding                     #
+# Returns: an hash where the keys are accession numbers and values are the corresponding                     #
 # gene id, chromosome location and product name concatenated together.                                       #
 ##############################################################################################################
 sub get_results
