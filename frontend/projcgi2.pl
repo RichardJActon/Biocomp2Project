@@ -24,7 +24,7 @@ $dbh = DBI->connect($dbsource17, $username, $password);
 #on and submitted in the results page displayed through 
 #the first cgi script(proj(cgi).pl) 
 
-my $Specific_gene = $cgi->parama('Specific_gene');
+my $Specific_gene = $cgi->param('Specific_gene');
 
 print <<__EOF;
 
