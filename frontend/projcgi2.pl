@@ -2,7 +2,10 @@
 use strict;
 ########################### CGI ############################
 use CGI;
-use middle::firstquery;
+use middle::queries;
+use middle::calculations;
+use middle::codons;
+
 my $cgi = new CGI;
 print $cgi->header();
 
