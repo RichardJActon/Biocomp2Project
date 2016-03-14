@@ -43,16 +43,27 @@ print "\n";
 my $locusMarker = qr/^LOCUS\s{7}/;
 
 my $DNA_seq_StartMarker = qr/^ORIGIN/;
-my $DNA_seq_EndMarker = qr/^\/\//;
+my $DNA_seq_EndMarker = qr/\/\//;
 my $DNA_seq_substittions = qr/[0-9]|\n|\s/;
 
 #######################
 
 my @DNA_seqs;
-@DNA_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$DNA_seq_StartMarker,$DNA_seq_EndMarker,$DNA_seq_substittions);
+@DNA_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$DNA_seq_StartMarker,$DNA_seq_EndMarker); #,$DNA_seq_substittions
 
 for (my $i = 0; $i < scalar @DNA_seqs; $i++) {
 	print "$DNA_seqs[$i]\n";
+}
+
+my @DNA_seq_substituted;
+for (my $i = 0; $i < scalar @DNA_seqs; $i++) {
+	my $tempseq = "";
+	$tempseq = $DNA_seqs[$i];
+	$tempseq =~ s/${DNA_seq_substittions}//g;
+	$tempseq =~ s/${DNA_seq_StartMarker}//g;
+	$tempseq =~ s/${DNA_seq_EndMarker}//g;
+	push @DNA_seq_substituted, $tempseq;
+	print "$tempseq\n";
 }
 ###########
 
@@ -60,13 +71,13 @@ for (my $i = 0; $i < scalar @DNA_seqs; $i++) {
 
 ####################################################################################################
 my $Protein_seq_StartMarker = qr/\/translation="/;
-my $Protein_seq_EndMarker = qr/\"/;
-my $Protein_seq_substittions = qr/[0-9]|\n|\s/;
+my $Protein_seq_EndMarker = qr/.*\"\n/;
+#my $Protein_seq_substittions = qr/[0-9]|\n|\s/;
 
 #######################
 
 my @Protein_seqs;
-@Protein_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$Protein_seq_StartMarker,$Protein_seq_EndMarker,$Protein_seq_substittions);
+@Protein_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$Protein_seq_StartMarker,$Protein_seq_EndMarker); #,$Protein_seq_substittions
 
 for (my $i = 0; $i < scalar @Protein_seqs; $i++) {
 	print "$Protein_seqs[$i]\n";

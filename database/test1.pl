@@ -41,32 +41,34 @@ for (my $i = 0; $i < sclar @loci; $i++) {
 		INSERT INTO Loci (Genebank_Accession)
 			VALUES ('$loci[$i]');
 		")
+	$dhb->prepare($sql);
 }
+
 
 
 ################################################################################
-my @sql = (
-"
-INSERT INTO Chromosome_Locations (Chromosome_Location_ID)
-	VALUES	(11);
-"
-,
-"
-INSERT INTO Exons (Exon_ID,Genebank_Accession)
-	VALUES	(10,'AB007120');
+# my @sql = (
+# "
+# INSERT INTO Chromosome_Locations (Chromosome_Location_ID)
+# 	VALUES	(11);
+# "
+# ,
+# "
+# INSERT INTO Exons (Exon_ID,Genebank_Accession)
+# 	VALUES	(10,'AB007120');
 
-"
-,
-"
-INSERT INTO Loci (Genebank_Accession,Chromosome_Location_ID)
-	VALUES	('AB007120',11);
-"
-);
+# "
+# ,
+# "
+# INSERT INTO Loci (Genebank_Accession,Chromosome_Location_ID)
+# 	VALUES	('AB007120',11);
+# "
+# );
 
 
-for (my $i = 0; $i < scalar @sql ; $i++) {
-	$dbh->do($sql[$i]);
-}
+# for (my $i = 0; $i < scalar @sql ; $i++) {
+# 	$dbh->do($sql[$i]);
+# }
 
 ## foreign key related error, maybe because they are emty?
 

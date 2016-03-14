@@ -1,7 +1,7 @@
 package DBsubroutines;
 use strict;
 use warnings;
-#
+####################################################################################################
 sub EXTRACT_LOCUS_FEATURE
 {
 # input variables	
@@ -10,10 +10,10 @@ sub EXTRACT_LOCUS_FEATURE
 	my $locusMarker = $_[2];		# regex of characteristic markup adjacent to the locus identifiers
 	my $featuerStartMarker = $_[3];	# regex of characteristic markup preceding the feature of interest
 	my $featuerEndMarker = $_[4];	# regex of characteristic markup following the feature of interest
-	my $substittions = $_[5];		# regex of any features recurrent characters e.g. whitespace newline to removed from the string
+
 
 # local variables
-	my @outarray;
+	my @outArray;
 	my $attribute = "";
 	my $subattribute = "";
 
@@ -29,20 +29,46 @@ sub EXTRACT_LOCUS_FEATURE
 				}
 				while ($lines[$j] !~ /${featuerEndMarker}/ and defined $lines[$j])
 				{				
-					$subattribute = $lines[$j];
-					$subattribute =~ s/${substittions}//g; # possible conflict with detecting and removing start and end markers  - markers could be changed by this move to after marker check?
-					$attribute .= $subattribute;
-					$subattribute = "";
+					# $subattribute = $lines[$j];
+					# $subattribute =~ s/${substittions}//g; # possible conflict with detecting and removing start and end markers  - markers could be changed by this move to after marker check?
+					# $attribute .= $subattribute;
+					$attribute .= $lines[$j];
+					#$subattribute = "";
 					$j++;
 				}
-				$attribute =~ s/${featuerStartMarker}//g;
-				$attribute =~ s/${featuerEndMarker}//g;
-				push @outarray, $attribute;
+				if ($lines[$j] =~ /${featuerEndMarker}/ and defined $lines[$j]) {
+					$attribute .= $lines[$j];
+				}
+				# $attribute =~ s/${featuerStartMarker}//g;
+				# $attribute =~ s/${featuerEndMarker}//g;
+				push @outArray, $attribute;
 				$attribute = "";
 			}
 		}
 	}
-	return @outarray;
+	return @outArray;
+}
+####################################################################################################
+sub SUBSTITUTIONS
+{
+	my outArray;
+
+	my @inArray = @{$_[0]};
+	my $featuerStartMarker = $_[1];	# regex of characteristic markup preceding the feature of interest
+	my $featuerEndMarker = $_[2];	# regex of characteristic markup following the feature of interest
+	my $substittions = $_[3];		# regex of any features recurrent characters e.g. whitespace newline to removed from the string
+
+	for (my $i = 0; $i < scalar @inAArray; $i++) {
+		my $tempFeature = "";
+		$tempFeature = $inAArray[$i];
+		$tempFeature =~ s/${substittions}//g;
+		$tempFeature =~ s/${featuerStartMarker}//g;
+		$tempFeature =~ s/${featuerEndMarker}//g;
+		push @outArray, $tempFeature;
+		#print "$tempFeature\n";
+	}
+	return @outArray;
 }
 
+####################################################################################################
 1;
