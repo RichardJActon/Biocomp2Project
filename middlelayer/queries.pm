@@ -27,3 +27,5 @@ sub get_sequences
     return $nucleo_seq, $aa_seq;
   }
 }
+
+1;
