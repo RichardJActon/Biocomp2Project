@@ -15,9 +15,6 @@ sub get_accession
 
    my $sql = "SELECT Genebank_Accession FROM Loci WHERE $_[0] = '$_[1]'";
 
-   my $dbh = DBI->connect($dbsource, $username, $password);
-
-
    my $sth = $dbh->prepare($sql);
 
    my @genebank;
@@ -31,16 +28,9 @@ sub get_accession
    }
 }
 
-# Next step subroutine will be taking the array of accession numbers and will use it to retrieve (gene id, product and location).
-# Those 3 attributes for each entry will be concatenated, and the concatenated attributes for each entry will be inserted into a 
-# second array.
+# what to do next?
+# we could follow what we wrote in the API.
+# or maybe we could just create 4 arrays (1 for each result attribute)
+# and with 4 arrays Dolapo can print each array in a column of a table to display result?
 
-# Following that I will have one last short subroutine which will create an hash where keys are the accession and
-# values are the other 3 concatenated attributes for each accession.
-# The subroutine will return an hash, which can be used in the front end to print out the query results.
-# By having the accession numbers as keys it will be possible to add some tags arounde the keys to make
-# each accession clickable.
-
-# I could return the 2 arrays without creating the final hash, but I think if I return an hash it will be more front-end friendly
-# and easier to print out. It could ge tricky to print 2 arrays next to each other, while with an hash we will just
-# have to iterate through each key and printing out each key and value.
+1;
