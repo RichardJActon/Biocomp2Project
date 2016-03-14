@@ -84,12 +84,13 @@ foreach my $Accession_key (sort keys %OrderedAccessions){
 
 }
 print <<__EOF;
+</table>
 <br />
 <br />
 <input type='submit' value='SUBMIT' />
 </form>
 </body>
-</html>
+</html>"
 
 __EOF
 
