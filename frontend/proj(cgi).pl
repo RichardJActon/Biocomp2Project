@@ -64,21 +64,17 @@ h1   { color: black;
 
 __EOF
 
-#This line calls on a function in the firstquery.pm module called the get_accessions 
+#This line calls on a function in the firstquery.pm module called the get_results
 # subroutine which processes the 2 inputs of the user.
 
-my @Accessions = get_accession($Search_type, $User_input);
-
-#This line calls on a second subroutine from the firstquery.pm module to repackage the data 
-#retreived from the database in a suitable format for unpacking and displaying.
-
-my %OrderedAccessions = subroutine2(@Accessions);
+my %results = get_results($Search_type, $User_input);
 
 
-foreach my $Accession_key (sort keys %OrderedAccessions){
+
+foreach my $Accession_key (sort keys %results){
 	print "<tr>
 		<td>$Accession_key </td>
-		<td> $OrderedAccessions{$Accession_key} </td>
+		<td> $results{$Accession_key} </td>
 		<td><input type='radio' name='Specific_gene' value='$Accession_key'/></td>
 		</tr>";
 
