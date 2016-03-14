@@ -1,5 +1,8 @@
 package middle::queries;
 
+use strict;
+use warnings;
+
 #########################################################################
 # Subroutine: get_sequences                                             #
 # Purpose: retrieve DNA sequence and Protein sequence of 1 entry.       #
