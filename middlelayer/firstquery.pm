@@ -36,5 +36,5 @@ sub get_results
 }
 
 
-  
+1;  
 
