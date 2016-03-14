@@ -1,4 +1,7 @@
 package middle::firstquery;
+
+use strict;
+use warnings;
 ##############################################################################################################
 # Subroutine: get_results                                                                                    #
 # Purpose: executes user search and retrieve results from the database.                                      #
