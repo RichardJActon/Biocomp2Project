@@ -63,7 +63,8 @@ sub make_exons_hash
          my $length = $end - $start;
          $exons{$start} = $length;
      }
-      return %exons;
-   }
+     return %exons;
+  }
 }
-}
+
+1;
