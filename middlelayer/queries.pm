@@ -31,4 +31,39 @@ sub get_sequences
   }
 }
 
-1;
+#########################################################################
+# Subroutine: make_exons_hash                                           #
+# Purpose: retrieve exons position and length for 1 entry.              #
+# Input paramater: 1 string, the accession number of the entry.         #
+# Returns: an hash where keys are exons start positions and values the  #
+# corresponding lengths.                                                #
+#########################################################################
+
+
+
+sub make_exons_hash
+
+{
+   chomp $_[0];
+
+   my $sql = "SELECT StartPosition, 
+                     EndPosition
+              FROM Exons WHERE Genebank_Accession = '$_[0]'";
+
+
+
+
+   my $sth = $dbh->prepare($sql);
+
+   my %exons;
+
+   if($sth && $sth->execute)   {
+        
+      while(my ($start, $end) = $sth->fetchrow_array)   {
+         my $length = $end - $start;
+         $exons{$start} = $length;
+     }
+      return %exons;
+   }
+}
+}
