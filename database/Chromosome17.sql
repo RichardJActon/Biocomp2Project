@@ -2,13 +2,13 @@
 DROP DATABASE IF EXISTS Chromosome17;
 CREATE DATABASE Chromosome17;
 USE Chromosome17;
--- 
+-- cmd line: mysql -u RichardActon -p"314159" Chromosome17 ##  mysql -u RichardActon -p"314159" < Chromosome17.sql
 
 CREATE TABLE Chromosome_Locations
 (	Chromosome_Location_ID	SMALLINT 	DEFAULT NULL,
 	Location_Name			TEXT		NOT NULL,
 	PRIMARY KEY (Chromosome_Location_ID)
-)TYPE = INNODB;
+)ENGINE = INNODB;
 
 CREATE TABLE Loci
 (	Genebank_Accession		VARCHAR(8)	DEFAULT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE Loci
 	CDS_translated 			TEXT		NOT NULL,
 	CDS_untranslated		TEXT		NOT NULL,
 	PRIMARY KEY (Genebank_Accession)-- ,
-)TYPE = INNODB;
+)ENGINE = INNODB;
 
 CREATE TABLE Exons
 (	Exon_ID				SMALLINT	DEFAULT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE Exons
 	StartPosition		SMALLINT	NOT NULL,
 	EndPosition			SMALLINT	NOT NULL,
 	PRIMARY KEY (Exon_ID)-- ,
-)TYPE = INNODB;
+)ENGINE = INNODB;
 #############################
 #### NOT NULLS? foreign key problems>?
 
