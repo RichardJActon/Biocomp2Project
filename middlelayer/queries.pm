@@ -33,7 +33,7 @@ sub get_sequences
 
 #########################################################################
 # Subroutine: make_exons_hash                                           #
-# Purpose: retrieve exons position and length for 1 entry.              #
+# Purpose: retrieve exons positions and lengths for 1 entry.              #
 # Input paramater: 1 string, the accession number of the entry.         #
 # Returns: an hash where keys are exons start positions and values the  #
 # corresponding lengths.                                                #
