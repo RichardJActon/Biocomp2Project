@@ -167,3 +167,21 @@ for (my $i = 0; $i < scalar @join_seq_substituted; $i++)
 	$joinCount++;
 }
 print "$joinCount\n";
+
+#############
+# my @exonStarts = "";
+# my @exonEnds = "";
+# for (my $i = 0; $i < scalar @join_seq_substituted; $i++) {
+# 	@exonStarts	= $join_seq_substituted[$i] =~ /(\d+..)/;
+# 	@exonEnds = $join_seq_substituted[$i] =~ /(\..d+)/;
+# }
+
+# ###########
+# for (my $i = 0; $i < scalar @exonStarts; $i++) 
+# {
+# 	print "$exonStarts[$i]\n";
+# }
+# for (my $i = 0; $i < scalar @exonEnds; $i++) 
+# {
+# 	print "$exonEnds[$i]\n";
+# }
