@@ -51,19 +51,19 @@ sub EXTRACT_LOCUS_FEATURE
 ####################################################################################################
 sub SUBSTITUTIONS
 {
-	my outArray;
+	my @outArray;
 
 	my @inArray = @{$_[0]};
 	my $featuerStartMarker = $_[1];	# regex of characteristic markup preceding the feature of interest
 	my $featuerEndMarker = $_[2];	# regex of characteristic markup following the feature of interest
 	my $substittions = $_[3];		# regex of any features recurrent characters e.g. whitespace newline to removed from the string
 
-	for (my $i = 0; $i < scalar @inAArray; $i++) {
+	for (my $i = 0; $i < scalar @inArray; $i++) {
 		my $tempFeature = "";
-		$tempFeature = $inAArray[$i];
-		$tempFeature =~ s/${substittions}//g;
+		$tempFeature = $inArray[$i];
 		$tempFeature =~ s/${featuerStartMarker}//g;
 		$tempFeature =~ s/${featuerEndMarker}//g;
+		$tempFeature =~ s/${substittions}//g;
 		push @outArray, $tempFeature;
 		#print "$tempFeature\n";
 	}
