@@ -55,11 +55,13 @@ for (my $i = 0; $i < scalar @DNA_seqs; $i++)
 my @DNA_seq_substituted;
 @DNA_seq_substituted = DBsubroutines::SUBSTITUTIONS(\@DNA_seqs,$DNA_seq_StartMarker,$DNA_seq_EndMarker,$DNA_seq_substittions);
 ###############
+my $genCount = 0;
 for (my $i = 0; $i < scalar @DNA_seq_substituted; $i++) 
 {
 	print "$DNA_seq_substituted[$i]\n";
+	$genCount++;
 }
-
+print "$genCount\n";
 ####################################################################################################
 #####################################  Extract Protein sequences   #################################
 ####################################################################################################
@@ -78,7 +80,35 @@ for (my $i = 0; $i < scalar @protein_seqs; $i++)
 my @protein_seq_substituted;
 @protein_seq_substituted = DBsubroutines::SUBSTITUTIONS(\@protein_seqs,$protein_seq_StartMarker,$protein_seq_EndMarker,$protein_seq_substittions);
 ###############
+my $protCount = 0;
 for (my $i = 0; $i < scalar @protein_seq_substituted; $i++) 
 {
 	print "$protein_seq_substituted[$i]\n";
+	$protCount++;
 }
+print "$protCount\n";
+####################################################################################################
+##################################  Extract Chromosome Locations   #################################
+####################################################################################################
+my $chromloc_seq_StartMarker = qr/\/map="/;
+my $chromloc_seq_EndMarker = qr/\"\n/;
+my $chromloc_seq_substittions = qr/\n|\s/;
+###############
+my @chromloc_seqs;
+@chromloc_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$chromloc_seq_StartMarker,$chromloc_seq_EndMarker); #,$chromloc_seq_substittions
+###############
+for (my $i = 0; $i < scalar @chromloc_seqs; $i++) 
+{
+	print "$chromloc_seqs[$i]\n";
+}
+###############
+my @chromloc_seq_substituted;
+@chromloc_seq_substituted = DBsubroutines::SUBSTITUTIONS(\@chromloc_seqs,$chromloc_seq_StartMarker,$chromloc_seq_EndMarker,$chromloc_seq_substittions);
+###############
+my $mapCount = 0;
+for (my $i = 0; $i < scalar @chromloc_seq_substituted; $i++) 
+{
+	print "$chromloc_seq_substituted[$i]\n";
+	$mapCount++;
+}
+print "$mapCount\n";
