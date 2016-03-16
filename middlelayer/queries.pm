@@ -33,7 +33,7 @@ sub get_sequences
 
 #########################################################################
 # Subroutine: make_exons_hash                                           #
-# Purpose: retrieve exons positions and lengths for 1 entry.              #
+# Purpose: retrieve exons positions and lengths for 1 entry.            #
 # Input paramater: 1 string, the accession number of the entry.         #
 # Returns: an hash where keys are exons start positions and values the  #
 # corresponding lengths.                                                #
@@ -63,7 +63,41 @@ sub make_exons_hash
          my $length = $end - $start;
          $exons{$start} = $length;
      }
-     return %exons;
+      return %exons;
+  }
+}
+
+
+
+#########################################################################
+# Subroutine: get_all_proteins                                          #
+# Purpose: retrieve all proteins sequences from the database.           #
+# Input paramater: none;                                                #
+# Returns: an hash where keys are all the accessions and values are all #
+# the protein sequences in the database.                                #
+#########################################################################
+
+sub get_all_proteins
+
+{
+
+   my $sql = "SELECT Genebank_Accession, 
+                     CDS_translated
+              FROM   Loci";
+
+
+
+
+   my $sth = $dbh->prepare($sql);
+
+   my %all_proteins;
+
+   if($sth && $sth->execute)   {
+        
+      while(my ($g_bank, $protein) = $sth->fetchrow_array)   {
+         $all_proteins{$g_bank} = $protein;
+     }
+      return %all_proteins;
   }
 }
 
