@@ -176,7 +176,7 @@ my %exonEnds;
 
 for (my $i = 0; $i < scalar @join_seq_substituted; $i++) 
 {
-	while (@loci) 
+	for ( $i < scalar @loci) 
 	{		
 		my @exonStarts = "";
 		my @exonEnds = "";
