@@ -174,21 +174,27 @@ my %exonStarts;
 my %exonEnds;
 
 
-for (my $i = 0; $i < scalar @join_seq_substituted; $i++) {
-	my @exonStarts = "";
-	my @exonEnds = "";
-	@exonStarts = $join_seq_substituted[$i] =~ /(\d+)\.\./g;
-	@exonEnds = $join_seq_substituted[$i] =~ /\.\.(\d+)/g;
-	$exonStarts{$i} = \@exonStarts;
-	$exonEnds{$i} = \@exonEnds;
+for (my $i = 0; $i < scalar @join_seq_substituted; $i++) 
+{
+	while (@loci) 
+	{		
+		my @exonStarts = "";
+		my @exonEnds = "";
+		@exonStarts = $join_seq_substituted[$i] =~ /(\d+)\.\./g;
+		@exonEnds = $join_seq_substituted[$i] =~ /\.\.(\d+)/g;
+		$exonStarts{$loci[$i]} = \@exonStarts;
+		$exonEnds{$loci[$i]} = \@exonEnds;
+	}
 }
 print "\n\nexon starts: \n";
-while (my($k,$v) = each %exonStarts) {
+while (my($k,$v) = each %exonStarts) 
+{
 	my @v = @{$v};
 	print "$k @v\n";
 }
 print "\n\nexon ends: \n";
-while (my($k,$v) = each %exonEnds) {
+while (my($k,$v) = each %exonEnds) 
+{
 	my @v = @{$v};
 	print "$k @v\n";
 }
