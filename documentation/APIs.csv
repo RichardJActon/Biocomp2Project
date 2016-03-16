@@ -15,5 +15,5 @@ CODON_FREQ,Coding sequence and amino acids sequence,2 strings,"3 hashes, codons 
 PROTEIN_SEQ_SPACING,1 string of the protein sequence,1 string, 1 string protein sequence with 2 spaces(or other) on either side of each amino acid,,Done
 ,,,e.g -M--N--A-,,
 ALL_DNA,,,Concatenation of all the coding DNA,,
-ALL_Protein,,,Retrieve all protein sequence,,,DOne
+ALL_Protein,,,Retrieve all protein sequence,,DOne
 RESTRICTION ENZYMES,DNA sequence,1 string,"2 arrays : 1 of start positions, 1 of end positions of restrictions sites. (It could be an hash).",,
