@@ -18,11 +18,11 @@ push @lines, $line;
 	}	
 }
 
-for (my $i = 0; $i < scalar @loci; $i++) 
-{
-	print "$loci[$i]\n";
-}
-print "\n";
+# for (my $i = 0; $i < scalar @loci; $i++) 
+# {
+# 	print "$loci[$i]\n";
+# }
+# print "\n";
 
 
 
@@ -40,9 +40,9 @@ for (my $i = 0; $i < scalar @loci; $i++) {
 	my $sql = ("
 		INSERT INTO Loci (Genebank_Accession)
 			VALUES ('$loci[$i]');
-		")
-	$dhb->do($sql);
-}
+		");
+	$dbh->do($sql);
+};
 
 
 
