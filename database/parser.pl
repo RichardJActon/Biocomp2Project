@@ -169,14 +169,30 @@ for (my $i = 0; $i < scalar @join_seq_substituted; $i++)
 print "$joinCount\n";
 
 #############
-# my @exonStarts = "";
-# my @exonEnds = "";
-# for (my $i = 0; $i < scalar @join_seq_substituted; $i++) {
-# 	@exonStarts	= $join_seq_substituted[$i] =~ /(\d+..)/;
-# 	@exonEnds = $join_seq_substituted[$i] =~ /(\..d+)/;
-# }
+print "Separating the individual exon Boundaries form the join:\n";
+my %exonStarts;
+my %exonEnds;
 
-# ###########
+
+for (my $i = 0; $i < scalar @join_seq_substituted; $i++) {
+	my @exonStarts = "";
+	my @exonEnds = "";
+	@exonStarts = $join_seq_substituted[$i] =~ /(\d+)\.\./g;
+	@exonEnds = $join_seq_substituted[$i] =~ /\.\.(\d+)/g;
+	$exonStarts{$i} = \@exonStarts;
+	$exonEnds{$i} = \@exonEnds;
+}
+print "\n\nexon starts: \n";
+while (my($k,$v) = each %exonStarts) {
+	my @v = @{$v};
+	print "$k @v\n";
+}
+print "\n\nexon ends: \n";
+while (my($k,$v) = each %exonEnds) {
+	my @v = @{$v};
+	print "$k @v\n";
+}
+###########
 # for (my $i = 0; $i < scalar @exonStarts; $i++) 
 # {
 # 	print "$exonStarts[$i]\n";
