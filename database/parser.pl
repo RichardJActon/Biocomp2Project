@@ -112,3 +112,58 @@ for (my $i = 0; $i < scalar @chromloc_seq_substituted; $i++)
 	$mapCount++;
 }
 print "$mapCount\n";
+####################################################################################################
+#################################  Extract Protein product Names   #################################
+####################################################################################################
+my $product_seq_StartMarker = qr/\/product="/;
+my $product_seq_EndMarker = qr/\"\n/;
+my $product_seq_substittions = qr/\n/;
+###############
+my @product_seqs;
+@product_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$product_seq_StartMarker,$product_seq_EndMarker); #,$product_seq_substittions
+###############
+for (my $i = 0; $i < scalar @product_seqs; $i++) 
+{
+	print "$product_seqs[$i]\n";
+}
+###############
+my @product_seq_substituted;
+@product_seq_substituted = DBsubroutines::SUBSTITUTIONS(\@product_seqs,$product_seq_StartMarker,$product_seq_EndMarker,$product_seq_substittions);
+###############
+my $productCount = 0;
+for (my $i = 0; $i < scalar @product_seq_substituted; $i++) 
+{
+	print "$product_seq_substituted[$i]\n";
+	$productCount++;
+}
+print "$productCount\n";
+
+
+
+
+
+####################################################################################################
+############################################  Extract Join   #######################################
+####################################################################################################
+my $join_seq_StartMarker = qr/.*join\(/;
+my $join_seq_EndMarker = qr/\)\n/;
+my $join_seq_substittions = qr/\n|\<|\>|\s/;
+###############
+my @join_seqs;
+@join_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$join_seq_StartMarker,$join_seq_EndMarker); #,$join_seq_substittions
+###############
+for (my $i = 0; $i < scalar @join_seqs; $i++) 
+{
+	print "$join_seqs[$i]\n";
+}
+###############
+my @join_seq_substituted;
+@join_seq_substituted = DBsubroutines::SUBSTITUTIONS(\@join_seqs,$join_seq_StartMarker,$join_seq_EndMarker,$join_seq_substittions);
+###############
+my $joinCount = 0;
+for (my $i = 0; $i < scalar @join_seq_substituted; $i++) 
+{
+	print "$join_seq_substituted[$i]\n";
+	$joinCount++;
+}
+print "$joinCount\n";
