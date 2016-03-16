@@ -36,12 +36,12 @@ my $password = "314159";
 
 my $dbh = DBI->connect($datasource, $username, $password);
 ################################################################################
-for (my $i = 0; $i < sclar @loci; $i++) {
+for (my $i = 0; $i < scalar @loci; $i++) {
 	my $sql = ("
 		INSERT INTO Loci (Genebank_Accession)
 			VALUES ('$loci[$i]');
 		")
-	$dhb->prepare($sql);
+	$dhb->do($sql);
 }
 
 
