@@ -27,17 +27,18 @@ CREATE TABLE Exons
 	StartPosition		SMALLINT	NOT NULL,
 	EndPosition			SMALLINT	NOT NULL,
 	PRIMARY KEY (Exon_ID)-- ,
-)ENGINE = INNODB;
-#############################
-#### NOT NULLS? foreign key problems>?
+)ENGINE = INNODB;  
+ -- #############################
+ -- #### NOT NULLS? foreign key problems>?
 
 ALTER TABLE Exons ADD CONSTRAINT exon_loci_Accession
 FOREIGN KEY (Genebank_Accession) REFERENCES Loci (Genebank_Accession) 
 ON UPDATE CASCADE ON DELETE CASCADE;
---
+-- 
 ALTER TABLE Loci ADD CONSTRAINT loci_chromLoc_ChromLocID
 FOREIGN KEY (Chromosome_Location_ID) REFERENCES Chromosome_Locations (Chromosome_Location_ID) 
 ON UPDATE CASCADE ON DELETE CASCADE;
 
 
-##load - > index
+-- ##load - > index
+-- need auto increments on chrom id and exon id work out how these are dome
