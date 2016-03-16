@@ -115,29 +115,54 @@ print "$mapCount\n";
 ####################################################################################################
 #################################  Extract Protein product Names   #################################
 ####################################################################################################
-my $product_seq_StartMarker = qr/\/product="/;
-my $product_seq_EndMarker = qr/\"\n/;
-my $product_seq_substittions = qr/\n/;
+my $product_name_StartMarker = qr/\/product="/;
+my $product_name_EndMarker = qr/\"\n/;
+my $product_name_substittions = qr/\n/;
 ###############
-my @product_seqs;
-@product_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$product_seq_StartMarker,$product_seq_EndMarker); #,$product_seq_substittions
+my @product_names;
+@product_names = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$product_name_StartMarker,$product_name_EndMarker); #,$product_name_substittions
 ###############
-for (my $i = 0; $i < scalar @product_seqs; $i++) 
+for (my $i = 0; $i < scalar @product_names; $i++) 
 {
-	print "$product_seqs[$i]\n";
+	print "$product_names[$i]\n";
 }
 ###############
-my @product_seq_substituted;
-@product_seq_substituted = DBsubroutines::SUBSTITUTIONS(\@product_seqs,$product_seq_StartMarker,$product_seq_EndMarker,$product_seq_substittions);
+my @product_name_substituted;
+@product_name_substituted = DBsubroutines::SUBSTITUTIONS(\@product_names,$product_name_StartMarker,$product_name_EndMarker,$product_name_substittions);
 ###############
 my $productCount = 0;
-for (my $i = 0; $i < scalar @product_seq_substituted; $i++) 
+for (my $i = 0; $i < scalar @product_name_substituted; $i++) 
 {
-	print "$product_seq_substituted[$i]\n";
+	print "$product_name_substituted[$i]\n";
 	$productCount++;
 }
 print "$productCount\n";
 
+####################################################################################################
+#####################################  Extract DNA GI number   #####################################
+####################################################################################################
+my $GI_num_StartMarker = qr/^VERSION.*GI\:/;
+my $GI_num_EndMarker = qr/\n/;
+my $GI_num_substittions = qr/[A-Z]|\s|\n/;
+###############
+my @GI_nums;
+@GI_nums = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$GI_num_StartMarker,$GI_num_EndMarker); #,$GI_num_substittions
+###############
+for (my $i = 0; $i < scalar @GI_nums; $i++) 
+{
+	print "$GI_nums[$i]\n";
+}
+###############
+my @GI_num_substituted;
+@GI_num_substituted = DBsubroutines::SUBSTITUTIONS(\@GI_nums,$GI_num_StartMarker,$GI_num_EndMarker,$GI_num_substittions);
+###############
+my $GI_Count = 0;
+for (my $i = 0; $i < scalar @GI_num_substituted; $i++) 
+{
+	print "$GI_num_substituted[$i]\n";
+	$GI_Count++;
+}
+print "$GI_Count\n";
 
 
 
@@ -198,12 +223,3 @@ while (my($k,$v) = each %exonEnds)
 	my @v = @{$v};
 	print "$k @v\n";
 }
-###########
-# for (my $i = 0; $i < scalar @exonStarts; $i++) 
-# {
-# 	print "$exonStarts[$i]\n";
-# }
-# for (my $i = 0; $i < scalar @exonEnds; $i++) 
-# {
-# 	print "$exonEnds[$i]\n";
-# }
