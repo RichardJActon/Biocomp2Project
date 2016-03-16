@@ -42,3 +42,4 @@ ON UPDATE CASCADE ON DELETE CASCADE;
 
 -- ##load - > index
 -- need auto increments on chrom id and exon id work out how these are dome
+-- are there still mul keys - if so why?
