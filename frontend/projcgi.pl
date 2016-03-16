@@ -52,7 +52,7 @@ h1   { color: black;
 </style>
 
 <body>
-<form method="post" action="http://student.cryst.bbk.ac.uk/ad002/WWW/cgi-bin/proj(cgi2).pl">
+<form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ad002/projcgi2.pl">
 <br />
 <br />
 <table border ="1">
