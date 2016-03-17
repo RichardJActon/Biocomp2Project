@@ -11,7 +11,7 @@ CREATE TABLE Chromosome_Locations
 )ENGINE = INNODB;
 
 CREATE TABLE Loci
-(	Genebank_Accession		VARCHAR(8)	DEFAULT NULL,
+(	Genebank_Accession		VARCHAR(15)	DEFAULT NULL,
 	GI_number				SMALLINT	NOT NULL,
 	Chromosome_Location_ID	SMALLINT	DEFAULT NULL,
 	DNA_sequence			LONGTEXT	NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE Loci
 
 CREATE TABLE Exons
 (	Exon_ID				SMALLINT	DEFAULT NULL,
-	Genebank_Accession	VARCHAR(8)	DEFAULT NULL,
+	Genebank_Accession	VARCHAR(15)	DEFAULT NULL,
 	StartPosition		SMALLINT	NOT NULL,
 	EndPosition			SMALLINT	NOT NULL,
 	PRIMARY KEY (Exon_ID)-- ,

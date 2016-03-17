@@ -16,7 +16,7 @@ my @lines;
 while ($line = <>) 
 {
 push @lines, $line;
-	if ($line =~ /^LOCUS\s{7}(\w{8})/) 
+	if ($line =~ /^LOCUS\s{7}(\w+)\b/) 
 	{
 		push @loci, $1;
 	}	
