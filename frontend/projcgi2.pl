@@ -27,7 +27,7 @@ $dbh = DBI->connect($dbsource17, $username, $password);
 #on and submitted in the results page displayed through 
 #the first cgi script(proj(cgi).pl) 
 
-my $Specific_gene = $cgi->param('Specific_gene');
+my $specific_gene = $cgi->param('specific_gene');
 
 print <<__EOF;
 
@@ -42,10 +42,71 @@ h1   { color: black;
 	font-family: calibri; 
 	font-size: 100%;  }
 -->
-<title>Details of Gene: $Specific_gene</title>
+<title>Details of Gene: $specific_gene</title>
 </head>	
 </style>
 
+<h1><b>
+DNA Sequence with coding regions highlighted
+</b></h1>
+<body>
+<br />
+<br />
+
 __EOF
 
+#Hash formed using subroutine from queries.pm module wherein the 
+#key is the exon start position and the value is the exon length
 
+my %exons = make_exons_hash($specific_gene);
+
+#Both the nucleotide sequence and amino acid sequence extracted 
+#using a subroutine which is also in the queries.pm module
+
+
+my $nucleo_seq = get_sequences($specific_gene);
+my $aa_seq = get_sequences($specific_gene);
+
+
+
+foreach my $key (keys %exons){
+	substr($nucleo_seq, $key, $exons{$key} =
+	"<div style="color:0000FF">"
+	.substr($nucleo_seq,$key,$exons{$key})
+	"</div>";
+}
+
+#Prints the newly highlighted DNA sequence in sets of 
+#50 nucleotides per line
+
+
+print "<head> DNA sequence with coding regions highlighted: </head>
+<br />"
+
+"$_\n" for unpack '(A50)*', $nucleo_seq;
+
+#Amino acid sequence processed using the protein spacing subroutine
+#in the calculations.pm module. The purpose of this process is purely 
+#for presentation of the coding sequence and the amino acid formed from
+#triplet codon.
+
+my $spaced_seq = protein_spacing($aa_seq);
+
+<h2><b>
+Amino acid Sequence with DNA Sequence
+</h2></b>
+
+
+my $coding_seq = connect_exons($Specific_gene);
+
+
+<h3><b>
+Codon usage frequencies
+</b></h3>
+
+
+print <<__EOF;
+</body>
+</html>
+
+__EOF
