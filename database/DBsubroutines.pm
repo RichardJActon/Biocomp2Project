@@ -29,18 +29,12 @@ sub EXTRACT_LOCUS_FEATURE
 				}
 				while ($lines[$j] !~ /${featuerEndMarker}/ and defined $lines[$j])
 				{				
-					# $subattribute = $lines[$j];
-					# $subattribute =~ s/${substittions}//g; # possible conflict with detecting and removing start and end markers  - markers could be changed by this move to after marker check?
-					# $attribute .= $subattribute;
 					$attribute .= $lines[$j];
-					#$subattribute = "";
 					$j++;
 				}
 				if ($lines[$j] =~ /${featuerEndMarker}/ and defined $lines[$j]) {
 					$attribute .= $lines[$j];
 				}
-				# $attribute =~ s/${featuerStartMarker}//g;
-				# $attribute =~ s/${featuerEndMarker}//g;
 				push @outArray, $attribute;
 				$attribute = "";
 			}
