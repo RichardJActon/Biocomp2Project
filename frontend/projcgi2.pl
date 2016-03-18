@@ -64,9 +64,8 @@ my %exons = make_exons_hash($specific_gene);
 #using a subroutine which is also in the queries.pm module
 #0000FF = blue
 
-
-my $nucleo_seq = get_sequences($specific_gene);
-my $aa_seq = get_sequences($specific_gene);
+# this is how you call this function: 
+my ($nucleo_seq, $aa_seq) = get_sequences($specific_gene);
 
 my $line_count = 0;
 
@@ -89,7 +88,7 @@ print "<h1> DNA sequence with coding regions highlighted: </h1>
 #Coding sequence extracted using a module from the calculations.pm module
 #DNA
 
-my $coding_seq = connect_exons($Specific_gene);
+my $coding_seq = connect_exons($nucleo_seq, %exons);
 
 #Amino acid sequence processed using the protein spacing subroutine
 #in the calculations.pm module. The purpose of this process is purely 
