@@ -1,13 +1,7 @@
-package middle::enzymes;
-
-use strict;
-use warnings;
-
-
 ##################################################################################
 # Subroutine: get_regions                                                        #
 # Purpose: divide the DNA sequence into: 5 region, middle region and 3 region.   #
-# Input paramater: 1 string and 1 hash; the full DNA sequence and the exons hahs.#                           
+# Input paramater: 1 string and 1 hash; the protein sequence and the exons hahs. #                           
 # Returns: 3 strings; the 5 region, the middle region and the 3 region.          #
 ##################################################################################
 
@@ -61,6 +55,100 @@ sub get_regions
    return $five_end, $middle_section, $three_end;
 
 }
+
+
+
+##################################################################################
+# Subroutine: check_ecori                                                        #
+# Purpose: check wether EcoRi can cut the sequence at the 5 and/or 3 region but  #
+# not inbetween.                                                                 #
+# Input paramater: 3 strings; the 5, the middle and the 3 region.                #                           
+# Returns: true if Ecori is able to cut the sequence at the 5 or 3 end and not   #
+# inbetween; false if it is unabe to cut the sequence in this specific way.      #
+##################################################################################
+
+
+
+
+sub check_ecori
+
+{
+    my ($five, $middle, $three) = @_;
+
+# The site for EcoRi is palindromic so the complementary sequence
+# would be the same. 
+
+    if ($five =~ /gaattc/gi or $three =~ /gaattc/gi)   {
+        if ($middle !~ /gaattc/gi)   {
+            return 1;
+        }
+        else {
+           return 0;
+       }
+   }
+
+  
+}
+
+##################################################################################
+# Subroutine: check_bamhi                                                        #
+# Purpose: check wether BamHI can cut the sequence at the 5 and/or 3 region but  #
+# not inbetween.                                                                 #
+# Input paramater: 3 strings; the 5, the middle and the 3 region.                #                           
+# Returns: true if BamHI is able to cut the sequence at the 5 or 3 end and not   #
+# inbetween; false if it is unabe to cut the sequence in this specific way.      #
+##################################################################################
+
+sub check_bamhi
+
+{
+    my ($five, $middle, $three) = @_;
+
+# The site for BamHI is palindromic so the complementary sequence
+# would be the same. 
+
+    if ($five =~ /ggatcc/gi or $three =~ /ggatcc/gi)   {
+        if ($middle !~ /ggatcc/gi)   {
+            return 1;
+        }
+        else {
+           return 0;
+       }
+   }
+
+  
+}
+
+
+##################################################################################
+# Subroutine: check_bsumi                                                       #
+# Purpose: check wether BsuMI can cut the sequence at the 5 and/or 3 region but  #
+# not inbetween.                                                                 #
+# Input paramater: 3 strings; the 5, the middle and the 3 region.                #                           
+# Returns: true if BsuMI is able to cut the sequence at the 5 or 3 end and not   #
+# inbetween; false if it is unabe to cut the sequence in this specific way.      #
+##################################################################################
+
+sub ceck_bsumi
+
+{
+    my ($five, $middle, $three) = @_;
+
+# The site for BsuMI is palindromic so the complementary sequence
+# would be the same. 
+
+    if ($five =~ /ctcgag/gi or $three =~ /ctcgag/gi)   {
+        if ($middle !~ /ctcgag/gi)   {
+            return 1;
+        }
+        else {
+           return 0;
+       }
+   }
+
+  
+}
+
 
 1;
 
