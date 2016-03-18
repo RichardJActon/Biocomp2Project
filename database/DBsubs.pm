@@ -25,10 +25,14 @@ String containing name of input file
 
 =head4 Returns
 
-=item*
+=over
+
+=item *
 Array with one entry for each line of the file
 
-head4 Synopsis
+=back
+
+=head4 Synopsis
 
 =cut
 sub FILE_LINES_TO_ARRAY
@@ -64,9 +68,13 @@ sub FILE_LINES_TO_ARRAY
 
 =head4 Returns
 
-=item*
+=over
 
-head4 Synopsis
+=item *
+
+=back
+
+=head4 Synopsis
 
 
 =cut

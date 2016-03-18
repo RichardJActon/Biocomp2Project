@@ -3,6 +3,15 @@ use strict;
 use warnings;
 use DBsubs;
 ####
+=pod
+
+=head2 Main Parser Script
+
+=cut
+
+=pod
+
+=cut
 my $infile = $ARGV[0];
 
 my @lines = DBsubs::FILE_LINES_TO_ARRAY($infile);
