@@ -20,14 +20,14 @@ my $dbsource = "dbi:mysql:database=$dbname;host=$dbhost";
 my $username = "database-user";
 my $password = "database-password";
 
-$dbh = DBI->connect($dbsource17, $username, $password);
+$dbh = DBI->connect($dbsource, $username, $password);
 #############################################################
 
 #This script is called on when a radio button is clicked 
 #on and submitted in the results page displayed through 
 #the first cgi script(proj(cgi).pl) 
 
-my $specific_gene = $cgi->param('specific_gene');
+my $specific_gene = $cgi->param('Specific_gene');
 
 print <<__EOF;
 
