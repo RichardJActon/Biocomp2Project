@@ -139,7 +139,7 @@ sub check_bamhi
 # inbetween; false if it is unable to cut the sequence in this specific way.      #
 ##################################################################################
 
-sub ceck_bsumi
+sub check_bsumi
 
 {
     my ($five, $middle, $three) = @_;
