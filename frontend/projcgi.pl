@@ -17,7 +17,7 @@ my $dbsource = "dbi:mysql:database=$dbname;host=$dbhost";
 my $username = "database-user";
 my $password = "database-password";
 
-$dbh = DBI->connect($dbsource17, $username, $password);
+$dbh = DBI->connect($dbsource, $username, $password);
 #############################################################
 
 #This CGI script uses the firstquery module and displays what is returned from
