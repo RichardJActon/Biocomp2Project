@@ -69,11 +69,9 @@ my ($nucleo_seq, $aa_seq) = get_sequences($specific_gene);
 
 my $line_count = 0;
 
-foreach my $key (keys %exons){
-	substr($nucleo_seq, $key, $exons{$key} =
-	"<div style="color:0000FF">"
-	.substr($nucleo_seq,$key,$exons{$key})
-	"</div>";
+foreach my $key (keys %exons)   {
+	substr($nucleo_seq, ($key - 1) , $exons{$key} =
+	"<div style="color:0000FF">" . substr($nucleo_seq, ($key -1), $exons{$key}) . "</div>";
 }
 
 #Prints the newly highlighted DNA sequence in sets of 
