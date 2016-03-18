@@ -8,8 +8,8 @@ use warnings;
 
 =cut
 ####################################################################################################
-sub FILE_LINES_TO_ARRAY
-
+##  FILE_LINES_TO_ARRAY
+####################################################################################################
 =pod
 
 =head3 FILE_LINES_TO_ARRAY Function
@@ -28,7 +28,10 @@ String containing name of input file
 =item*
 Array with one entry for each line of the file
 
+head4 Synopsis
+
 =cut
+sub FILE_LINES_TO_ARRAY
 {
 	my $infile = $_[0];
 	my $line;
@@ -44,8 +47,8 @@ Array with one entry for each line of the file
 	return @lines;
 }
 #####################################################################################################
-sub HASH_LOCI_CONTENTS
-
+##  HASH_LOCI_CONTENTS
+####################################################################################################
 =pod
 
 =head3 HASH_LOCI_CONTENTS
@@ -63,13 +66,41 @@ sub HASH_LOCI_CONTENTS
 
 =item*
 
+head4 Synopsis
+
 
 =cut
+sub HASH_LOCI_CONTENTS
 {
-	my @lines = ;
+	my @lines = @{$_[0]};
+	my $locusStartIdentifier = $_[1];
+	my $locusEndIdentifier = $_[2];
 
+	my %loci; 
+	############################################################
+	for (my $i = 0; $i < scalar @lines; $i++) 
+	{
+		my $k = "";
+		if ($lines[$i] =~ /${locusStartIdentifier}/) 
+		{
+			$k = $1;
+			$loci{$k} = $lines[$i];
+			$i++;
+		}
+		while ($lines[$i] !~ /${locusEndIdentifier}/) {
+			$loci{$k} .= $lines[$i];
+			$i++;
+		}
+	}
+	############################################################
+	return %loci;
 }
 ####################################################################################################
+
+
+
+
+
 sub EXTRACT_LOCUS_FEATURE
 {
 # input variables	

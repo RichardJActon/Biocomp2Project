@@ -16,7 +16,7 @@ my @lines;
 while ($line = <>) 
 {
 push @lines, $line;
-	if ($line =~ /^LOCUS\s{7}(\w+)\b/) 
+	if ($line =~ /^LOCUS\s{7}(\w+)\b/)
 	{
 		push @loci, $1;
 	}	
@@ -223,3 +223,7 @@ while (my($k,$v) = each %exonEnds)
 	my @v = @{$v};
 	print "$k @v\n";
 }
+
+
+###
+#hash to enforce accession -> exon positions relationship
