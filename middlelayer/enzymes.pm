@@ -1,3 +1,11 @@
+package middle::enzymes;
+
+use strict;
+use warnings;
+
+
+
+
 ##################################################################################
 # Subroutine: get_regions                                                        #
 # Purpose: divide the DNA sequence into: 5 region, middle region and 3 region.   #
