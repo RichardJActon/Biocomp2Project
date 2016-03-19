@@ -5,9 +5,8 @@ USE Chromosome17;
 -- cmd line: mysql -u RichardActon -p"314159" Chromosome17 ##  mysql -u RichardActon -p"314159" < Chromosome17.sql
 
 CREATE TABLE Chromosome_Locations
-(	Chromosome_Location_ID	SMALLINT 	NOT NULL AUTO_INCREMENT,
-	Location_Name			TEXT		NOT NULL,
-	PRIMARY KEY (Chromosome_Location_ID)
+(	Genbank_Accession		VARCHAR(15)	DEFAULT NULL,
+	Location_Name			TEXT		NOT NULL
 )ENGINE = INNODB;
 
 CREATE TABLE Loci
@@ -16,7 +15,6 @@ CREATE TABLE Loci
 	DNA_seq					LONGTEXT	NOT NULL,
 	Product_Name			TEXT		NOT NULL,
 	CDS_translated 			TEXT		NOT NULL,
-	Chromosome_Location_ID	SMALLINT	DEFAULT NULL,
 	CDS_untranslated		TEXT		DEFAULT NULL,
 	PRIMARY KEY (Genbank_Accession)-- ,
 )ENGINE = INNODB;
@@ -35,8 +33,8 @@ ALTER TABLE Exons ADD CONSTRAINT exon_loci_Accession
 FOREIGN KEY (Genbank_Accession) REFERENCES Loci (Genbank_Accession) 
 ON UPDATE CASCADE ON DELETE CASCADE;
 -- 
-ALTER TABLE Loci ADD CONSTRAINT loci_chromLoc_ChromLocID
-FOREIGN KEY (Chromosome_Location_ID) REFERENCES Chromosome_Locations (Chromosome_Location_ID) 
+ALTER TABLE Chromosome_Locations ADD CONSTRAINT chromLoc_loci_Accesssion
+FOREIGN KEY (Genbank_Accession) REFERENCES Loci (Genbank_Accession) 
 ON UPDATE CASCADE ON DELETE CASCADE;
 
 

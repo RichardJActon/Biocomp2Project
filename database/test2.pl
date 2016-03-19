@@ -192,47 +192,156 @@ my %join = DBsubs::SUBSTITUTIONS(\%join_raw,$join_substittions);
 # 	print "[$k]\n $v\n\n";
 # }
 
+my %exonStarts;
+my %exonEnds;
 
+while (my($k,$v) = each %join) {
+	my @exonStarts = "";
+	my @exonEnds = "";
+	@exonStarts = $join{$k} =~ /(\d+)\.\./g;
+	@exonEnds = $join{$k} =~ /\.\.(\d+)/g;
+	$exonStarts{$k} = \@exonStarts;
+	$exonEnds{$k} = \@exonEnds;
+}
+
+# #print STDOUT "\n\nexon starts: \n";
+# while (my($k,$v) = each %exonStarts) 
+# {
+# 	my @v = @{$v};
+# 	for (my $i = 0; $i < scalar @v; $i++) {
+# 		print STDOUT "$k|$v[$i]\n";
+# 	}
+# }
+# #print STDOUT "\n\nexon ends: \n";
+# while (my($k,$v) = each %exonEnds) 
+# {
+# 	my @v = @{$v};
+# 	for (my $i = 0; $i < scalar @v; $i++) {
+# 		print STDOUT "$k|$v[$i]\n";
+# 	}
+# }
+
+####################################################################################################
+#####                                    Extract Location_Name                                 #####
+####################################################################################################
+=pod
+
+=head4 
+
+=cut
+
+my $Location_Name_Regex = qr/\/map="([^\"]+)/s;
+my $Location_Name_substittions = qr/\n/;
+#
+#extract
+my %Location_Name_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$Location_Name_Regex);
+#substitute
+my %Location_Name = DBsubs::SUBSTITUTIONS(\%Location_Name_raw,$Location_Name_substittions);
+
+# while (my($k,$v) = each %Location_Name_raw) 
+# {
+# 	print "[$k]\n $v\n\n";
+# }
+
+# print "#########################\n";
+
+# while (my($k,$v) = each %Location_Name) 
+# {
+# 	print "[$k]\n $v\n\n";
+# }
 
 
 
 ###############################################
 
-#my $outfile = $ARGV[1];
+my $LociTable = $ARGV[1];
+my $Chromosome_LocationsTable = $ARGV[2];
+my $ExonsTable = $ARGV[3];
 
 # open(INFILE, "<$infile");
-# open(OUTFILE, ">$outfile");
-
-
+open(LociTable, ">$LociTable");
+open(Chromosome_LocationsTable, ">$Chromosome_LocationsTable");
+open(ExonsTable, ">$ExonsTable");
 
 
 
 # print STDOUT "Closing files...\n";
-# close(INFILE) or die "Unable to close file: $infile\n";
-# close(OUTFILE) or die "Unable to close file: $outfile\n";
-###############################################
 
-
+####################################################################################################
+#####                            Export Contents of Loci table                                 #####
+####################################################################################################
 =pod
 
 =head3 Print extracted content for Loci table to "|" seperated file 
 
 =cut
 
-###############################################
-###############################################
 while (my($k,$v) = each %loci) {
-	print "$k";
-	print "|";
-	print "$Locus_GI{$k}";
-	print "|";
-	print "$DNA_seq{$k}";
-	print "|";
-	print "$Product_Name{$k}";
-	print "|";
-	print "$CDS_translated{$k}";
-	print "\n";
+	print LociTable "$k";
+	print LociTable "|";
+	print LociTable "$Locus_GI{$k}";
+	print LociTable "|";
+	print LociTable "$DNA_seq{$k}";
+	print LociTable "|";
+	print LociTable "$Product_Name{$k}";
+	print LociTable "|";
+	print LociTable "$CDS_translated{$k}";
+	print LociTable "\n";
 }
 
-###############################################
-###############################################
+####################################################################################################
+#####                      Export Contents of Chromosome_Locations table                       #####
+####################################################################################################
+=pod
+
+=head3 Print extracted content for Loci table to "|" seperated file 
+
+=cut
+
+while (my($k,$v) = each %loci) {
+	print Chromosome_LocationsTable "$k";
+	print Chromosome_LocationsTable "|";
+	print Chromosome_LocationsTable "$Location_Name{$k}";
+	print Chromosome_LocationsTable "\n";
+}
+
+####################################################################################################
+#####                                Export Contents of Exons table                            #####
+####################################################################################################
+=pod
+
+=head3 Print extracted content for Loci table to "|" seperated file 
+
+=cut
+
+my @col1;
+my @col2;
+my @rows;
+
+foreach my $k (sort {$a cmp $b} keys %exonStarts)
+{
+	my @v = @{$exonStarts{$k}};
+		for (my $i = 0; $i < scalar @v; $i++) {
+		push @col1, "$k|$v[$i]";
+	}
+}
+foreach my $k (sort {$a cmp $b} keys %exonEnds)
+{
+	my @v = @{$exonEnds{$k}};
+		for (my $i = 0; $i < scalar @v; $i++) {
+		push @col2, "|$v[$i]\n";
+	}
+}
+
+for (my $i = 0; $i < scalar @col1; $i++) {
+	push @rows, $col1[$i] . $col2[$i];
+}
+
+for (my $i = 0; $i < scalar @rows; $i++) {
+	print ExonsTable "$rows[$i]"
+}
+
+####################################################################################################
+close(LociTable) or die "Unable to close file: $LociTable\n";
+close(Chromosome_LocationsTable) or die "Unable to close file: $Chromosome_LocationsTable\n";
+close(ExonsTable) or die "Unable to close file: $ExonsTable\n";
