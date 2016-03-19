@@ -4,25 +4,7 @@ use warnings;
 use DBsubroutines;
 use DBI;
 ################################################################################
-###accession
-my @loci;
-my $line;
-my @lines;
 
-while ($line = <>) 
-{
-push @lines, $line;
-	if ($line =~ /^LOCUS\s{7}(\w+)\b/) 
-	{
-		push @loci, $1;
-	}	
-}
-
-# for (my $i = 0; $i < scalar @loci; $i++) 
-# {
-# 	print "$loci[$i]\n";
-# }
-# print "\n";
 
 
 
