@@ -18,7 +18,7 @@ sub get_sequences
 
    my $sql = "SELECT DNA_sequence, 
                      CDS_translated 
-              FROM Loci WHERE Genebank_Accession = '$_[0]'";
+              FROM Loci WHERE Genbank_Accession = '$_[0]'";
 
 
 # We know this query will only return 1 row.
@@ -48,7 +48,7 @@ sub make_exons_hash
 
    my $sql = "SELECT StartPosition, 
                      EndPosition
-              FROM Exons WHERE Genebank_Accession = '$_[0]'";
+              FROM Exons WHERE Genbank_Accession = '$_[0]'";
 
 
 
@@ -60,7 +60,10 @@ sub make_exons_hash
    if($sth && $sth->execute)   {
         
       while(my ($start, $end) = $sth->fetchrow_array)   {
-         my $length = $end - $start;
+         my $length = ($end - $start) + 1;
+         # +1 because the end point is included in the exon; if start point is
+         # ie. 2 and end point is ie. 4, the exon would be 3 bases long;
+         # (4-2) + 1 = 3;
          $exons{$start} = $length;
      }
       return %exons;
@@ -81,7 +84,7 @@ sub get_all_proteins
 
 {
 
-   my $sql = "SELECT Genebank_Accession, 
+   my $sql = "SELECT Genbank_Accession, 
                      CDS_translated
               FROM   Loci";
 
