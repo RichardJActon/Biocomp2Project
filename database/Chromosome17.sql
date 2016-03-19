@@ -14,7 +14,7 @@ CREATE TABLE Loci
 (	Genbank_Accession		VARCHAR(15)	DEFAULT NULL,
 	Locus_GI				SMALLINT	NOT NULL,
 	DNA_seq					LONGTEXT	NOT NULL,
-	Product					TEXT		NOT NULL,
+	Product_Name			TEXT		NOT NULL,
 	CDS_translated 			TEXT		NOT NULL,
 	Chromosome_Location_ID	SMALLINT	DEFAULT NULL,
 	CDS_untranslated		TEXT		DEFAULT NULL,
