@@ -170,25 +170,25 @@ print "$GI_Count\n";
 ####################################################################################################
 ############################################  Extract Join   #######################################
 ####################################################################################################
-my $join_seq_StartMarker = qr/.*join\(/;
-my $join_seq_EndMarker = qr/\)\n/;
-my $join_seq_substittions = qr/\n|\<|\>|\s/;
+my $join_StartMarker = qr/.*join\(/;
+my $join_EndMarker = qr/\)\n/;
+my $join_substittions = qr/\n|\<|\>|\s/;
 ###############
-my @join_seqs;
-@join_seqs = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$join_seq_StartMarker,$join_seq_EndMarker); #,$join_seq_substittions
+my @joins;
+@joins = DBsubroutines::EXTRACT_LOCUS_FEATURE(\@lines,\@loci,$locusMarker,$join_StartMarker,$join_EndMarker); #,$join_substittions
 ###############
-for (my $i = 0; $i < scalar @join_seqs; $i++) 
+for (my $i = 0; $i < scalar @joins; $i++) 
 {
-	print "$join_seqs[$i]\n";
+	print "$joins[$i]\n";
 }
 ###############
-my @join_seq_substituted;
-@join_seq_substituted = DBsubroutines::SUBSTITUTIONS(\@join_seqs,$join_seq_StartMarker,$join_seq_EndMarker,$join_seq_substittions);
+my @join_substituted;
+@join_substituted = DBsubroutines::SUBSTITUTIONS(\@joins,$join_StartMarker,$join_EndMarker,$join_substittions);
 ###############
 my $joinCount = 0;
-for (my $i = 0; $i < scalar @join_seq_substituted; $i++) 
+for (my $i = 0; $i < scalar @join_substituted; $i++) 
 {
-	print "$join_seq_substituted[$i]\n";
+	print "$join_substituted[$i]\n";
 	$joinCount++;
 }
 print "$joinCount\n";
@@ -199,14 +199,14 @@ my %exonStarts;
 my %exonEnds;
 
 
-for (my $i = 0; $i < scalar @join_seq_substituted; $i++) 
+for (my $i = 0; $i < scalar @join_substituted; $i++) 
 {
 	for ( $i < scalar @loci) 
 	{		
 		my @exonStarts = "";
 		my @exonEnds = "";
-		@exonStarts = $join_seq_substituted[$i] =~ /(\d+)\.\./g;
-		@exonEnds = $join_seq_substituted[$i] =~ /\.\.(\d+)/g;
+		@exonStarts = $join_substituted[$i] =~ /(\d+)\.\./g;
+		@exonEnds = $join_substituted[$i] =~ /\.\.(\d+)/g;
 		$exonStarts{$loci[$i]} = \@exonStarts;
 		$exonEnds{$loci[$i]} = \@exonEnds;
 	}

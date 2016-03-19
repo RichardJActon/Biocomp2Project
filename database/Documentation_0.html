@@ -30,6 +30,13 @@
               <li><a href="#Synopsis1">Synopsis</a></li>
             </ul>
           </li>
+          <li><a href="#EXTRACT_LOCUS_FEATURE">EXTRACT_LOCUS_FEATURE</a>
+            <ul>
+              <li><a href="#Arguments2">Arguments</a></li>
+              <li><a href="#Returns2">Returns</a></li>
+              <li><a href="#Synopsis2">Synopsis</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
@@ -66,7 +73,13 @@
 
 <ul>
 
-<li><p></p>
+<li><p>Array of lines from the input file</p>
+
+</li>
+<li><p>Regex of locus start marker with capture for the unique identifier to become the keys of the hash</p>
+
+</li>
+<li><p>Regex to identify the end of the locus</p>
 
 </li>
 </ul>
@@ -75,12 +88,38 @@
 
 <ul>
 
-<li><p></p>
+<li><p>Hash with keys corresponding to the unique identifier of each locus and values corresponding to the complete contents of the entry for that locus.</p>
 
 </li>
 </ul>
 
 <h4 id="Synopsis1">Synopsis</h4>
+
+<p>Takes an array of input data, and regexes of start and end markers and output a hash with keys derived from a capture in the start marker and values derived from the contents of the array until a stop marker is reached.</p>
+
+<p>a key assumption is that the unique identifiers that are to become the hash keys are located in the first line of the entry.</p>
+
+<h3 id="EXTRACT_LOCUS_FEATURE">EXTRACT_LOCUS_FEATURE</h3>
+
+<h4 id="Arguments2">Arguments</h4>
+
+<ul>
+
+<li><p></p>
+
+</li>
+</ul>
+
+<h4 id="Returns2">Returns</h4>
+
+<ul>
+
+<li><p></p>
+
+</li>
+</ul>
+
+<h4 id="Synopsis2">Synopsis</h4>
 
 
 </body>
