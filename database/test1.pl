@@ -36,6 +36,15 @@ my $password = "314159";
 
 my $dbh = DBI->connect($datasource, $username, $password);
 ################################################################################
+# my $dbname = "ar001";
+# my $dbserver = "localhost";
+# my $dbport = "3306";
+# my $datasource = "dbi:mysql:database=$dbname;host=$dbserver";
+# my $username = "ar001";
+# my $password = "9v15f7%xs";
+
+# my $dbh = DBI->connect($datasource, $username, $password);
+################################################################################
 for (my $i = 0; $i < scalar @loci; $i++) {
 	my $sql = ("
 		INSERT INTO Loci (Genebank_Accession)
