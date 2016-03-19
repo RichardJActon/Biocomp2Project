@@ -18,7 +18,7 @@ sub get_sequences
 
    my $sql = "SELECT DNA_sequence, 
                      CDS_translated 
-              FROM Loci WHERE Genebank_Accession = '$_[0]'";
+              FROM Loci WHERE Genbank_Accession = '$_[0]'";
 
 
 # We know this query will only return 1 row.
@@ -48,7 +48,7 @@ sub make_exons_hash
 
    my $sql = "SELECT StartPosition, 
                      EndPosition
-              FROM Exons WHERE Genebank_Accession = '$_[0]'";
+              FROM Exons WHERE Genbank_Accession = '$_[0]'";
 
 
 
