@@ -16,4 +16,4 @@ PROTEIN_SEQ_SPACING,1 string of the protein sequence,1 string, 1 string protein 
 ,,,e.g -M--N--A-,,
 ALL_DNA,,,Concatenation of all the coding DNA,,
 ALL_Protein,,,Retrieve all protein sequences,,Done
-RESTRICTION ENZYMES,DNA sequence,1 string,"returns true if the enzyme is abl to cut at 5 and 3 end and not in between).",,Done
+RESTRICTION ENZYMES,DNA sequence,DNA string and hash of exons,"Returns true if the enzyme is able to cut at 5 and 3 end and not in between.",,Done
