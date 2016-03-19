@@ -8,7 +8,7 @@ use warnings;
 
 =cut
 ####################################################################################################
-##  FILE_LINES_TO_ARRAY
+##### 								  FILE_LINES_TO_ARRAY									   #####
 ####################################################################################################
 =pod
 
@@ -33,6 +33,7 @@ Array with one entry for each line of the file
 =back
 
 =head4 Synopsis
+Reads in every line from a file pushing each line to an array as it does so, returns this array.
 
 =cut
 sub FILE_LINES_TO_ARRAY
@@ -53,7 +54,7 @@ sub FILE_LINES_TO_ARRAY
 	return @lines;
 }
 ####################################################################################################
-##  HASH_LOCI_CONTENTS
+#####  									HASH_LOCI_CONTENTS									   #####
 ####################################################################################################
 =pod
 
@@ -64,7 +65,7 @@ sub FILE_LINES_TO_ARRAY
 =over
 
 =item *
-Array of lines from the input file
+Array ref of lines from the input file
 
 =item *
 Regex of locus start marker with capture for the unique identifier to become the keys of the hash
@@ -86,8 +87,8 @@ complete contents of the entry for that locus.
 
 =head4 Synopsis
 
-Takes an array of input data, and regexes of start and end markers and output a hash with keys derived
- from a capture in the start marker and values derived from the contents of the array until a stop
+Takes an array ref of input data, and regexes of start and end markers and output a hash with keys derived
+ from a capture in the start marker and values derived from the contatonated contents of the array until a stop
  marker is reached.
 
 a key assumption is that the unique identifiers that are to become the hash keys are located in the
@@ -126,7 +127,7 @@ sub HASH_LOCI_CONTENTS
 	return %loci;
 }
 ####################################################################################################
-##  EXTRACT_LOCUS_FEATURE
+#####  											EXTRACT_LOCUS_FEATURE			 		       #####
 ####################################################################################################
 =pod
 
@@ -137,7 +138,11 @@ sub HASH_LOCI_CONTENTS
 =over
 
 =item *
+Hash ref with values containing a concatonated string of all the values corresponding to a given key
+ from the input file. 
 
+=item *
+A regex containing a capture for the feature of interest from the string.
 
 =back
 
@@ -146,12 +151,15 @@ sub HASH_LOCI_CONTENTS
 =over
 
 =item *
-
+A hash with the same keys as the input hash and values corresponding to the the capture of the
+ regex argument.
 
 =back
 
 =head4 Synopsis
-
+Extracts features of interest defined by a regex containg a capture given as an argument from 
+the values of a hash given as an argument, returning a hash with the same key as input hash ref
+and values corresponding to the capture in the regex.
 
 =cut
 sub EXTRACT_LOCUS_FEATURE
@@ -175,7 +183,7 @@ sub EXTRACT_LOCUS_FEATURE
 	return %feature;
 }
 ####################################################################################################
-##  SUBSTITUTIONS
+#####  											SUBSTITUTIONS 							       #####
 ####################################################################################################
 =pod
 
@@ -186,7 +194,10 @@ sub EXTRACT_LOCUS_FEATURE
 =over
 
 =item *
+Hash ref with values containing strings to be the subject of the substitution opperation(s).
 
+=item *
+Regex for the desired substitution operation(s).
 
 =back
 
@@ -195,7 +206,9 @@ sub EXTRACT_LOCUS_FEATURE
 =over
 
 =item *
-
+Hash with the same keys as the input hash ref and, values corresponding to the original values
+of the hash ref after they have been subject to the substitution opperation(s) described in the 
+reges provided as an argument.
 
 =back
 
