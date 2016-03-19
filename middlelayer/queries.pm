@@ -81,7 +81,7 @@ sub get_all_proteins
 
 {
 
-   my $sql = "SELECT Genebank_Accession, 
+   my $sql = "SELECT Genbank_Accession, 
                      CDS_translated
               FROM   Loci";
 
