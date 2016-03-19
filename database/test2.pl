@@ -108,6 +108,7 @@ while (my($k,$v) = each %join)
 
 #
 my %loci_contents;
+	$loci_contents{accession} =
 
 while (my($k,$v) = each %loci) 
 {

@@ -5,34 +5,34 @@ USE Chromosome17;
 -- cmd line: mysql -u RichardActon -p"314159" Chromosome17 ##  mysql -u RichardActon -p"314159" < Chromosome17.sql
 
 CREATE TABLE Chromosome_Locations
-(	Chromosome_Location_ID	SMALLINT 	DEFAULT NULL,
+(	Chromosome_Location_ID	SMALLINT 	NOT NULL AUTO_INCREMENT,
 	Location_Name			TEXT		NOT NULL,
 	PRIMARY KEY (Chromosome_Location_ID)
 )ENGINE = INNODB;
 
 CREATE TABLE Loci
-(	Genebank_Accession		VARCHAR(15)	DEFAULT NULL,
-	GI_number				SMALLINT	NOT NULL,
-	Chromosome_Location_ID	SMALLINT	DEFAULT NULL,
-	DNA_sequence			LONGTEXT	NOT NULL,
+(	Genbank_Accession		VARCHAR(15)	DEFAULT NULL,
+	Locus_GI				SMALLINT	NOT NULL,
+	DNA_seq					LONGTEXT	NOT NULL,
 	Product					TEXT		NOT NULL,
 	CDS_translated 			TEXT		NOT NULL,
-	CDS_untranslated		TEXT		NOT NULL,
-	PRIMARY KEY (Genebank_Accession)-- ,
+	Chromosome_Location_ID	SMALLINT	DEFAULT NULL,
+	CDS_untranslated		TEXT		DEFAULT NULL,
+	PRIMARY KEY (Genbank_Accession)-- ,
 )ENGINE = INNODB;
 
 CREATE TABLE Exons
-(	Exon_ID				SMALLINT	DEFAULT NULL,
-	Genebank_Accession	VARCHAR(15)	DEFAULT NULL,
+(	Genbank_Accession	VARCHAR(15)	DEFAULT NULL,
 	StartPosition		SMALLINT	NOT NULL,
 	EndPosition			SMALLINT	NOT NULL,
+	Exon_ID				SMALLINT	NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (Exon_ID)-- ,
 )ENGINE = INNODB;  
  -- #############################
  -- #### NOT NULLS? foreign key problems>?
 
 ALTER TABLE Exons ADD CONSTRAINT exon_loci_Accession
-FOREIGN KEY (Genebank_Accession) REFERENCES Loci (Genebank_Accession) 
+FOREIGN KEY (Genbank_Accession) REFERENCES Loci (Genbank_Accession) 
 ON UPDATE CASCADE ON DELETE CASCADE;
 -- 
 ALTER TABLE Loci ADD CONSTRAINT loci_chromLoc_ChromLocID
