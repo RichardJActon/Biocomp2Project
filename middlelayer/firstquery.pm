@@ -18,7 +18,7 @@ sub get_results
 
    my $sql = "SELECT Genbank_Accession, 
                      Locus_GI, 
-                     Chromosome_Location_Id, 
+                     Chromosome_Location_ID, 
                      Product_Name 
               FROM Loci WHERE $_[0] = '$_[1]'";
 
