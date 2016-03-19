@@ -60,7 +60,10 @@ sub make_exons_hash
    if($sth && $sth->execute)   {
         
       while(my ($start, $end) = $sth->fetchrow_array)   {
-         my $length = $end - $start;
+         my $length = ($end - $start) + 1;
+         # +1 because the end point is included in the exon; if start point is
+         # ie. 2 and end point is ie. 4, the exon would be 3 bases long;
+         # (4-2) + 1 = 3;
          $exons{$start} = $length;
      }
       return %exons;
