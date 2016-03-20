@@ -20,7 +20,7 @@ sub get_results
                      Locus_GI, 
                      Chromosome_Location_ID, 
                      Product_Name 
-              FROM Loci WHERE $_[0] = '$_[1]'";
+              FROM Loci WHERE $_[0] LIKE '$_[1]'";
 
 
 
@@ -31,7 +31,7 @@ sub get_results
    if($sth && $sth->execute)   {
         
       while(my ($accession, $id, $location, $prod_name) = $sth->fetchrow_array)   {
-         my $value = "$id     $location     $prod_name";
+         my $value = "ID:$id     Product:$prod_name    Location:$location";
          $results{$accession} = $value;
      }
       return %results;
