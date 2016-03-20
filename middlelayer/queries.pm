@@ -3,6 +3,60 @@ package middle::queries;
 use strict;
 use warnings;
 
+
+
+use DBI;
+
+my $dbname = "";
+my $dbhost = "";
+my $dbsource = "dbi:mysql:database=$dbname;host=$dbhost";
+my $username = "";
+my $password = "";
+
+
+
+my $dbh = DBI->connect($dbsource, $username, $password);
+
+
+
+##########################################################################################################
+# Subroutine: get_results                                                                                #
+# Purpose: executes user search and retrieve results from the database.                                  #
+# Input paramater: 2 strings; the 1st string is the type of search (product                              #
+# name, genbank_accession, gene_id or location) captured from the dropdown                               #
+# box of the application; the second string is what the user types in the searchbox of the application.  #
+# Returns: an hash where the keys are accession numbers and values are the corresponding                 #
+# gene id, chromosome location and product name concatenated together.                                   #
+##########################################################################################################
+
+sub get_results
+
+{
+   chomp $_[1];
+
+   my $sql = "SELECT Genbank_Accession, 
+                     Locus_GI, 
+                     Chromosome_Location_ID, 
+                     Product_Name
+              FROM Loci WHERE $_[0] LIKE '$_[1]'";
+
+
+
+   my $sth = $dbh->prepare($sql);
+
+   my %results;
+
+   if($sth && $sth->execute)   {
+        
+      while(my ($accession, $id, $location, $prod_name) = $sth->fetchrow_array)   {
+         my $value = "ID:$id     Product:$prod_name     Location:$location";
+         $results{$accession} = $value;
+     }
+      return %results;
+   }
+}
+
+
 #########################################################################
 # Subroutine: get_sequences                                             #
 # Purpose: retrieve DNA sequence and Protein sequence of 1 entry.       #
@@ -61,9 +115,6 @@ sub make_exons_hash
         
       while(my ($start, $end) = $sth->fetchrow_array)   {
          my $length = ($end - $start) + 1;
-         # +1 because the end point is included in the exon; if start point is
-         # ie. 2 and end point is ie. 4, the exon would be 3 bases long;
-         # (4-2) + 1 = 3;
          $exons{$start} = $length;
      }
       return %exons;
