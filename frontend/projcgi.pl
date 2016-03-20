@@ -1,39 +1,24 @@
 #!/usr/bin/perl
 use strict;
-########################### CGI ############################
+####################################### CGI ############################################
 use CGI;
-use middle::firstquery;
+use middle::queries;
+
 my $cgi = new CGI;
 print $cgi->header();
 
-########################### DBI ############################
-use DBI;
+#########################################################################################
+#				CGI script #1						#
+# The purpose of this CGI script is to pass the 2 inputs (search type and the gene id)  #
+# entered by the user through a subroutine in the firsquery.pm module which then        #
+# uses it to query the database for the relevant data i.e. an alternative               #
+# identification for the gene the gene.                                                 #
+#########################################################################################
 
-my $dbname = "Chromosome17";
-my $dbhost = "hope";
-my $dbsource = "dbi:mysql:database=$dbname;host=$dbhost";
+my $search_type = $cgi->param('Search_type');
 
-#Database username and password is optional
-my $username = "database-user";
-my $password = "database-password";
-
-$dbh = DBI->connect($dbsource, $username, $password);
-#############################################################
-
-#This CGI script uses the firstquery module and displays what is returned from
-#the module in a results page.
-
-
-#The following are the 2 strings captured from the user
-
-#This is the type of string chosen by the user
-my $Search_type = $cgi->param('Search_type');
-
-#This is the actual string inputed by the user
-my $User_input = $cgi->param('User_input');
+my $user_input = $cgi->param('User_input');
 	 
-
-
 print <<__EOF;
 
 <html>
@@ -52,33 +37,51 @@ h1   { color: black;
 </style>
 
 <body>
-<form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ad002/projcgi2.pl">
+<form method="post" action="http://student.cryst.bbk.ac.uk/ad002/WWW/cgi-bin/proj(cgi2).pl">
 <br />
 <br />
 <table border ="1">
 	<tr>
 	<td><b>Accessions</b></td>
-	<td><b>Gene ID Product Location</b></td>
+	<td><b>ID----Protein----Location</b></td>
 	<td><b>Select Gene<b><td>
 	</tr>
 
 __EOF
 
-#This line calls on a function in the firstquery.pm module called the get_results
-# subroutine which processes the 2 inputs of the user.
+#########################################################################################
+#				Initial results page					#
+# Upon capturing the user's 2 inputs, namely search_type & user_input, these 2 strings	#
+# are passed as arguments through the subroutine called get_results which is in the 	#
+# firstquery.pm module. The result page displays alternative gene identifiers.		#
+# Assuming the user may use chromosomal location as a gene id, the following script	#
+# accounts for multiple genes by displaying the genes in a tabular format with the 	#
+# option of choosing a specific gene.							#
+#########################################################################################
 
-my %results = get_results($Search_type, $User_input);
+
+if (get_results($search_type, $user_input)   {
+
+   my %results = get_results($search_type, $user_input);
 
 
-
-foreach my $Accession_key (sort keys %results){
-	print "<tr>
-		<td>$Accession_key </td>
-		<td> $results{$Accession_key} </td>
-		<td><input type='radio' name='Specific_gene' value='$Accession_key'/></td>
-		</tr>";
+   foreach my $accession_key (sort keys %results){
+	print   "<tr>";
+	print	"<td> $accession_key </td>";
+	print	"<td> $results{$accession_key} </td>";
+	print	"<td><input type='radio' name='specific_gene' value='$accession_key'/></td> </tr>";
+   }
 
 }
+
+else   {
+
+
+    print "<p> Your search did not find any result<p>";
+
+}
+
+
 print <<__EOF;
 </table>
 <br />
@@ -89,7 +92,4 @@ print <<__EOF;
 </html>"
 
 __EOF
-
-
-
 

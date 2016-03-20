@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use strict;
-########################### CGI ############################
+####################################### CGI ############################################
 use CGI;
 use middle::queries;
 use middle::calculations;
@@ -9,25 +9,17 @@ use middle::codons;
 my $cgi = new CGI;
 print $cgi->header();
 
-########################### DBI ############################
-use DBI;
+#########################################################################################
+#				CGI script #2 						#
+# The first CGI script (projcgi.pl) produces a web page with the results of the users   #
+# search. On this intial results page the user is given the option to view further 	#
+# details about the gene. The purpose of this script is to present these further 	#
+# details namely, highlighted coding regions, coding regions/amino acids and      	#
+# codon usage frequencies in a presentable manner.					#
+#########################################################################################   
 
-my $dbname = "Chromosome17";
-my $dbhost = "hope";
-my $dbsource = "dbi:mysql:database=$dbname;host=$dbhost";
 
-#Database username and password is optional
-my $username = "database-user";
-my $password = "database-password";
-
-$dbh = DBI->connect($dbsource, $username, $password);
-#############################################################
-
-#This script is called on when a radio button is clicked 
-#on and submitted in the results page displayed through 
-#the first cgi script(proj(cgi).pl) 
-
-my $specific_gene = $cgi->param('Specific_gene');
+my $specific_gene = $cgi->param('specific_gene');
 
 print <<__EOF;
 
@@ -36,11 +28,17 @@ print <<__EOF;
 <style type='text/css'>
 
 <!--
-body { background: #5F9EA0;
-       color: black; }
-h1   { color: black;
-	font-family: calibri; 
-	font-size: 100%;  }
+body	{background: #5F9EA0;
+     	color: black; 
+}
+
+h1  	{color: black;
+		font-family: calibri; 
+		font-size: 100%;  
+}
+
+b 		{color: #FF0000;
+}	
 -->
 <title>Details of Gene: $specific_gene</title>
 </head>	
@@ -55,49 +53,63 @@ DNA Sequence with coding regions highlighted
 
 __EOF
 
-#Hash formed using subroutine from queries.pm module wherein the 
-#key is the exon start position and the value is the exon length
+
+#########################################################################################
+#        			DNA Coding regions highlighted 				#
+# A hash is formed using a subroutine from the queries.pm module called make_exons_hash #
+# wherein the hash key is the exon start position and the value of the hash is the      #  
+# exon length. Both the nucleotide sequence and amino acid sequence are extracted using #
+# a subroutine which is also found in the queries.pm module called get_sequences.       #
+# It is ideal to present this piece of detail before any other gene detail since the    #
+# other gene details such as coding regions/amino acids require the modification of 	#
+# the raw sequence.                                                                     #
+#   Note:                                                                               #
+#   Highlighting colour: #FF0000 = red                                                  #
+#	Number of nucleotides per line: 50 - [edit unpack (A50) to adjust]              # 
+#########################################################################################
 
 my %exons = make_exons_hash($specific_gene);
 
-#Both the nucleotide sequence and amino acid sequence extracted 
-#using a subroutine which is also in the queries.pm module
-#0000FF = blue
-
-# this is how you call this function: 
 my ($nucleo_seq, $aa_seq) = get_sequences($specific_gene);
 
-my $line_count = 0;
+
+
+my @exon_box;
 
 foreach my $key (keys %exons)   {
-	substr($nucleo_seq, ($key - 1) , $exons{$key}) =
-	"<div style="color:0000FF">" . substr($nucleo_seq, ($key - 1), $exons{$key}) . "</div>";
+   my $bold_exon = substr($seq, ($key - 1), $exons{$key});
+   push @exon_box, $bold_exon;
 }
 
-#Prints the newly highlighted DNA sequence in sets of 
-#50 nucleotides per line
-
+foreach my $value (@exon_box)  {
+$nucleo_seq =~ s!$value!<b>$value</b>!;
+}
 
 print "<h1> DNA sequence with coding regions highlighted: </h1>
 <br />"
 
-"$_\n" for unpack '(A50)*', $nucleo_seq;
+print "<p>$_</p>\n" for unpack '(A50)*', $nucleo_seq;
 
-#Coding sequence extracted using a module from the calculations.pm module
-#DNA
-
+#########################################################################################
+# 		DNA coding regions displayed alongside Amino acid Sequence 		#
+# Having extracted both the nucleotide DNA sequence and the amino acid sequence 	#
+# in the previous highlighting step, these sequences can now be modified using		#
+# subroutines from the calculations module namely connect_exons and protein_spacing.	#
+# Once modified the sequences are printed in the following fashion:			#
+#                          CUUACCAAAGAAAGUUGU						#
+#                          -L--T--K--E--S--S-						#
+#											#
+# with a clear newline after every pair of DNA sequence and amino acid sequence.	#
+#     Note:										#
+#     Number of nucleotides per line: 50 [edit ($coding_seq, 0, 50) to adjust]		#
+#     Amino acid colour: #FF0000 = red							#
+#########################################################################################
+#The code below is not working as it should. Working on correcting it.                  #
+#											#
+#########################################################################################
 my $coding_seq = connect_exons($nucleo_seq, %exons);
 
-#Amino acid sequence processed using the protein spacing subroutine
-#in the calculations.pm module. The purpose of this process is purely 
-#for presentation of the coding sequence and the amino acid formed from
-#triplet codon.
-
 my $spaced_seq = protein_spacing($aa_seq);
-
-#Both the DNA coding sequence printed line by line to show which triplet
-#code of the coding sequence is coupled with which amino acid
-#FF0000 = red
 
 print <<__EOF;
 <h2><b>
@@ -112,13 +124,13 @@ my $spaced_length = length($spaced_seq);
 for (my $i = 0; $i<$coding_length; $i++){
 	if ($coding_length > 0){
 			$coding_seq = substr ($coding_seq, 0, 50);
-				print "$coding_seq \n";
+				print "<p>"$coding_seq "</p>";
 		}
-for (my $i = 0; $i<$spaced_length; $i++){
+for (my $j = 0; $j<$spaced_length; $j++){
 	}
 		if ($spaced_length > 0){
 			$spaced_seq = substr ($spaced_seq, 0, 50);
-				print "<div style="color:FF0000">$spaced_seq\n</div>";		
+				print "<b">$spaced_seq"</b>";		
 	}
 }
 
@@ -134,3 +146,4 @@ print <<__EOF;
 </html>
 
 __EOF
+
