@@ -115,6 +115,7 @@ sub make_exons_hash
         
       while(my ($start, $end) = $sth->fetchrow_array)   {
          my $length = ($end - $start) + 1;
+         # I have used + 1 as both the start and end point must be included in the exon.
          $exons{$start} = $length;
      }
       return %exons;
