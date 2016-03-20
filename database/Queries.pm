@@ -172,14 +172,15 @@ sub EXON_POSITIONS
 	"
 	;
 	my $sth = $dbh->prepare($sql);
-	if ($sth->execute) 
+	if ($sth->execute()) 
 	{
-		while (my($start,$end) = $sth->fetchrow_array) 
+		while (my($start,$end) = $sth->fetchrow_array()) 
 		{
 			push @StartPositions, $start;
 			push @EndPositions, $end;
 		}
 	}
+	$sth->finish();
 	#######################################################
 	return (\@StartPositions,\@EndPositions);
 }

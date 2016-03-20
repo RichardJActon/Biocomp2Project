@@ -18,3 +18,6 @@ LINES TERMINATED BY '\n'
 -- ALTER TABLE Loci INDEX(Genbank_Accession,Locus_GI,Product_Name);
 -- ALTER TABLE Chromosome_Locations INDEX(Genbank_Accession,Location_Name);
 -- ALTER TABLE Exons INDEX(Genbank_Accession,Exon_ID);
+
+-- NB use "mysql --local-infile -u..." when running this script 
+-- on newer versions of SQL which do not like the LOCAL comand
