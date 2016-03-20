@@ -27,7 +27,7 @@ my $dbh = DBI->connect($datasource, $username, $password);
 ################################################################################
 # my $dbname = "ar001";
 # my $dbserver = "localhost";
-# my $dbport = "3306";
+# my $dbport = "3306"; # 5432?
 # my $datasource = "dbi:mysql:database=$dbname;host=$dbserver";
 # my $username = "ar001";
 # my $password = "9v15f7%xs";
@@ -180,11 +180,13 @@ sub EXON_POSITIONS
 			print STDOUT "start $start\n";
 			push @EndPositions, $end;
 			print STDOUT "end $end\n";
+			#the $start and $end strings contain the appropriate values
 		}
 	}
 	$sth->finish();
 	#######################################################
 	return (\@StartPositions,\@EndPositions);
+	## error appears to be in the return
 }
 
 
