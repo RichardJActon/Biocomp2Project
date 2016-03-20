@@ -177,7 +177,9 @@ sub EXON_POSITIONS
 		while (my($start,$end) = $sth->fetchrow_array()) 
 		{
 			push @StartPositions, $start;
+			print STDOUT "start $start\n";
 			push @EndPositions, $end;
+			print STDOUT "end $end\n";
 		}
 	}
 	$sth->finish();

@@ -5,15 +5,26 @@ use warnings;
 use Queries;
 use DBI;
 ################################################################################
-
+##### LOCUS_GI_SEARCH testing
+################################################################################
 my $searchString = "34424";
 my $result = Queries::LOCUS_GI_SEARCH($searchString);
 print "$result\n";
 ################################################################################
+##### EXON_POSITIONS testing
+################################################################################
 
 my $searchStringx = 'Y16787';
 my ($start,$end) = Queries::EXON_POSITIONS($searchStringx);
-my (@starts,@ends) = (@{$start},@{$end});
+#my (@starts,@ends) = (@{$start},@{$end});
+my @starts = @{$start};
+my @ends = @{$end};
+
+print "$start\n"; # $start contains an array ref
+print "$end\n"; # $end contains an array ref
+# end is apparently populated with uninitialised values.
+print "starts @starts\n";
+print "ends @ends\n"; # this does not work, problem with the dereferencing?
 
 for (my $i = 0; $i < scalar @starts; $i++) 
 {
