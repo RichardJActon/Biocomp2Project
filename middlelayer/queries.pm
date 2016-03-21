@@ -7,11 +7,11 @@ use warnings;
 
 use DBI;
 
-my $dbname = "";
-my $dbhost = "";
+my $dbname = "ar001";
+my $dbhost = "hope";
 my $dbsource = "dbi:mysql:database=$dbname;host=$dbhost";
-my $username = "";
-my $password = "";
+my $username = "ar001";
+my $password = "9v15f7%xs";
 
 
 
@@ -34,11 +34,11 @@ sub get_results
 {
    chomp $_[1];
 
-   my $sql = "SELECT Genbank_Accession, 
+   my $sql = "SELECT a.Genbank_Accession, 
                      Locus_GI, 
-                     Chromosome_Location_ID, 
+                     Location_Name, 
                      Product_Name
-              FROM Loci WHERE $_[0] LIKE '$_[1]'";
+              FROM Loci a, Chromosome_Locations c WHERE $_[0] LIKE '$_[1]' AND a.Genbank_Accession = c.Genbank_Accession";
 
 
 
@@ -70,7 +70,7 @@ sub get_sequences
 {
    chomp $_[0];
 
-   my $sql = "SELECT DNA_sequence, 
+   my $sql = "SELECT DNA_seq, 
                      CDS_translated 
               FROM Loci WHERE Genbank_Accession = '$_[0]'";
 
@@ -115,7 +115,6 @@ sub make_exons_hash
         
       while(my ($start, $end) = $sth->fetchrow_array)   {
          my $length = ($end - $start) + 1;
-         # I have used + 1 as both the start and end point must be included in the exon.
          $exons{$start} = $length;
      }
       return %exons;
