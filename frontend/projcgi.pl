@@ -60,7 +60,7 @@ __EOF
 #########################################################################################
 
 
-if (get_results($search_type, $user_input)   {
+if (get_results($search_type, $user_input))   {
 
    my %results = get_results($search_type, $user_input);
 
