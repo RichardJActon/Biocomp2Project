@@ -85,8 +85,7 @@ foreach my $value (@exon_box)  {
 $nucleo_seq =~ s!$value!<b>$value</b>!;
 }
 
-print "<h1> DNA sequence with coding regions highlighted: </h1>
-<br />"
+print "<h1> DNA sequence with coding regions highlighted: </h1><br />";
 
 print "<p>$_</p>\n" for unpack '(A50)*', $nucleo_seq;
 
