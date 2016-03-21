@@ -38,7 +38,7 @@ sub get_results
                      Locus_GI, 
                      Location_Name, 
                      Product_Name
-              FROM Loci a, Chromosome_Locations c WHERE $_[0] = '$_[1]' AND a.Genbank_Accession = c.Genbank_Accession";
+              FROM Loci a, Chromosome_Locations c WHERE $_[0] LIKE '%$_[1]%' AND a.Genbank_Accession = c.Genbank_Accession";
 
 
 
