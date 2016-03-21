@@ -9,7 +9,7 @@ use warnings;
 ##################################################################################
 # Subroutine: get_regions                                                        #
 # Purpose: divide the DNA sequence into: 5 region, middle region and 3 region.   #
-# Input paramater: 1 string and 1 hash; the full DNA sequence and the exons hash. #                           
+# Input paramater: 1 string and 1 hash; the protein sequence and the exons hash. #                           
 # Returns: 3 strings; the 5 region, the middle region and the 3 region.          #
 ##################################################################################
 
@@ -106,7 +106,7 @@ sub check_ecori
 # not inbetween.                                                                 #
 # Input paramater: 3 strings; the 5, the middle and the 3 region.                #                           
 # Returns: true if BamHI is able to cut the sequence at the 5 or 3 end and not   #
-# inbetween; false if it is unalbe to cut the sequence in this specific way.      #
+# inbetween; false if it is unable to cut the sequence in this specific way.     #
 ##################################################################################
 
 sub check_bamhi
@@ -131,15 +131,15 @@ sub check_bamhi
 
 
 ##################################################################################
-# Subroutine: check_bsumi                                                       #
+# Subroutine: check_bsumi                                                        #
 # Purpose: check wether BsuMI can cut the sequence at the 5 and/or 3 region but  #
 # not inbetween.                                                                 #
 # Input paramater: 3 strings; the 5, the middle and the 3 region.                #                           
 # Returns: true if BsuMI is able to cut the sequence at the 5 or 3 end and not   #
-# inbetween; false if it is unable to cut the sequence in this specific way.      #
+# inbetween; false if it is unable to cut the sequence in this specific way.     #
 ##################################################################################
 
-sub check_bsumi
+sub ceck_bsumi
 
 {
     my ($five, $middle, $three) = @_;
@@ -158,6 +158,95 @@ sub check_bsumi
 
   
 }
+
+
+##################################################################################
+# Subroutine: get_complementary                                                  #
+# Purpose: takes the restriction site sequence entered by the user and calculates#
+# its complementary sequence.                                                    #
+# Input paramater: 1 string; the sequence motif entered by the user.             #                           
+# Returns: 1 string, the complementary sequence motif.                           #
+##################################################################################
+
+
+sub get_complementary
+
+{
+
+
+# It takes the motif entered by the user and it first change it into lowercase.
+# Then it reverses it.
+
+   $input = $_[0];
+   $input = lc($input);
+
+   my $motif = reverse($input);
+
+
+# Below I used a for loop to build the complementary motif.
+
+   my $length = length($motif);
+   my $comp = "";
+
+
+   for (my $i = 0; $i < $length; $i++)  {
+      if (substr($motif, $i, 1) eq ('a'))   {
+          $comp.= 't';
+      }
+      elsif (substr($motif, $i, 1) eq 't')   {
+          $comp .= 'a';
+      }
+      elsif (substr($motif, $i, 1) eq 'c')   {
+         $comp .= 'g';
+      }
+      elsif (substr($motif, $i, 1) eq 'g')   {
+         $comp .='c';
+      }
+
+   }
+
+   return $comp;
+
+}
+
+
+########################################################################################  
+# Subroutine: check_enzyme                                                             #
+# Purpose: check wether the enzyme restriction site motif entered by the user (and its #
+# complementary motif) can cut the sequence at the 5 and/or 3 region but not inbetween.#                                                                 
+# Input paramater: 5 strings: the 5, the middle and the 3 region of the DNA sequence,  #
+# the motif entered by the user and its complementary motif calculated with the        #
+# get_complementary subroutine.                                                        #                          
+# Returns: true if the enzyme is able to cut the sequence at the 5 or 3 end and not    #     
+# inbetween; false if it is unable to cut the sequence in this specific way.           #
+########################################################################################
+
+
+
+sub check_enzyme
+
+{
+    
+    my ($five, $middle, $three, $input, $complem) = @_;
+    
+
+    if ($five =~ /$input|$complem/gi or $three =~ /$input|$complem/gi)   {
+        if ($middle !~ /$input/gi and $middle !~ /$complem/gi)   {
+                return 1;
+        }
+            else {
+                return 0;
+            }
+    }
+   
+
+
+}
+
+
+
+
+
 
 
 1;
