@@ -61,4 +61,33 @@ sub connect_exons
   return $coding_seq;
 }
 
+
+##########################################################################################
+# Subroutine: extract_exons                                                              #
+# Purpose: extract the exons from the sequence and place them in an array for the front  #
+# end to highlight them in the sequence.                                                 #
+# Input paramater: 1 string of the full DNA sequence and an hash where keys = exon start #
+# and values =  exon length.                                                             #
+# Returns: an array where each value is an exon.                                         #
+##########################################################################################
+
+
+sub extract_exons
+
+{
+
+  my ($sequence, %exons_pos) = @_;
+  
+  my @exons;
+
+  foreach my $key (keys %exons_pos)   {
+     my $exon = substr($sequence, ($key - 1), $exons_pos{$key});
+     push @exons, $exon;
+
+  }
+
+  return @exons;
+
+}
+
 1;
