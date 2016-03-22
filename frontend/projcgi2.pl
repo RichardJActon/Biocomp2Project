@@ -100,8 +100,8 @@ print "<p>$_</p>\n" for unpack '(A50)*', $nucleo_seq;
 #     Number of nucleotides per line: 50 [edit ($coding_seq, 0, 50) to adjust]		#
 #     Amino acid colour: #FF0000 = red							#
 #########################################################################################
-#The code below is not working as it should. Working on correcting it.                  #
-#											#
+# At the moment the sequences are printed separately, but I will work on trying to print#
+# as described above.									#
 #########################################################################################
 my $coding_seq = connect_exons($nucleo_seq, %exons);
 
