@@ -74,12 +74,9 @@ my ($nucleo_seq, $aa_seq) = get_sequences($specific_gene);
 
 
 
-my @exon_box;
+my @exon_box = extract_exons($nucleo_seq, %exons);
 
-foreach my $key (keys %exons)   {
-   my $bold_exon = substr($seq, ($key - 1), $exons{$key});
-   push @exon_box, $bold_exon;
-}
+
 
 foreach my $value (@exon_box)  {
 $nucleo_seq =~ s!$value!<b>$value</b>!;
