@@ -111,24 +111,20 @@ print <<__EOF;
 <h2><b>
 Coding Sequence with respective amino acid sequence
 </b></h2>
-
+<br />
 __EOF
 
-my $coding_length = length($coding_seq);
-my $spaced_length = length($spaced_seq);
 
-for (my $i = 0; $i<$coding_length; $i++){
-	if ($coding_length > 0){
-			$coding_seq = substr ($coding_seq, 0, 50);
-				print "<p>"$coding_seq "</p>";
-		}
-for (my $j = 0; $j<$spaced_length; $j++){
-	}
-		if ($spaced_length > 0){
-			$spaced_seq = substr ($spaced_seq, 0, 50);
-				print "<b">$spaced_seq"</b>";		
-	}
-}
+print "<h3> The coding DNA sequence: </h3>
+<br />"
+
+print "<p>$_</p>\n" for unpack '(A50)*', $coding_seq;
+
+print "<br />
+<h4> The amino acid sequence: </h4>
+<br />"
+
+print "<p>$_</p>\n" for unpack '(A50)*', $spaced_seq;
 
 
 
