@@ -22,40 +22,34 @@ print $cgi->header();
 my $specific_gene = $cgi->param('specific_gene');
 
 print <<__EOF;
-
 <html>
 <head>
 <style type='text/css'>
-
 <!--
 body	{background: #5F9EA0;
      	color: black; 
 }
-
 h1  	{color: black;
 		font-family: calibri; 
 		font-size: 100%;  
 }
-
 b 		{color: #FF0000;
 }	
 -->
 <title>Details of Gene: $specific_gene</title>
 </head>	
 </style>
-
 <h1><b>
 DNA Sequence with coding regions highlighted
 </b></h1>
 <body>
 <br />
 <br />
-
 __EOF
 
 
 #########################################################################################
-#        			DNA Coding regions highlighted 				#
+#        		DNA Coding regions highlighted 					#
 # A hash is formed using a subroutine from the queries.pm module called make_exons_hash #
 # wherein the hash key is the exon start position and the value of the hash is the      #  
 # exon length. Both the nucleotide sequence and amino acid sequence are extracted using #
@@ -97,12 +91,12 @@ print "<p>$_</p>\n" for unpack '(A50)*', $nucleo_seq;
 #											#
 # with a clear newline after every pair of DNA sequence and amino acid sequence.	#
 #     Note:										#
-#     Number of nucleotides per line: 50 [edit ($coding_seq, 0, 50) to adjust]		#
+#     Number of nucleotides per line: 101 [edit ($seq_length = 101) to adjust]		#
 #     Amino acid colour: #FF0000 = red							#
 #########################################################################################
-# At the moment the sequences are printed separately, but I will work on trying to print#
-# as described above.									#
-#########################################################################################
+
+
+
 my $coding_seq = connect_exons($nucleo_seq, %exons);
 
 my $spaced_seq = protein_spacing($aa_seq);
@@ -118,16 +112,21 @@ __EOF
 print "<h3> The coding DNA sequence: </h3>
 <br />"
 
-print "<p>$_</p>\n" for unpack '(A50)*', $coding_seq;
+my $start_pos = 0;
+my $seq_length = 101;
 
-print "<br />
-<h4> The amino acid sequence: </h4>
-<br />"
+while ($start_pos < length($coding_seq)) {
+	print '<p>', substr ( $coding_seq, $start_pos, $seq_length), '</p>', "\n";
+	print '<b>', substr( $spaced_seq, $start_pos, $seq_length), '</b',"\n";
+	print "<p> <p/>";
 
-print "<p>$_</p>\n" for unpack '(A50)*', $spaced_seq;
+	$start_pos += $seq_length;
+}
 
+#########################################################################################
+#				Codon Usage information
 
-
+#########################################################################################
 <h3><b>
 Codon usage frequencies
 </b></h3>
@@ -136,6 +135,4 @@ Codon usage frequencies
 print <<__EOF;
 </body>
 </html>
-
 __EOF
-
