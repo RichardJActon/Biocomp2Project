@@ -1,15 +1,13 @@
 Name,Argument,Argument format,Returns,Notes,Status
-ACCESSION_SEARCH,"Type of search, search string",2 strings,Array of Accession numbers,SQL,Done
-PRODUCT_LOCATION_ID,Accessions array,1 array of accessions,"1 array of concatenated product names, id and location",SQL,Done
-SEARCH_RESULTS,"2 arrays; 1 accessions array, 1 array with each value = concatenated id, product and location.",2 arrays,"1 hash: keys: list of accessions and values: list of corresponding concatenated geneID, Product name and chromosome location",Connects the 2 sql queries above,Done
-DNA_SEQUENCE,Accession clicked,1 string (The clicked accession),1 string of complete DNA sequence,SQL,DOne
-PROTEIN_SEQUENCE,Accession clicked,1 string (The clicked accession),1 string of complete protein sequence,SQL,Done
-EXONS_POSITIONS,Accession clicked,1 string (The clicked accession),1 hash: keys: exon starts; values: exons length.,SQL query and exons length calculation (Diff. end - start).,Done
-INTRON/EXON,Work in Progress,Work in progress.,The front end can do this task with 2 lines of code by only having the full DNA sequence and an hash of exons position.,,Done
-CODING_DNA,full dna sequence string and hash of exons position,1 string and 1 hash,The coding sequence; concatenated exons (1 string).,,Done
-CODON_FREQ,Coding sequence and amino acids sequence,2 strings,"3 hashes, codons as keys, values: amino acid, frequency, ratio",,Done
-PROTEIN_SEQ_SPACING,1 string of the protein sequence,1 string, 1 string protein sequence with 2 spaces(or other) on either side of each amino acid,,Done
-,,,e.g -M--N--A-,,Done
-ALL_DNA,,,Concatenation of all the coding DNA,,Done
-ALL_Protein,,,Retrieve all protein sequences,,Done
-RESTRICTION ENZYMES,DNA sequence and Exons positions,DNA string and hash of exons,"Returns true if the enzyme is able to cut at 5 and 3 end and not in between.",,Done
+SEARCH,"Type of search, search string.",2 strings,Hash of Results.,SQL,Done
+DNA_SEQUENCE,Accession clicked.,1 string (The clicked accession),1 string of complete DNA sequence.,SQL,DOne
+PROTEIN_SEQUENCE,Accession clicked.,1 string (The clicked accession),1 string of complete protein sequence.,SQL,Done
+EXONS_POSITIONS,Accession clicked.,1 string (The clicked accession),1 hash: keys: exon starts; values: exons length.,SQL query and exons length calculation (Diff. end - start).,Done
+INTRON/EXON_HIGHLIGHTING,DNA sequence and exons positions hash.,1 string and 1 hash,Array of exons; each value in the array is the sequence of an exon.,,Done
+CODING_DNA,Full dna sequence string and hash of exons position.,1 string and 1 hash,The coding sequence; concatenated exons (1 string).,,Done
+CODON_FREQ,Coding sequence and amino acids sequence.,2 strings,"3 hashes, codons as keys, values: amino acid, frequency, ratio.",,Done
+PROTEIN_SEQ_SPACING,1 string of the protein sequence.,1 string, 1 string protein sequence with 2 spaces(or other) on either side of each amino acid.,,Done
+,,,e.g -M--N--A-,,
+ALL_DNA,,,Retrieve all coding DNAs sequences.,,Done
+ALL_Protein,,,Retrieve all protein sequences.,,Done
+RESTRICTION ENZYMES,DNA sequence and exons positions.,1 string and 1 hash,True if the enzyme can cut the sequence at the 5 and 3 end and not in between.,,Done
