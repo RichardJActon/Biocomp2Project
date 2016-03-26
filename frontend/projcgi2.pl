@@ -117,7 +117,7 @@ my $seq_length = 101;
 
 while ($start_pos < length($coding_seq)) {
 	print '<p>', substr ( $coding_seq, $start_pos, $seq_length), '</p>', "\n";
-	print '<b>', substr( $spaced_seq, $start_pos, $seq_length), '</b',"\n";
+	print '<b>', substr( $spaced_seq, $start_pos, $seq_length), '</b>', "\n";
 	print "<p> <p/>";
 
 	$start_pos += $seq_length;
