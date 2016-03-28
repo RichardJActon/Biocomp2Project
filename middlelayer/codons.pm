@@ -1,15 +1,16 @@
 package middle::codons;
 
+
 use strict;
 use warnings;
 
-######################################################################
-# Subroutine: calc_cod_freq                                          #
-# Purpose: calculate the frequency of each codon in a given sequence.#
-# Input paramater: 1 string, the coding sequence.                    #
-# Returns: an hash where the keys are the codons and the values are  #
-# the corresponding frequencies.                                     #
-######################################################################
+#######################################################################
+# Subroutine: calc_cod_freq                                           #
+# Purpose: calculate the frequency of each codon in a given sequence. #
+# Input paramater: 1 string, the coding sequence.                     #
+# Returns: an hash where the keys are the codons and the values are   #
+# the corresponding frequencies.                                      #
+#######################################################################
 
 sub calc_cod_freq
 
@@ -35,13 +36,13 @@ sub calc_cod_freq
 
 }
 
-###########################################################################################
-# Subroutine: calc_cod_ratio                                                              #
-# Purpose: calculate the ration of each codon encoding its amino acid in a given sequence.#
-# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence. #
-# Returns: an hash where the keys are the codons and the values are                       #
-# the corresponding usage ratio.                                                          #
-###########################################################################################
+############################################################################################
+# Subroutine: calc_cod_ratio                                                               #
+# Purpose: calculate the ration of each codon encoding its amino acid in a given sequence. #
+# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence.  #
+# Returns: an hash where the keys are the codons and the values are                        #
+# the corresponding usage ratio.                                                           #
+############################################################################################
 
 sub calc_cod_ratio
 
@@ -65,10 +66,10 @@ sub calc_cod_ratio
    }
 
 
-# In the 2 lines below I join my 2 original arrays in an hash called translation;        
-# eack key in the hash will be a codon (so no duplicates), while each value will be      
-# the amino acid which each codon translate. This way I can use this new hash to connect 
-# each codon count to the correspondin amino acid count.                                 
+# In the 2 lines below I join my 2 original arrays in an hash called translation; 
+# eack key in the hash will be a codon (so no duplicates), while each value will be
+# the amino acid which each codon translate. This way I can use this new hash to connect
+# each codon count to the correspondin amino acid count.
 
    my %translation;
 
@@ -87,14 +88,15 @@ sub calc_cod_ratio
 
 }
 
-###########################################################################################
-# Subroutine: map_codons                                                                  #
-# Purpose: connect each codon in a coding sequence with its corresponding                 #
-# amino acid in the translated sequence.                                                  #
-# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence. #
-# Returns: an hash where the keys are the codons (no duplicates) and the values are       #
-# the corresponding amino acids.                                                          #
-###########################################################################################
+############################################################################################
+# Subroutine: map_codons                                                                   #
+# Purpose: connect each codon in a coding sequence with its corresponding                  #
+# amino acid in the translated sequence.                                                   #
+# Input paramater: 2 strings, the coding sequence and the translated amino acid sequence.  #
+# Returns: an hash where the keys are the codons (no duplicates) and the values are        #
+# the corresponding amino acids.                                                           #
+############################################################################################
+
 sub map_codons
 
 {
@@ -103,6 +105,75 @@ sub map_codons
 
   my @aminos = $_[1] =~ /[A-Z\*]/gi;
 
+
+  foreach my $value (@aminos)   {
+  
+    if ($value eq 'A')  {
+       $value = "Alanine";
+   }
+    elsif ($value eq 'C')  {
+       $value = "Cysteine";
+   }
+    elsif ($value eq 'D')  {
+       $value = "Aspartic Acid";
+   }
+    elsif ($value eq 'E')  {
+       $value = "Glutamic Acid";
+   }
+    elsif ($value eq 'F')  {
+       $value = "Phenylananine";
+   }
+    elsif ($value eq 'G')  {
+       $value = "Glycine";
+   }
+    elsif ($value eq 'H')  {
+       $value = "Histidine";
+   }
+   elsif ($value eq 'I')  {
+       $value = "Isoleucine";
+   }
+    elsif ($value eq 'K')  {
+       $value = "Lysine";
+   }
+
+    elsif ($value eq 'L')  {
+       $value = "Leucine";
+   }
+    elsif ($value eq 'M')  {
+       $value = "Methionine";
+   }
+    elsif ($value eq 'N')  {
+       $value = "Aspargine";
+   }
+    elsif ($value eq 'P')  {
+       $value = "Proline";
+   }
+    elsif ($value eq 'Q')  {
+       $value = "Glutamine";
+   }
+    elsif ($value eq 'R')  {
+       $value = "Arginine";
+   }
+    elsif ($value eq 'S')  {
+       $value = "Serine";
+   }
+    elsif ($value eq 'T')  {
+       $value = "Threonine";
+   }
+    elsif ($value eq 'V')  {
+       $value = "Valine";
+   }
+    elsif ($value eq 'W')  {
+       $value = "Tryptophan";
+   }
+    elsif ($value eq 'Y')  {
+       $value = "Tyrosine";
+   }
+    elsif ($value eq 'X')  {
+       $value = "Undetermined";
+   }
+
+}
   my %translation;
 
   @translation{@codons} = @aminos;
