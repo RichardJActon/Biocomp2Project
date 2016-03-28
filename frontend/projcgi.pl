@@ -60,7 +60,7 @@ __EOF
 #########################################################################################
 
 
-if (get_results($search_type, $user_input)   {
+if (get_results($search_type, $user_input))   {
 
    my %results = get_results($search_type, $user_input);
 
@@ -77,7 +77,7 @@ if (get_results($search_type, $user_input)   {
 else   {
 
 
-    print "<p> Your search did not find any result<p>";
+    print "<p> Your search did not find any result. <p>";
 
 }
 
