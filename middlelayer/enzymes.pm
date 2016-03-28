@@ -9,7 +9,7 @@ use warnings;
 ##################################################################################
 # Subroutine: get_regions                                                        #
 # Purpose: divide the DNA sequence into: 5 region, middle region and 3 region.   #
-# Input paramater: 1 string and 1 hash; the protein sequence and the exons hash. #                           
+# Input paramater: 1 string and 1 hash; the DNA sequence and the exons hash. #                           
 # Returns: 3 strings; the 5 region, the middle region and the 3 region.          #
 ##################################################################################
 
