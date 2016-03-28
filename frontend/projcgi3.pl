@@ -9,9 +9,9 @@ my $cgi = new CGI;
 print $cgi->header();
 
 #########################################################################################
-#									CGI script #3 										#
+#				CGI script #3 						#
 # This script creates a page to display the results of whether the user's motif is   	#
-# able to cut the DNA sequence at the 5' and/or 3' end.									#
+# able to cut the DNA sequence at the 5' and/or 3' end.					#
 #########################################################################################
 
 my $motif = $cgi -> param('motif');
@@ -41,7 +41,7 @@ __EOF
 
 
 #########################################################################################
-# 	Reproducing the 3 regions of the gene sequence by calling the required functions 	#
+# Reproducing the 3 regions of the gene sequence by calling the required functions 	#
 #########################################################################################
 
 my %exons = make_exons_hash($specific_gene);
@@ -63,6 +63,7 @@ print <<__EOF;
 </html>
 
 __EOF
+
 
 
 

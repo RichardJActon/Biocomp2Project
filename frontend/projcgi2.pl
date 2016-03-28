@@ -11,12 +11,12 @@ my $cgi = new CGI;
 print $cgi->header();
 
 #########################################################################################
-#									CGI script #2 										#
+#				CGI script #2 						#
 # The first CGI script (projcgi.pl) produces a web page with the results of the users   #
-# search. On this intial results page the user is given the option to view further 		#
-# details about the gene. The purpose of this script is to present these further 		#
-# details namely, highlighted coding regions, coding regions/amino acids and      		#
-# codon usage frequencies in a presentable manner.										#
+# search. On this intial results page the user is given the option to view further 	#
+# details about the gene. The purpose of this script is to present these further 	#
+# details namely, highlighted coding regions, coding regions/amino acids and      	#
+# codon usage frequencies in a presentable manner.					#
 #########################################################################################   
 
 
@@ -52,7 +52,7 @@ __EOF
 
 
 #########################################################################################
-#        			DNA Coding regions highlighted 										#
+#        		DNA Coding regions highlighted 					#
 # A hash is formed using a subroutine from the queries.pm module called make_exons_hash #
 # wherein the hash key is the exon start position and the value of the hash is the      #  
 # exon length. Both the nucleotide sequence and amino acid sequence are extracted using #
@@ -62,12 +62,12 @@ __EOF
 # the raw sequence.                                                                     #
 #   Note:                                                                               #
 #   Highlighting colour: #FF0000 = red                                                  #
-#	Number of nucleotides per line: 50 - [edit unpack (A50) to adjust]              	# 
+#	Number of nucleotides per line: 50 - [edit unpack (A50) to adjust]              # 
 #########################################################################################
 
 #########################################################################################
-#								OPEN BIG IF STATEMENT									#
-if (make_exons_hash($specific_gene) and get_sequences($specific_gene))    {				#
+#				OPEN BIG IF STATEMENT					#
+if (make_exons_hash($specific_gene) and get_sequences($specific_gene))    {		#
 #########################################################################################
 
 
@@ -87,18 +87,18 @@ print "<h2> DNA sequence with coding regions highlighted: </h2><br />";
 print "<p>$_</p>\n" for unpack '(A50)*', $nucleo_seq;
 
 #########################################################################################
-# 		DNA coding regions displayed alongside Amino acid Sequence 						#
-# Having extracted both the nucleotide DNA sequence and the amino acid sequence 		#
-# in the previous highlighting step, these sequences can now be modified using			#
+# 		DNA coding regions displayed alongside Amino acid Sequence 		#
+# Having extracted both the nucleotide DNA sequence and the amino acid sequence 	#
+# in the previous highlighting step, these sequences can now be modified using		#
 # subroutines from the calculations module namely connect_exons and protein_spacing.	#
-# Once modified the sequences are printed in the following fashion:						#
-#                          CUUACCAAAGAAAGUUGU											#
-#                          -L--T--K--E--S--S-											#
-#																						#
-# with a clear newline after every pair of DNA sequence and amino acid sequence.		#
-#     Note:																				#
-#     Number of nucleotides per line: 101 [edit ($seq_length = 101) to adjust]			#
-#     Amino acid colour: #FF0000 = red													#
+# Once modified the sequences are printed in the following fashion:			#
+#                          CUUACCAAAGAAAGUUGU						#
+#                          -L--T--K--E--S--S-						#
+#											#
+# with a clear newline after every pair of DNA sequence and amino acid sequence.	#
+#     Note:										#
+#     Number of nucleotides per line: 101 [edit ($seq_length = 101) to adjust]		#
+#     Amino acid colour: #FF0000 = red							#
 #########################################################################################
 
 
@@ -129,12 +129,12 @@ while ($start_pos < length($coding_seq)) {
 }
 
 #########################################################################################
-#								Codon Usage information									#
+#			 	Codon Usage information					#
 # Each codon frequency and codon ratio is displayed in a table. There are 3 functions 	#
 # which have been called from the codons.pm module in the middle layer in order to fill	#
 # the 3 columns in the table. Since the keys of the 3 hashes being returned from the 	#
 # middle layer are all codons, when they're sorted in alphabetical order, each value of #
-# each hash will slot seamlessly into their respective positions in the table.			#												
+# each hash will slot seamlessly into their respective positions in the table.  	#										
 #########################################################################################
 
 print <<__EOF;
@@ -166,21 +166,21 @@ foreach my $codon (sort keys %codon_freq){
 __EOF
 }
 #########################################################################################
-#							CLOSE BIG IF STATEMENT										#
-																						#
-}else{																					#
-																						#
-print "Unfortunately there is no sequence data avaialble for $specific_gene";			#
-																						#
-}																						#
+#				CLOSE BIG IF STATEMENT					#
+											#
+}else{											#
+											#
+print "Unfortunately there is no sequence data avaialble for $specific_gene";		#
+											#
+}											#
 #########################################################################################
 
 #########################################################################################
-#								Restriction Enzymes 									#
-# The 5', middle section and 3' regions of the sequence are separated using the 		#
+#				Restriction Enzymes 					#
+# The 5', middle section and 3' regions of the sequence are separated using the 	#
 # get_regions function in the enzymes.pm module. Each of the restriction site Enzymes 	#
-# are then checked against the gene DNA sequence to identify whether any 				#
-# restriction sites are present in the sequence.										#
+# are then checked against the gene DNA sequence to identify whether any 		#
+# restriction sites are present in the sequence.					#
 #########################################################################################
 
 print <<__EOF;
@@ -223,8 +223,8 @@ if (check_bsumi($five_end, $middle_sect, $three_end)){
 }
 
 #########################################################################################
-# In order to carry over the gene sequence to the 3rd CGI script an automatically 		#
-# checked radio button is implemented and is hidden using css.							#
+# In order to carry over the gene sequence to the 3rd CGI script an automatically 	#
+# checked radio button is implemented and is hidden using css.				#
 #########################################################################################
 
 
@@ -247,3 +247,4 @@ print <<__EOF;
 </body>
 </html>
 __EOF
+
