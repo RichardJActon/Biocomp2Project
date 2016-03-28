@@ -170,7 +170,7 @@ __EOF
 											#
 }else{											#
 											#
-print "Unfortunately there is no sequence data avaialble for $specific_gene";		#
+print "<p> Unfortunately there is no sequence data avaialble for $specific_gene </p>";		#
 											#
 }											#
 #########################################################################################
