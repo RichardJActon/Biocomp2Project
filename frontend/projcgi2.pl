@@ -187,31 +187,31 @@ my ($five_end, $middle_sect, $three_end) = get_regions($nucleo_seq, %exons);
 
 if (check_ecori($five_end, $middle_sect, $three_end)){
 
-	print "<p> There are sticky end restriction enzyme sites for the enzyme ECORI</p>";
+	print "<p> There are restrictions sites for the enzyme ECORI at the 5 and 3 end and not in between. </p>";
 
 }else{
 
-	print "<p> There are no sticky end restriction enzyme sites for the enzyme ECORI</p>";
+	print "<p> ECORI is not able to cut the sequence at the 5 and 3 end and not in between. </p>";
 }
 
 
 if (check_bamhi($five_end, $middle_sect, $three_end)){
 
-	print "<p> There are sticky end restriction enzyme sites for the enzyme BAMHI</p>";
+	print "<p> There are restriction sites for the enzyme BAMHI at the 5 and 3 end and not in between. </p>";
 
 }else{
 
-	print "<p> There are no sticky end restriction enzyme sites for the enzyme BAMHI</p>";
+	print "<p> BAHMI is not able to cut the sequence at the 5 and 3 end and not in between. </p>";
 }
 
 
 if (check_bsumi($five_end, $middle_sect, $three_end)){
 
-	print "<p> There are sticky end restriction enzyme sites for the enzyme BSUMI</p>";
+	print "<p> There are restriction sites for the enzyme BSUMI at the 5 and 3 end and not in between. </p>";
 
 }else{
 
-	print "<p> There are no sticky end restriction enzyme sites for the enzyme BSUMI</p>";
+	print "<p> BSUMI is not able to cut the sequence at the 5 and 3 end and not in between. </p>";
 }
 
 #########################################################################################
