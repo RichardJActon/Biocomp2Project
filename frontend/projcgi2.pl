@@ -165,15 +165,7 @@ foreach my $codon (sort keys %codon_freq){
 		</tr>
 __EOF
 }
-#########################################################################################
-#				CLOSE BIG IF STATEMENT					#
-											#
-}else{											#
-											#
-print "<p> Unfortunately there is no sequence data avaialble for $specific_gene </p>";		#
-											#
-}											#
-#########################################################################################
+
 
 #########################################################################################
 #				Restriction Enzymes 					#
@@ -241,7 +233,15 @@ print <<__EOF;
 <input type='submit' value='CHECK'>
 </p>
 __EOF
-
+#########################################################################################
+#				CLOSE BIG IF STATEMENT					#
+											#
+}else{											#
+											#
+print "<p> Unfortunately there is no sequence data avaialble for $specific_gene </p>";		#
+											#
+}											#
+#########################################################################################
 print <<__EOF;
 </form>
 </body>
