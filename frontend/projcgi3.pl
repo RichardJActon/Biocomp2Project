@@ -54,7 +54,7 @@ my $complem_motif = get_complementary($motif);
 if (check_enzyme($five_end, $middle_sect, $three_end, $motif, $complem_motif)){
 	print "<p><b>$motif</b> can be used to cut the DNA sequence at both the 5' and 3' end, but not in between</p>";
 }else{
-	print "<p><b>$motif</b> cannot cut the DNA sequence at any site</p>";
+	print "<p><b>$motif</b> cannot cut the DNA sequence at the 5 and 3 end and not in between. </p>";
 }
 
 
