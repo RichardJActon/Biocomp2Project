@@ -50,8 +50,13 @@ sub calc_cod_ratio
 
    my @codons = $_[0] =~ /[A-Z]{3}/gi;
 
-   my @aminos = $_[1] =~ /[A-Z\*]/gi;
+   my @aminos = $_[1] =~ /[A-Z]/gi;
 
+# Adding stop codon as last value of the amino acids array; stop codon triplets (TAA, TAG, TGA) are in the coding sequence extractred
+# from the database but are not translated in the protein sequences, therefore I add the stop codon in the protein sequence
+# for calculation purposes.
+
+   push @aminos, 'Stop';
 
    my %aa_count;
 
