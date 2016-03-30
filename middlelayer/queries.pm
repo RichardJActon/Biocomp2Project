@@ -1,4 +1,4 @@
-package modules::queries;
+package middle::queries;
 
 use strict;
 use warnings;
@@ -49,7 +49,7 @@ sub get_results
    if($sth && $sth->execute)   {
         
       while(my ($accession, $id, $location, $prod_name) = $sth->fetchrow_array)   {
-         my $value = "ID: $id     Product: $prod_name     Location: $location";
+         my $value = "ID: $id     PRODUCT: $prod_name     LOCATION: $location";
          $results{$accession} = $value;
      }
       return %results;
