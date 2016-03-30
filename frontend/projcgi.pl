@@ -2,6 +2,7 @@
 use strict;
 ####################################### CGI ############################################
 use CGI;
+use lib '/d/user6/ng001/Middlelayer';
 use middle::queries;
 
 my $cgi = new CGI;
@@ -43,7 +44,7 @@ h1   { color: black;
 <table border ="1">
 	<tr>
 	<td><b>Accessions</b></td>
-	<td><b>ID----Protein----Location</b></td>
+	<td><b>ID, Protein & Location</b></td>
 	<td><b>Select Gene<b><td>
 	</tr>
 
@@ -60,16 +61,15 @@ __EOF
 #########################################################################################
 
 
-if (get_results($search_type, $user_input))   {
 
-   my %results = get_results($search_type, $user_input);
+
+if (middle::queries::get_results($search_type, $user_input))   {
+
+   my %results = middle::queries::get_results($search_type, $user_input);
 
 
    foreach my $accession_key (sort keys %results){
-	print   "<tr>";
-	print	"<td> $accession_key </td>";
-	print	"<td> $results{$accession_key} </td>";
-	print	"<td><input type='radio' name='specific_gene' value='$accession_key'/></td> </tr>";
+	print   "<tr><td> $accession_key </td><td> $results{$accession_key}</td><td><input type='radio' name='specific_gene' value='$accession_key'/></td> </tr>";
    }
 
 }
@@ -89,7 +89,6 @@ print <<__EOF;
 <input type='submit' value='SUBMIT' />
 </form>
 </body>
-</html>"
+</html>
 
 __EOF
-
