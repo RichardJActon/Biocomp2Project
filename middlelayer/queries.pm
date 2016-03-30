@@ -33,7 +33,7 @@ sub get_results
 
 {
    chomp $_[1];
-
+   chomp $_[0];
    my $sql = "SELECT a.Genbank_Accession, 
                      Locus_GI, 
                      Location_Name, 
