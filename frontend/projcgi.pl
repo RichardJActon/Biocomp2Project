@@ -37,8 +37,10 @@ h1   { color: black;
 </head>	
 </style>
 
+
 <body>
 <form method="post" action="http://student.cryst.bbk.ac.uk/ad002/WWW/cgi-bin/proj(cgi2).pl">
+<h1> Search Results: </h1>
 <br />
 <br />
 <table border ="1">
@@ -86,9 +88,12 @@ print <<__EOF;
 </table>
 <br />
 <br />
+<p> Please select a gene for further analysis. </p>
 <input type='submit' value='SUBMIT' />
 </form>
 </body>
 </html>
 
 __EOF
+
+
