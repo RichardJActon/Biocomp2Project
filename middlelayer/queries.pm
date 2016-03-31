@@ -3,8 +3,6 @@ package middle::queries;
 use strict;
 use warnings;
 
-
-
 use DBI;
 
 my $dbname = "ar001";
@@ -16,7 +14,6 @@ my $password = "9v15f7%xs";
 
 
 my $dbh = DBI->connect($dbsource, $username, $password);
-
 
 
 ##########################################################################################################
@@ -32,14 +29,14 @@ my $dbh = DBI->connect($dbsource, $username, $password);
 sub get_results
 
 {
-   chomp $_[1];
    chomp $_[0];
+   chomp $_[1];
+
    my $sql = "SELECT a.Genbank_Accession, 
                      Locus_GI, 
                      Location_Name, 
                      Product_Name
               FROM Loci a, Chromosome_Locations c WHERE $_[0] LIKE '%$_[1]%' AND a.Genbank_Accession = c.Genbank_Accession";
-
 
 
    my $sth = $dbh->prepare($sql);
@@ -49,7 +46,7 @@ sub get_results
    if($sth && $sth->execute)   {
         
       while(my ($accession, $id, $location, $prod_name) = $sth->fetchrow_array)   {
-         my $value = "ID: $id     PRODUCT: $prod_name     LOCATION: $location";
+         my $value = "ID: $id     PROTEIN: $prod_name     LOCATION: $location";
          $results{$accession} = $value;
      }
       return %results;
