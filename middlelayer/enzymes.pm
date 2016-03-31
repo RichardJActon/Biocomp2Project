@@ -9,7 +9,7 @@ use warnings;
 ##################################################################################
 # Subroutine: get_regions                                                        #
 # Purpose: divide the DNA sequence into: 5 region, middle region and 3 region.   #
-# Input paramater: 1 string and 1 hash; the DNA sequence and the exons hash. #                           
+# Input paramater: 1 string and 1 hash; the DNA sequence and the exons hash.     #                           
 # Returns: 3 strings; the 5 region, the middle region and the 3 region.          #
 ##################################################################################
 
@@ -39,8 +39,8 @@ sub get_regions
 
    my $end = "";
 
-   foreach my $key (sort {$b <=> $a} keys %hash)   {
-      $end = ($key + $hash{$key});
+   foreach my $key (sort {$b <=> $a} keys %exons)   {
+      $end = ($key + $exons{$key});
       last;
    }
     
@@ -139,7 +139,7 @@ sub check_bamhi
 # inbetween; false if it is unable to cut the sequence in this specific way.     #
 ##################################################################################
 
-sub ceck_bsumi
+sub check_bsumi
 
 {
     my ($five, $middle, $three) = @_;
@@ -174,10 +174,10 @@ sub get_complementary
 {
 
 
-# It takes the motif entered by the user and it first change it into lowercase.
+# It takes the motif entered by the user and it first changes it into lowercase.
 # Then it reverses it.
 
-   $input = $_[0];
+   my $input = $_[0];
    $input = lc($input);
 
    my $motif = reverse($input);
@@ -189,8 +189,9 @@ sub get_complementary
    my $comp = "";
 
 
-   for (my $i = 0; $i < $length; $i++)  {
-      if (substr($motif, $i, 1) eq ('a'))   {
+   for (my $i = 0; $i < $length; $i++)          {
+      
+      if (substr($motif, $i, 1) eq ('a'))    {
           $comp.= 't';
       }
       elsif (substr($motif, $i, 1) eq 't')   {
@@ -200,10 +201,10 @@ sub get_complementary
          $comp .= 'g';
       }
       elsif (substr($motif, $i, 1) eq 'g')   {
-         $comp .='c';
+         $comp .= 'c';
       }
 
-   }
+  }
 
    return $comp;
 
