@@ -36,7 +36,7 @@ body	{background: #5F9EA0;
      	font-family: courier;
 }
 h1  	{color: black;
-		font-family: calibri; 
+		font-family: verdana; 
 		  
 }
 h2  {color: yellow;

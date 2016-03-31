@@ -29,7 +29,7 @@ body	{background: #5F9EA0;
      	color: black; 
 }
 h1  	{color: black;
-		font-family: calibri; 
+		font-family: verdana; 
 		font-size: 100%;  
 }
 b 		{color: yellow;
