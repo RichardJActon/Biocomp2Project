@@ -108,9 +108,9 @@ sub map_codons
 
   my @codons = $_[0] =~ /[A-Z]{3}/gi;
 
-  my @aminos = $_[1] =~ /[A-Z]/gi;
-  push @aminos, 'Stop';
+  my @aminos = $_[1] =~ /[A-Z\*]/gi;
   
+  push @aminos, 'Stop';
 
   foreach my $value (@aminos)   {
   
