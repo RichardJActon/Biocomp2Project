@@ -29,6 +29,7 @@ sub calc_cod_freq
 
    foreach my $cod (keys %codon_count)   {
       my $frequency = ($codon_count{$cod} * 100) / $codons_total;
+         $frequency = sprintf("%.2f", $frequency);
          $codonfreq{$cod} = $frequency;
   }
 
@@ -85,6 +86,7 @@ sub calc_cod_ratio
 
    foreach my $codon (keys %translation)   {
       my $ratio = ($cod_count{$codon} * 100) / ($aa_count{$translation{$codon}});
+         $ratio = sprintf("%.2f", $ratio);
          $codonratio{$codon} = $ratio;
    }
 
