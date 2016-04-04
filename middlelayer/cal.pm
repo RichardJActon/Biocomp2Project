@@ -38,15 +38,15 @@ sub protein_spacing
 ##########################################################################################
 # Subroutine: connect_exons                                                              #
 # Purpose: extract and connect the exons of a sequence to create the coding sequence.    #
-# Input paramater: 1 string of the full DNA sequence and an hash where keys = exon start #
-# and values =  exon length.                                                             #
+# Input paramater: 2 strings and 1 hash. The full DNA sequence, the codon start (reading #
+# frame) and an hash where keys = exon start and values =  exon length.                  #                                          #
 # Returns: a string, the coding sequence.                                                #
 ##########################################################################################
 
 sub connect_exons
 
 {
-   my ($sequence, %exons) = @_;
+   my ($sequence, $reading, %exons) = @_;
    my $coding_seq = "";
 
    foreach my $key (sort {$a<=>$b} keys %exons)   {
@@ -57,8 +57,15 @@ sub connect_exons
 # position 0 is the first character; this does not seem to be the case
 # for exons data: if an exon starts at 1 it means it starts from the first character
 # of the sequence which would be position 0 when using substring.
-   
-  return $coding_seq;
+ 
+
+# Below I adjust the coding sequence depending on the reading frame;
+# Codon count can start at position 1, 2 or 3 in the first exon, so 
+# I cut the sequence accordingly.
+ 
+   my $length = length($coding_seq);
+   $coding_seq = substr($coding_seq, ($reading - 1), $length - ($reading - 1)); 
+   return $coding_seq;
 }
 
 
