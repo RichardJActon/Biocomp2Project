@@ -2,7 +2,7 @@
 use strict;
 ####################################### CGI ############################################
 use CGI;
-use lib '/d/user6/ng001/Middlelayer';
+use lib '/d/user6/ad002/Middlelayer';
 use middle::queries;
 
 my $cgi = new CGI;
@@ -21,27 +21,36 @@ my $search_type = $cgi->param('search_type');
 my $user_input = $cgi->param('user_input');
 	 
 print <<__EOF;
-
 <html>
 <head>
 <style type='text/css'>
-
 <!--
 body { background: #5F9EA0;
-       color: black; }
+       color: black; 
+	font-family: Verdana  }
 h1   { color: black;
-	font-family: verdana; }
+	font-family: Verdana; }
+tr:hover {background-color: #66CC66}
+tr 	{background-color: #3366CC}
+table, th, td {
+   border: 2px solid black;
+}
 -->
-<title>Search result(s)</title>
 </head>	
 </style>
-
-
+<p align ='center'>
+<a href="http://student.cryst.bbk.ac.uk/~ad002/projhome.html">
+<span title="Home page"><img src ='http://imageshack.com/a/img924/3898/wDpGUM.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
+</a>
+</p>
 <body>
-<form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ng001/projcgi2.pl">
+<form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ad002/projcgi2.pl">
 <h1> Search Results: </h1>
+<p>Please select a gene and enter.</p>
 <br />
+
 <br />
+<div style="overflow-x:auto;">
 <table border ="1">
 	<tr>
 	<td><b>GenBank Accession </b></td>
@@ -50,7 +59,6 @@ h1   { color: black;
         <td><b> Location </b> </td>
 	<td><b>Select Gene <b><td>
 	</tr>
-
 __EOF
 
 #########################################################################################
@@ -89,15 +97,12 @@ else   {
 
 print <<__EOF;
 </table>
+</div>
 <br />
 <br />
-<p> Please select a gene for further analysis. </p>
+<p> Please select a gene and submit to learn more. </p>
 <input type='submit' value='SUBMIT' />
 </form>
 </body>
 </html>
-
 __EOF
-
-
-

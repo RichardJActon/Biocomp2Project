@@ -2,7 +2,7 @@
 use strict;
 ####################################### CGI ############################################
 use CGI;
-use lib '/d/user6/ng001/Middlelayer';
+use lib '/d/user6/ad002/Middlelayer';
 use middle::queries;
 use middle::cal;
 use middle::codons;
@@ -45,15 +45,29 @@ h3   {color: black;
 }
 b {color:yellow;
 }
-	
+tr:hover {background-color: #66CC66}
+tr 	{background-color: #3366CC}
+table, th, td {
+   border: 2px solid black;
+}	
 [type="radio"] { display:none; }
+tr:nth-child(even) {background-color: #66CC66}
+th, td {
+    padding: 8px;
+    text-align: left;
+}
 -->
-<title>Details of Gene</title>
 </head>	
 </style>
+<p align ='center'>
+<a href="http://student.cryst.bbk.ac.uk/~ad002/projhome.html">
+<span title="Home page"><img src ='http://imageshack.com/a/img924/3898/wDpGUM.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
+</a>
+</p>
 <h1>Details for $specific_gene</h1>
+<br />
 <body>
-<form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ng001/projcgi3.pl">
+<form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ad002/projcgi3.pl">
 <br />
 <br />
 __EOF
@@ -75,7 +89,7 @@ __EOF
 
 #########################################################################################
 #				OPEN BIG IF STATEMENT					#
-if (middle::queries::make_exons_hash($specific_gene) and middle::queries::get_sequences($specific_gene))    {		#
+if (middle::queries::make_exons_hash($specific_gene) and middle::queries::get_sequences($specific_gene))    {		
 #########################################################################################
 
 
@@ -120,6 +134,7 @@ print "<p>$_</p>\n" for unpack '(A50)*', $nucleo_seq;
 my $spaced_seq = middle::cal::protein_spacing($aa_seq);
 
 print <<__EOF;
+<br />
 <h2>Coding Sequence with aligned amino acid sequence: </h2>
 __EOF
 
@@ -150,11 +165,12 @@ while ($start_pos < length($coding_seq)) {
 #########################################################################################
 
 print <<__EOF;
+<br />
 <h2>Codon usage information: </h2>
 <br / >
-
+<div style="overflow-x:auto;">
 <table border ="2">
-<tr>
+<tr >
 <td><h3> Amino Acid </h3></td>
 <td><h3> Codon </h3></td>
 <td><h3> Codon Frequency %</h3> </td>
@@ -188,8 +204,9 @@ __EOF
 
 print <<__EOF;
 </table>
+</div>
+<br />
 <h2>Restriction Enzymes: </h2>
-
 __EOF
 
 
@@ -231,17 +248,23 @@ if (middle::enzymes::check_bsumi($five_end, $middle_sect, $three_end)){
 
 
 print <<__EOF;
+<br/>
 <p align='center'>
-<img src ="http://imageshack.com/a/img923/1176/35F89f.gif" width="25%" height="25%"alt="browser_unsupported_image" />
+<img src ="http://imageshack.com/a/img923/1176/35F89f.gif" width="25%" height="25%"alt="browser_unsupported_image" border='1' style="border-color:blue" />
 </p>
-<h2 align='center'>Check Restriction Sites Sequence </h2>
-<p align='center'>Enter your sequence below to find out whether your sequence can cut the DNA in the 5' and/or 3' regions and not in between. </p>
+<h2 align='center'>Check Restriction Sites </h2>
+<p align='center'>Enter your sequence below to find out whether your sequence can cut the DNA in the 5' and/or 3' regions, but not in between. </p>
 <br/ >
 <p align='center'>
 <input type='radio' name='specific_gene' value='$specific_gene' checked="yes"/>
 <input type='text' name='motif' size='20'>
 <input type='submit' value='CHECK'>
 </p>
+<br />
+<p align='center'>
+<a href="http://student.cryst.bbk.ac.uk/~ad002/aboutus.html">
+<span title="Learn more"><img src='http://imageshack.com/a/img924/6132/j2D4Fu.png' width='5%' height='2.5%' border='1' style="border-color:blue" /><span>
+</a>
 __EOF
 
 #########################################################################################
@@ -258,8 +281,3 @@ print <<__EOF;
 </body>
 </html>
 __EOF
-
-
-
-
-

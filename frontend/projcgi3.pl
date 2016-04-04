@@ -2,7 +2,7 @@
 use strict;
 ####################################### CGI ############################################
 use CGI;
-use lib '/d/user6/ng001/Middlelayer';
+use lib '/d/user6/ad002/Middlelayer';
 use middle::queries;
 use middle::cal;
 use middle::codons;
@@ -27,6 +27,7 @@ print <<__EOF;
 <!--
 body	{background: #5F9EA0;
      	color: black; 
+	font-family: Verdana
 }
 h1  	{color: black;
 		font-family: verdana; 
@@ -37,8 +38,13 @@ b 		{color: yellow;
 -->
 </head>
 </style>
+<p align ='center'>
+<a href="http://student.cryst.bbk.ac.uk/~ad002/projhome.html">
+<span title="Home page"><img src ='http://imageshack.com/a/img924/3898/wDpGUM.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
+</a>
+</p>
+<br />
 <h2>Check Restriction sequence</h2>
-
 __EOF
 
 
@@ -63,14 +69,4 @@ if (middle::enzymes::check_enzyme($five_end, $middle_sect, $three_end, $motif, $
 print <<__EOF;
 </body>
 </html>
-
 __EOF
-
-
-
-
-
-
-
-
-
