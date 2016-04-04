@@ -58,7 +58,8 @@ sub get_results
 # Subroutine: get_sequences                                                   #
 # Purpose: retrieve DNA sequence, Protein sequence and Codon start of 1 entry.#
 # Input paramater: 1 string, the accession number of the entry.               #
-# Returns: 2 strings; the nucleotide sequence and the protein sequence        #
+# Returns: 3 strings; the nucleotide sequence, the protein sequence and the   #
+# codon start (reading frame).
 ###############################################################################    
 
 
