@@ -16,6 +16,7 @@ CREATE TABLE Loci
 	Product_Name			TEXT		NOT NULL,
 	CDS_translated 			TEXT		NOT NULL,
 	CDS_untranslated		TEXT		DEFAULT NULL,
+	Reading_Frame			SMALLINT	NOT NULL, -- index?
 	PRIMARY KEY (Genbank_Accession)-- ,
 )ENGINE = INNODB;
 

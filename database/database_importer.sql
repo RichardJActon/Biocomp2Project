@@ -3,7 +3,7 @@
 LOAD DATA LOCAL INFILE 'loci.txt' INTO TABLE Loci
 FIELDS TERMINATED BY '|'
 LINES TERMINATED BY '\n'
-(Genbank_Accession,Locus_GI,DNA_seq,Product_Name,CDS_translated);
+(Genbank_Accession,Locus_GI,DNA_seq,Product_Name,CDS_untranslated,Reading_frame);
 -- 
 LOAD DATA LOCAL INFILE 'chromloc.txt' INTO TABLE Chromosome_Locations
 FIELDS TERMINATED BY '|'
