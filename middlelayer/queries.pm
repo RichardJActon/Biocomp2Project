@@ -54,12 +54,12 @@ sub get_results
 }
 
 
-#########################################################################
-# Subroutine: get_sequences                                             #
-# Purpose: retrieve DNA sequence and Protein sequence of 1 entry.       #
-# Input paramater: 1 string, the accession number of the entry.         #
-# Returns: 2 strings; the nucleotide sequence and the protein sequence. #
-#########################################################################
+###############################################################################
+# Subroutine: get_sequences                                                   #
+# Purpose: retrieve DNA sequence, Protein sequence and Codon start of 1 entry.#
+# Input paramater: 1 string, the accession number of the entry.               #
+# Returns: 2 strings; the nucleotide sequence and the protein sequence        #
+###############################################################################    
 
 
 sub get_sequences
@@ -68,7 +68,8 @@ sub get_sequences
    chomp $_[0];
 
    my $sql = "SELECT DNA_seq, 
-                     CDS_translated 
+                     CDS_translated,
+                     Reading_Frame 
               FROM Loci WHERE Genbank_Accession = '$_[0]'";
 
 
@@ -76,10 +77,10 @@ sub get_sequences
 
     if($dbh)  {
 
-    my ($nucleo_seq, $aa_seq) = $dbh->selectrow_array($sql);
-
-    return $nucleo_seq, $aa_seq;
-  }
+       my ($nucleo_seq, $aa_seq, $read) = $dbh->selectrow_array($sql);
+       return $nucleo_seq, $aa_seq, $read;   
+   } 
+   
 }
 
 #########################################################################
