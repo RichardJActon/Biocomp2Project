@@ -10,19 +10,36 @@ use DBsubs;
 
 =head2 Main Parser Script
 
-=cut
-
-=pod
 
 =cut
+
 ####################################################################################################
 #####  									loci (Genbank Accession Numbers)					   #####
 ####################################################################################################
 =pod
 
-=head3 
+=head3 loci (Genbank Accession Numbers)
+
+=over
+
+This Section Extracts genebank accession numbers from each locus in a genbank file and writes them 
+to the values of a hash. All of the lines associated with that locus are writen to the values of
+the hash.
+
+=back
+
+=head4 Subroutines used: 
+
+=over
+
+=item *
+L<HASH_LOCI_CONTENTS|\>
+
+=back
 
 =cut
+
+##!! FILE CHECKS !!##
 
 my $infile = $ARGV[0];
 my @lines = DBsubs::FILE_LINES_TO_ARRAY($infile);
@@ -45,22 +62,48 @@ my %loci = DBsubs::HASH_LOCI_CONTENTS(\@lines,$locusStartIdentifier,$locusEndIde
 # }
 
 ####################################################################################################
-#####  										features										   #####
+##### 								Feature Extraction										   #####
 ####################################################################################################
 =pod
 
-=head3 
+=head3 Feature Extraction
+
+=over
+
+This Section contains blocks which extract individual features from the Genbank file and stores
+them in a hash with Genebank Accession numbers / locus identifiers as its keys and the extracted
+feature as its values.
+
+Each Block uses two subroutines:
+
+=over
+
+=item *
+L<HASH_LOCI_CONTENTS|\>
+
+=item *
+L<SUBSTITUTIONS|\>
+
+=back
+
+=back
 
 =cut
-
-
 
 ####################################################################################################
 ######									Locus_GI											   #####
 ####################################################################################################
 =pod
 
-=head4 
+=head4 Locus_GI
+
+=over
+
+For each key in the loci hash this block extracts the Genbank identifer from the values of the loci
+hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. 
+Genbank Identifier "Locus_GI" as their values.
+
+=back
 
 =cut
 
@@ -84,11 +127,19 @@ my %Locus_GI = DBsubs::SUBSTITUTIONS(\%Locus_GI_raw,$Locus_GI_substittions);
 # 	print "[$k]\n $v\n\n";
 # }
 ####################################################################################################
-#####								      DNA seq											   #####
+#####								      DNA_seq											   #####
 ####################################################################################################
 =pod
 
-=head4 
+=head4 DNA_seq
+
+=over
+
+For each key in the loci hash this block extracts the DNA sequence from the values of the loci
+hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. 
+DNA sequence "DNA_seq" as their values.
+
+=back
 
 =cut
 
@@ -110,11 +161,19 @@ my %DNA_seq = DBsubs::SUBSTITUTIONS(\%DNA_seq_raw,$DNA_seq_substittions);
 # 	print "[$k]\n $v\n\n";
 # }
 ####################################################################################################
-#####								      Product Name										   #####
+#####								      Product_Name										   #####
 ####################################################################################################
 =pod
 
-=head4 
+=head4 Product_Name
+
+=over
+
+For each key in the loci hash this block extracts the name of the protein product from the values of
+the loci hash and creates a new hash with the same keys as the loci hash but with the target feature
+i.e. the name of the protein product "Product_Name" as their values.
+
+=back
 
 =cut
 
@@ -140,7 +199,15 @@ my %Product_Name = DBsubs::SUBSTITUTIONS(\%Product_Name_raw,$Product_Name_substi
 ####################################################################################################
 =pod
 
-=head4 
+=head4 CDS_translated
+
+=over
+
+For each key in the loci hash this block extracts the Protein amino acid sequence from the values of
+the loci hash and creates a new hash with the same keys as the loci hash but with the target feature
+i.e. Protein sequence "CDS_translated" as their values.
+
+=back
 
 =cut
 
@@ -168,7 +235,16 @@ my %CDS_translated = DBsubs::SUBSTITUTIONS(\%CDS_translated_raw,$CDS_translated_
 ####################################################################################################
 =pod
 
-=head4 
+=head4 Reading_frame
+
+=over
+
+For each key in the loci hash this block extracts the Reading frame of the first Exon from the 
+values of the loci hash and creates a new hash with the same keys as the loci hash but with the
+target feature i.e. The reading frame or offset from the DNA sequence start point of the protein 
+coding sequence "Reading_frame" as their values.
+
+=back
 
 =cut
 
@@ -192,11 +268,23 @@ my %Reading_frame = DBsubs::SUBSTITUTIONS(\%Reading_frame_raw,$Reading_frame_sub
 # 	print "[$k]\n $v\n\n";
 # }
 ####################################################################################################
-#####                                        Extract Join                                      #####
+#####                                        join 	                                           #####
 ####################################################################################################
 =pod
 
-=head4 
+=head4 join
+
+=over
+
+For each key in the loci hash this block extracts the Exon Start and end positions from the values
+of the loci hash and creates a new hash with the same keys as the loci hash but with the target
+feature i.e. the list of Exon Start and end sites "join" as their values. 
+
+It then takes this hash with values of a string containing a list of exon start and end sites and
+produces two further hashes with the same keys but whose values are array refferences to 1) an 
+array of Exon start positions and 2) an array of Exon end positions.
+
+=back
 
 =cut
 
@@ -250,11 +338,20 @@ while (my($k,$v) = each %join) {
 # }
 
 ####################################################################################################
-#####                                    Extract Location_Name                                 #####
+#####                                    	Location_Name                                      #####
 ####################################################################################################
 =pod
 
-=head4 
+=head4 Location_Name
+
+=over
+
+For each key in the loci hash this block extracts the chromosome location from the 
+values of the loci hash and creates a new hash with the same keys as the loci hash but with the
+target feature i.e. The karyotypic location in terms of chromosome number, arm and band 
+"Location_name" as their values.
+
+=back
 
 =cut
 
@@ -279,12 +376,27 @@ my %Location_Name = DBsubs::SUBSTITUTIONS(\%Location_Name_raw,$Location_Name_sub
 # }
 
 
+####################################################################################################
+#####										Writing Outputs									   #####
+####################################################################################################
+=pod
 
-###############################################
+=head3 Writing outputs
 
-my $LociTable = $ARGV[1];
-my $Chromosome_LocationsTable = $ARGV[2];
-my $ExonsTable = $ARGV[3];
+=over
+
+This section opens the output file handles, Prints the results to thos files and then closes the 
+file handles including that of the input file whislt performing checks of sucessfull closing of each
+file.
+
+=back
+
+=cut
+
+
+my $LociTable = "loci.txt";
+my $Chromosome_LocationsTable = "chromloc.txt";
+my $ExonsTable = "exons.txt";
 
 # open(INFILE, "<$infile");
 open(LociTable, ">$LociTable");
@@ -300,7 +412,13 @@ open(ExonsTable, ">$ExonsTable");
 ####################################################################################################
 =pod
 
-=head3 Print extracted content for Loci table to "|" seperated file 
+=head3 Loci table output
+
+=over
+
+Print extracted content for Loci table to "|" seperated file 
+
+=back
 
 =cut
 
@@ -324,7 +442,13 @@ while (my($k,$v) = each %loci) {
 ####################################################################################################
 =pod
 
-=head3 Print extracted content for Chromosome locations table to "|" seperated file 
+=head3 Chromosome_Locations table output
+
+=over
+
+Print extracted content for Chromosome locations table to "|" seperated file 
+
+=back
 
 =cut
 
@@ -340,7 +464,13 @@ while (my($k,$v) = each %loci) {
 ####################################################################################################
 =pod
 
-=head3 Print extracted content for Exon table to "|" seperated file 
+=head3 Exons table output
+
+=over
+
+Print extracted content for Exon table to "|" seperated file 
+
+=back
 
 =cut
 
@@ -372,6 +502,8 @@ for (my $i = 0; $i < scalar @rows; $i++) {
 }
 
 ####################################################################################################
+
+
 close(LociTable) or die "Unable to close file: $LociTable\n";
 close(Chromosome_LocationsTable) or die "Unable to close file: $Chromosome_LocationsTable\n";
 close(ExonsTable) or die "Unable to close file: $ExonsTable\n";
