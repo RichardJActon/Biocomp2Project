@@ -164,6 +164,34 @@ my %CDS_translated = DBsubs::SUBSTITUTIONS(\%CDS_translated_raw,$CDS_translated_
 # 	print "[$k]\n $v\n\n";
 # }
 ####################################################################################################
+#####								      Reading_frame	    								   #####
+####################################################################################################
+=pod
+
+=head4 
+
+=cut
+
+my $Reading_frame_Regex = qr/\/codon_start=([^\n^\/]+)/s;
+my $Reading_frame_substittions = qr/\n|\s/;
+#
+#extract
+my %Reading_frame_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$Reading_frame_Regex);
+#substitute
+my %Reading_frame = DBsubs::SUBSTITUTIONS(\%Reading_frame_raw,$Reading_frame_substittions);
+
+#prints the result of the extraction
+# while (my($k,$v) = each %Reading_frame_raw) 
+# {
+# 	print "[$k]\n $v\n\n";
+# }
+# print "#########################\n";
+# #prints the result of the substitution on the extraction
+# while (my($k,$v) = each %Reading_frame) 
+# {
+# 	print "[$k]\n $v\n\n";
+# }
+####################################################################################################
 #####                                        Extract Join                                      #####
 ####################################################################################################
 =pod
@@ -286,6 +314,8 @@ while (my($k,$v) = each %loci) {
 	print LociTable "$Product_Name{$k}";
 	print LociTable "|";
 	print LociTable "$CDS_translated{$k}";
+	print LociTable "|";
+	print LociTable "$Reading_frame{$k}";
 	print LociTable "\n";
 }
 
