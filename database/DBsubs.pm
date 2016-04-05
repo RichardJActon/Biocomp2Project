@@ -304,6 +304,7 @@ sub EXTRACT_LOCUS_FEATURE
 	my $featureRegex = $_[1];	# Regex capturing the feature of interest
 	## local variables:
 	my %feature;
+	#my %errors;
 	############################################################
 	while (my($k,$v) = each %loci) 
 	{
@@ -311,7 +312,13 @@ sub EXTRACT_LOCUS_FEATURE
 		if ($v =~ /${featureRegex}/s)
 		{
 			$string = $1;
-			$feature{$k} = $string;
+			if ("" ne $string) {
+				$feature{$k} = $string;
+			}
+			else
+			{
+				$feature{$k} = "Parsing error feature not defined";
+			}
 		}
 	}
 	############################################################
@@ -364,7 +371,15 @@ sub SUBSTITUTIONS
 		my $tempFeature = "";
 		$tempFeature = $v;
 		$tempFeature =~ s/${substittions}//g;
-		$outHash{$k} = $tempFeature;
+		if ("" ne $tempFeature) {
+				$outHash{$k} = $tempFeature;
+			}
+			else
+			{
+				$outHash{$k} = "Parsing error feature not defined";
+			}
+
+		#$outHash{$k} = $tempFeature;
 		#print "$tempFeature\n";
 	}
 	############################################################
