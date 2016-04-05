@@ -7,6 +7,141 @@ use warnings;
 =head2 BDsubs Module
 
 =cut
+
+####################################################################################################
+##### 								  		File Checks 									   #####
+####################################################################################################
+=pod
+
+=head2 File Checks
+
+=over
+
+
+
+=back
+
+=cut
+########
+=pod
+
+=head3 EXISTS function
+
+=head4 Arguments
+
+=over
+
+=item *
+File 
+
+=back
+
+=head4 Returns
+
+=over
+
+=item *
+Returns 1 if the file exists
+
+=item *
+Returns 0 if the file does not exist
+
+=back
+
+=cut
+
+sub EXISTS
+{
+	my $file = $_[0];
+	if (-e $file) 
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+=pod
+
+=head3 IS_TEXT function
+
+=head4 Arguments
+
+=over
+
+=item *
+File 
+
+=back
+
+=head4 Returns
+
+=over
+
+=item *
+Returns 1 if the file is text
+
+=item *
+Returns 0 if the file is not text
+
+=back
+
+=cut
+
+sub IS_TEXT
+{
+	my $file = $_[0];
+	if (-T $file) 
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+=pod
+
+=head3 IS_READABLE function
+
+=head4 Arguments
+
+=over
+
+=item *
+File 
+
+=back
+
+=head4 Returns
+
+=over
+
+=item *
+Returns 1 if file is readable
+
+=item *
+Returns 0 if file is not readable
+
+=back
+
+=cut
+sub IS_READABLE
+{
+	my $file = $_[0];
+	if (-r $file) 
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 ####################################################################################################
 ##### 								  FILE_LINES_TO_ARRAY									   #####
 ####################################################################################################

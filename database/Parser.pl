@@ -10,8 +10,64 @@ use DBsubs;
 
 =head2 Main Parser Script
 
+=back
+
+
+
+=over
 
 =cut
+
+####################################################################################################
+##### 											File checks  								   ##### 
+####################################################################################################
+=pod
+
+=head3 File Checks
+
+=back
+
+
+
+=over
+
+=cut
+
+
+my $infile = $ARGV[0];
+open(INFILE, "<$infile");
+##
+
+if (DBsubs::EXISTS($infile)) 
+{
+	print STDOUT "$infile exists\n";
+}
+else
+{
+	print STDERR "$infile does not exist\n";
+	die
+}
+##
+if (DBsubs::IS_TEXT($infile)) 
+{
+	print STDOUT "$infile is a text file\n";
+}
+else
+{
+	print STDERR "$infile is not text\n";
+	die
+}
+##
+if (DBsubs::IS_READABLE($infile)) 
+{
+	print STDOUT "$infile is readable\n";
+}
+else
+{
+	print STDERR "$infile is not readable\n";
+	die
+}
+##
 
 ####################################################################################################
 #####  									loci (Genbank Accession Numbers)					   #####
@@ -39,9 +95,8 @@ L<HASH_LOCI_CONTENTS|\>
 
 =cut
 
-##!! FILE CHECKS !!##
+print STDOUT "Processing $infile...\n";
 
-my $infile = $ARGV[0];
 my @lines = DBsubs::FILE_LINES_TO_ARRAY($infile);
 
 # prints every line in file
@@ -393,12 +448,12 @@ file.
 
 =cut
 
+print STDOUT "opening output files...\n";
 
 my $LociTable = "loci.txt";
 my $Chromosome_LocationsTable = "chromloc.txt";
 my $ExonsTable = "exons.txt";
 
-# open(INFILE, "<$infile");
 open(LociTable, ">$LociTable");
 open(Chromosome_LocationsTable, ">$Chromosome_LocationsTable");
 open(ExonsTable, ">$ExonsTable");
@@ -421,6 +476,8 @@ Print extracted content for Loci table to "|" seperated file
 =back
 
 =cut
+
+print STDOUT "Writing $LociTable...\n";
 
 while (my($k,$v) = each %loci) {
 	print LociTable "$k";
@@ -452,6 +509,8 @@ Print extracted content for Chromosome locations table to "|" seperated file
 
 =cut
 
+print STDOUT "Writing $Chromosome_LocationsTable...\n";
+
 while (my($k,$v) = each %loci) {
 	print Chromosome_LocationsTable "$k";
 	print Chromosome_LocationsTable "|";
@@ -468,11 +527,12 @@ while (my($k,$v) = each %loci) {
 
 =over
 
-Print extracted content for Exon table to "|" seperated file 
-
+Print extracted content for Exon table to "|" seperated file 1
 =back
 
 =cut
+
+print STDOUT "Writing $ExonsTable...\n";
 
 my @col1;
 my @col2;
@@ -497,13 +557,14 @@ for (my $i = 0; $i < scalar @col1; $i++) {
 	push @rows, $col1[$i] . $col2[$i];
 }
 
-for (my $i = 0; $i < scalar @rows; $i++) {
+for (my $i = 0; $i < scalar @rows; $i++) { 
 	print ExonsTable "$rows[$i]"
 }
 
 ####################################################################################################
 
-
+print STDOUT "Closing files...\n";
 close(LociTable) or die "Unable to close file: $LociTable\n";
 close(Chromosome_LocationsTable) or die "Unable to close file: $Chromosome_LocationsTable\n";
 close(ExonsTable) or die "Unable to close file: $ExonsTable\n";
+close(INFILE) or die "Unable to close file: $infile\n";
