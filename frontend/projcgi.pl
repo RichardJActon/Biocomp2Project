@@ -30,14 +30,19 @@ body { background: #5F9EA0;
 	font-family: Verdana  }
 h1   { color: black;
 	font-family: Verdana; }
-tr:hover {background-color: #66CC66}
-tr 	{background-color: #3366CC}
+p	{color: black}
+tr:hover {background-color: #3366CC}
+tr 	{background-color: #708090 }
 table, th, td {
    border: 2px solid black;
 }
+
 -->
 </head>	
 </style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<body class="w3-container">
 <p align ='center'>
 <a href="http://student.cryst.bbk.ac.uk/~ad002/projhome.html">
 <span title="Home page"><img src ='http://imageshack.com/a/img924/3898/wDpGUM.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
@@ -45,13 +50,18 @@ table, th, td {
 </p>
 <body>
 <form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ad002/projcgi2.pl">
+<div align="center">
+<div class="w3-container w3-blue-grey w3-bottombar w3-border-dark-grey w3-border w3-hover-shadow  w3-center" style="width:35%">
 <h1> Search Results: </h1>
 <p>Please select a gene and enter.</p>
+</div>
+</div>
 <br />
 
 <br />
 <div style="overflow-x:auto;">
-<table border ="1">
+
+<table class="w3-table w3-bordered w3-card-4">
 	<tr>
 	<td><b>GenBank Accession </b></td>
 	<td><b> ID </b></td>
@@ -98,10 +108,18 @@ else   {
 print <<__EOF;
 </table>
 </div>
+</div>
+
 <br />
 <br />
+<div align="center">
+<div class="w3-container w3-bottombar w3-border-black w3-border w3-hover-shadow  w3-center" style="width:20%" >
 <p> Please select a gene and submit to learn more. </p>
-<input type='submit' value='SUBMIT' />
+<p align="center">
+<input type='submit' value='SUBMIT'/>
+</div>
+</div>
+</p>
 </form>
 </body>
 </html>
