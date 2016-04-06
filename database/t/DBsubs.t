@@ -3,7 +3,7 @@ use warnings;
 use strict;
 use lib '..';
 use DBsubs;
-use Test::More tests => 11;
+use Test::More tests => 12;
 ### DBsubs.t
 =pod
 
@@ -113,3 +113,29 @@ ok(@array,"FILE_LINES_TO_ARRAY Sucessfully returns an array");
 # my $expected8 = 1;
 # is ($result8, $expected8, "IS_READABLE returns 1 when file is readable");
 
+####################################################################################################
+#####								HASH_LOCI_CONTENTS										   #####
+####################################################################################################
+=pod
+
+=head3 tests for the HASH_LOCI_CONTENTS function
+
+=cut
+
+## 
+my @array2 = ("xa\n","a\n","y\n","xb\n","b\n","y\n","xc\n","c\n","y\n");
+#print @array2;
+my $regex1 = qr/x(\w*)/;
+my $regex2 = qr/y\n/;
+my %hash = DBsubs::HASH_LOCI_CONTENTS(\@array2,$regex1,$regex2);
+ok(%hash,"HASH_LOCI_CONTENTS Sucessfully returns an hash");
+ok($hash{a} eq "xa\na\ny\n", "HASH_LOCI_CONTENTS correct contents for first value" );
+ok($hash{b} eq "xb\nb\ny\n", "HASH_LOCI_CONTENTS correct contents for second value" );
+ok($hash{c} eq "xc\nc\ny\n", "HASH_LOCI_CONTENTS correct contents for third value" );
+# my $expected8 = 1;
+# is ($result8, $expected8, "IS_READABLE returns 1 when file is readable");
+
+
+# test for normal function need to address error handeling of this function
+# what happens when unexpected input is given how can it be detected and 
+# produce and appropriate error behaviour?

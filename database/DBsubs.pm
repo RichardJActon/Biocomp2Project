@@ -245,7 +245,7 @@ sub HASH_LOCI_CONTENTS
 		if ($lines[$i] =~ /${locusStartMarker}/) 
 		{
 			$k = $1; # name the keys of the Hash after the unique locus identifier
-			$loci{$k} = $lines[$i]; # set the first line of the string in the has to the line containing the locus start marker
+			$loci{$k} = $lines[$i]; # set the first line of the string in the hash to the line containing the locus start marker
 			$i++;
 		}
 		while ($lines[$i] !~ /${locusEndMarker}/) # append all lines preceeding the end marker to the string
