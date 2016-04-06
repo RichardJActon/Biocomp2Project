@@ -135,7 +135,7 @@ my %freq;
 # to the full name.
 
 
-  my @aminos = $all_proteins =~ /[A-Z\*]/gi;
+  my @aminos = $all_proteins =~ /[A-Z]/gi;
   
 
 
@@ -244,13 +244,13 @@ my %freq;
          $codonratio{$codon} = $ratio;
    }
 # Now I have calculated the ratios and I have also built my translation hash 
-# in the proces, which has every codons associated with its corresponding amino
-# acid.
+# in the process, which has every codons associated with its corresponding amino
+# acid, I have all info necessary for the static table.
 
 
 # The if statement in the for loop below is to get rid of undetermined codons containing
 # unwanted characters. Some of these characters do have meaning, but do not represents
-# real codons therefore we avoided showing them.
+# real known codons therefore we avoided showing them.
 
 foreach my $key (sort keys %codonratio)  {
    if ($key !~ /n|m|k|r/g)  {
