@@ -4,13 +4,13 @@
 # I could not use the subroutine I made for the codons ratio, as that subroutine would not
 # properly account for Stop codons if used for calculations in the whole chromosome.
 # I also avoided extracting the protein data from the database, but I re-calculated it in this
-# script using the full coding sequence; I have used these method to avoid associating a coding
-# sequence to the wrong protein, due to high number of exceptions and missing data in the database.
-# In this script for the codons ratio calculation I first built a long translated protein sequence by converting each
+# script using the full coding sequence; I have used this method to avoid associating a coding
+# sequence to the wrong protein, due to the high number of exceptions and missing data in the database.
+# In this script for the codons ratio calculations I first built a long translated protein sequence by converting each
 # codon in the all_coding string I have extracted with the script extract.pl
-# Once I have created the protein, I calculate ratio the same way as I did in codons.pm, 
-# with an exception in the way I handled stop codons; as I need to account for a stop codon
-# in each sequence; this also another reason why I decided to re-calculate the protein.
+# Once I have created the protein, I calculated ratios the same way as I did in codons.pm, 
+# with an exception in the way I handled stop codons, as I need to account for a stop codon
+# in each sequence; this is also another reason why I decided to re-calculate the protein.
 # This script prints into a file the codons frequencies and ratios with appropriate
 # html table tags agreed with the front end, ready to be pasted into html.
 
@@ -240,6 +240,9 @@ print OUTFILE "$key = $translation{$key}\n";
          $codonratio{$codon} = $ratio;
    }
 
+# The if statement in the for loop below is to get rid of undetermined codons containing
+# unwanted characters. Some of these characters do have meaning, but do not represents
+# real codons therefore we avoided showing them.
 
 foreach my $key (sort keys %codonratio)  {
    if ($key !~ /n|m|k|r/g)  {
