@@ -1,3 +1,19 @@
+# This script carries the codons frequency and ratio calculations on the whole chromosome.
+# The text file containing the concatenated coding sequences need to be passed to this script.
+# The script first calculates codons frequencies using a subroutine from the module codons.pm
+# I could not use the subroutine I made for the codons ratio, as that subroutine would not
+# properly account for Stop codons if used for calculations in the whole chromosome.
+# I also avoided extracting the protein data from the database, but I re-calculated it in this
+# script using the full coding sequence; I have used these method to avoid associating a coding
+# sequence to the wrong protein, due to high number of exceptions and missing data in the database.
+# In this script for the codons ratio calculation I first built a long translated protein sequence by converting each
+# codon in the all_coding string I have extracted with the script extract.pl
+# Once I have created the protein, I calculate ratio the same way as I did in codons.pm, 
+# with an exception in the way I handled stop codons; as I need to account for a stop codon
+# in each sequence; this also another reason why I decided to re-calculate the protein.
+# This script prints into a file the codons frequencies and ratios with appropriate
+# html table tags agreed with the front end, ready to be pasted into html.
+
 use strict;
 use warnings;
 use lib '/d/user6/ng001/Middlelayer';
@@ -99,9 +115,7 @@ foreach my $value (@codons)   {
 }
 
 
-print OUTFILE $all_proteins . "\n";
 
-print OUTFILE $all_coding . "\n";
 
 
 my %freq;
@@ -110,12 +124,6 @@ my %freq;
 
 
 
-
-foreach my $key (sort keys %freq)   {
-if ($key !~ /n/g)  {
-   print OUTFILE "$key = $freq{$key}\n";
-}
-}
 
 
 
@@ -234,7 +242,7 @@ print OUTFILE "$key = $translation{$key}\n";
 
 
 foreach my $key (sort keys %codonratio)  {
-if ($key !~ /n|m|k|r/g)  {
-print OUTFILE "<tr><td>$translation{$key}</td><td>$key</td><td>$freq{$key}</td><td>$codonratio{$key}</td></tr>\n";
-}
+   if ($key !~ /n|m|k|r/g)  {
+       print OUTFILE "<tr><td>$translation{$key}</td><td>$key</td><td>$freq{$key}</td><td>$codonratio{$key}</td></tr>\n";
+   }
 }
