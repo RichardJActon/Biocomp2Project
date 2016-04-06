@@ -50,18 +50,18 @@ table, th, td {
 </p>
 <body>
 <form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ad002/projcgi2.pl">
-<div align="center">
-<div class="w3-container w3-blue-grey w3-bottombar w3-border-dark-grey w3-border w3-hover-shadow  w3-center" style="width:35%">
+<br />
+<div class="w3-container w3-indigo w3-bottombar w3-border-dark-grey w3-border   w3-le" style="width:45%">
 <h1> Search Results: </h1>
 <p>Please select a gene and enter.</p>
-</div>
+
 </div>
 <br />
 
 <br />
 <div style="overflow-x:auto;">
 
-<table class="w3-table w3-bordered w3-card-4">
+<table class="w3-table w3-bordered w3-border w3-card-4">
 	<tr>
 	<td><b>GenBank Accession </b></td>
 	<td><b> ID </b></td>
