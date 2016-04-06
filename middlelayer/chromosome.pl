@@ -34,6 +34,12 @@ my @codons = $all_coding =~ /[A-Z]{3}/gi;
 
 my $all_proteins = "";
 
+
+# Below I build the protein sequence corresponding to the extracted concatenated coding sequences.
+# This way I am sure that each codons will be associated with the correct amino amicd.
+# I have used the letter J to represents stop codons and the letter X to represent undetermined,
+# which would be any codon containing any character which is not a, c, g or t.
+
 foreach my $value (@codons)   {
 
     if ($value =~ /ttt|ttc/)   {
@@ -116,7 +122,8 @@ foreach my $value (@codons)   {
 
 
 
-
+# Here I simply calculate codons frequences on my all_coding using
+# my subroutine, detailed in the module codons.pm
 
 my %freq;
 
@@ -124,7 +131,8 @@ my %freq;
 
 
 
-
+# Below I calculate ratios. I also convert each amino acid letter code
+# to the full name.
 
 
   my @aminos = $all_proteins =~ /[A-Z\*]/gi;
@@ -207,11 +215,7 @@ my %freq;
 
 
 
-foreach my $key (keys %translation)  {
-if ($key !~ /n/g)  {
-print OUTFILE "$key = $translation{$key}\n";
-}
-}
+
 
 
 
@@ -239,6 +243,10 @@ print OUTFILE "$key = $translation{$key}\n";
          $ratio = sprintf("%.2f", $ratio);
          $codonratio{$codon} = $ratio;
    }
+# Now I have calculated the ratios and I have also built my translation hash 
+# in the proces, which has every codons associated with its corresponding amino
+# acid.
+
 
 # The if statement in the for loop below is to get rid of undetermined codons containing
 # unwanted characters. Some of these characters do have meaning, but do not represents
