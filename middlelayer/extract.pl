@@ -1,3 +1,15 @@
+# This script is needed as first step for the pre-calculation of
+# the codons frequencies in the whole chromosome.
+# In this script I first extract each accession from the database.
+# Following the extraction, for each accession I retrieved the DNA
+# sequence, the reading frame and the exons positions.
+# I used these information to build the coding sequence from the data 
+# for each accession entry (given they have sequence data).
+# In the final step I simply connect all coding sequence together in a very long string.
+# The script simply print the string of the concatenated coding sequences
+# in a line of a text file to be used with the script chromosome.pl to carry codons
+# calculations.
+
 
 use strict;
 use warnings;
