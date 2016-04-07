@@ -3,7 +3,7 @@ use warnings;
 use strict;
 use lib '..';
 use DBsubs;
-use Test::More tests => 12;
+use Test::More tests => 15;
 ### DBsubs.t
 =pod
 
