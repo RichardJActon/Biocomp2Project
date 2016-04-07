@@ -43,7 +43,7 @@ h2  {color: black;
 }
 h3   {color: black;
 }
-b {color:yellow;
+b {color:blue;
 }
 tr:hover {background-color: #66CC66}
 tr 	{background-color: #3366CC}
@@ -55,6 +55,19 @@ tr:nth-child(even) {background-color: #66CC66}
 th, td {
     padding: 8px;
     text-align: left;
+}
+#panel, .flip {
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    background-color: #606060;
+    color: Black;
+    border: solid 1px #a6d8a8;
+    margin: auto;
+}
+
+#panel {
+    display: none;
 }
 -->
 </head>	
@@ -166,9 +179,11 @@ while ($start_pos < length($coding_seq)) {
 
 print <<__EOF;
 <br />
-<h2>Codon usage information: </h2>
+<div id="Genetable" class="table">
+<h2>Codon usage information in $specific_gene: </h2>
 <br / >
 <div style="overflow-x:auto;">
+
 <table border ="2">
 <tr >
 <td><h3> Amino Acid </h3></td>
@@ -198,11 +213,11 @@ __EOF
 
 print <<__EOF;
 </table>
+</div>
 <br / >
-
+<div id="Chromosometable" class="table">
 <h2>Codon usage information for Chromosome 17: </h2>
 <br / >
-
 <div style="overflow-x:auto;">
 <table border ="2">
 <tr >
@@ -276,7 +291,6 @@ print <<__EOF;
 <tr><td>Leucine</td><td>ttg</td><td>1.17</td><td>12.99</td></tr>
 <tr><td>Phenylananine</td><td>ttt</td><td>1.42</td><td>48.96</td></tr>
 </table>
-
 __EOF
 #########################################################################################
 #				Restriction Enzymes 					#
@@ -287,6 +301,7 @@ __EOF
 #########################################################################################
 
 print <<__EOF;
+</div>
 </div>
 <br />
 <h2>Restriction Enzymes: </h2>
@@ -344,10 +359,23 @@ print <<__EOF;
 <input type='submit' value='CHECK'>
 </p>
 <br />
+<br />
+<br />
+<br />
 <p align='center'>
 <a href="http://student.cryst.bbk.ac.uk/~ad002/aboutus.html">
-<span title="Learn more"><img src='http://imageshack.com/a/img924/6132/j2D4Fu.png' width='5%' height='2.5%' border='1' style="border-color:blue" /><span>
+<span title="Learn more"><img src='http://imageshack.com/a/img924/6132/j2D4Fu.png' width='10%' height='5%' border='1' style="border-color:blue" /><span>
 </a>
+<a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">
+<span title="Blast"><img src='https://imageshack.com/i/pnvTfqWGg' width='10%' height='5%' border='1' style="border-color:white" /><span>
+</a> 
+<a href="http://www.ebi.ac.uk/Tools/msa/clustalo/">
+<span title="Multiple sequence alignment"><img src='https://imageshack.com/i/poqXtRqNp' width='10%' height='5%' border='1' style="border-color:transparent" /><span>
+</a>
+<a href="http://rnaanalyzer.bioapps.biozentrum.uni-wuerzburg.de/server.html">
+<span title="RNA Analyser"><img src='https://imageshack.com/i/pnLIoEyvp' width='10%' height='5%' border='1' style="border-color:transparent" /><span>
+</a>
+<p>
 __EOF
 
 #########################################################################################
