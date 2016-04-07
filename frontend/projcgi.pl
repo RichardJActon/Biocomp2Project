@@ -35,6 +35,7 @@ tr:hover {background-color: #3366CC}
 tr 	{background-color: #708090 }
 table, th, td {
    border: 2px solid black;
+	border-collapse: collapse;
 }
 
 -->
@@ -42,16 +43,18 @@ table, th, td {
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <body class="w3-container">
 <p align ='center'>
 <a href="http://student.cryst.bbk.ac.uk/~ad002/projhome.html">
 <span title="Home page"><img src ='http://imageshack.com/a/img924/3898/wDpGUM.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
+<i class="fa fa-spinner w3-spin" style="font-size:64px" style="color:blue"></i>
 </a>
 </p>
 <body>
 <form method="post" action="http://student.cryst.bbk.ac.uk/cgi-bin/cgiwrap/ad002/projcgi2.pl">
 <br />
-<div class="w3-container w3-indigo w3-bottombar w3-border-dark-grey w3-border   w3-le" style="width:45%">
+<div class="w3-container w3-indigo w3-bottombar w3-border-dark-grey w3-border   w3-le" style="width:100%">
 <h1> Search Results: </h1>
 <p>Please select a gene and enter.</p>
 
