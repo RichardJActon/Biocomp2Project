@@ -15,7 +15,20 @@ use Test::More tests => 15;
 ####################################################################################################
 =pod
 
-=head3 tests for the exists function
+=head3 Tests for the EXISTS function
+
+=over
+
+=item 1 
+EXISTS returns 1 when file exists.
+
+=item 2
+EXISTS returns 0 when variable empty.
+
+=item 3
+EXISTS returns 0 when non-existent file name used.
+
+=back
 
 =cut
 
@@ -43,6 +56,13 @@ is ($result3, $expected3, "EXISTS returns 0 when non-existent file name used");
 =pod
 
 =head3 tests for the IS_TEXT function
+
+=over
+
+=item 1
+
+
+=back
 
 =cut
 
@@ -77,6 +97,10 @@ is ($result7, $expected7, "IS_TEXT returns 0 when non-text file name used");
 
 =head3 tests for the IS_READABLE function
 
+=over
+
+=back
+
 =cut
 
 ## 
@@ -103,6 +127,10 @@ is ($result10, $expected10, "IS_READABLE returns 0 when file is not readable");
 
 =head3 tests for the FILE_LINES_TO_ARRAY function
 
+=over
+
+=back
+
 =cut
 
 ## 
@@ -119,6 +147,10 @@ ok(@array,"FILE_LINES_TO_ARRAY Sucessfully returns an array");
 =pod
 
 =head3 tests for the HASH_LOCI_CONTENTS function
+
+=over
+
+=back
 
 =cut
 
