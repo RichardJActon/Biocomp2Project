@@ -3,7 +3,7 @@ use warnings;
 use strict;
 use lib '..';
 use DBsubs;
-use Test::More tests => 15;
+use Test::More tests => 17;
 ### DBsubs.t
 =pod
 
@@ -171,3 +171,6 @@ ok($hash{c} eq "xc\nc\ny\n", "HASH_LOCI_CONTENTS correct contents for third valu
 # test for normal function need to address error handeling of this function
 # what happens when unexpected input is given how can it be detected and 
 # produce and appropriate error behaviour?
+ok(scalar keys %hash == 3, "HASH_LOCI_CONTENTS returns a hash with 3 keys");
+ok(scalar values %hash == 3, "HASH_LOCI_CONTENTS returns a hash with 3 values");
+#
