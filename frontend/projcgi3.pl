@@ -4,8 +4,6 @@ use strict;
 use CGI;
 use lib '/d/user6/ad002/Middlelayer';
 use middle::queries;
-use middle::cal;
-use middle::codons;
 use middle::enzymes;
 
 my $cgi = new CGI;
