@@ -38,7 +38,7 @@ b 		{color: yellow;
 </style>
 <p align ='center'>
 <a href="http://student.cryst.bbk.ac.uk/~ad002/projhome.html">
-<span title="Home page"><img src ='http://imageshack.com/a/img924/3898/wDpGUM.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
+<span title="Home page"><img src ='http://student.cryst.bbk.ac.uk/~ad002/ch17logo2.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
 </a>
 </p>
 <br />
@@ -65,6 +65,39 @@ if (middle::enzymes::check_enzyme($five_end, $middle_sect, $three_end, $motif, $
 
 
 print <<__EOF;
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p align='center'>
+<a href="http://student.cryst.bbk.ac.uk/~ad002/aboutus.html">
+<span title="Learn more"><img src='http://student.cryst.bbk.ac.uk/~ad002/aboutus.png' width='10%' height='5%' border='1' style="border-color:blue" /><span>
+</a>
+<a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">
+<span title="Blast"><img src='http://student.cryst.bbk.ac.uk/~ad002/blast.jpg' width='10%' height='5%' border='1' style="border-color:white" /><span>
+</a> 
+<a href="http://www.ebi.ac.uk/Tools/msa/clustalo/">
+<span title="Multiple sequence alignment"><img src='http://student.cryst.bbk.ac.uk/~ad002/embl.png' width='10%' height='5%' border='1' style="border-color:transparent" /><span>
+</a>
+<a href="http://rnaanalyzer.bioapps.biozentrum.uni-wuerzburg.de/server.html">
+<span title="RNA Analyser"><img src='http://student.cryst.bbk.ac.uk/~ad002/RNAanalyser.jpeg' width='10%' height='5%' border='1' style="border-color:transparent" /><span>
+</a>
+<p>
 </body>
 </html>
 __EOF
