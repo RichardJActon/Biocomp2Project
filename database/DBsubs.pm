@@ -50,6 +50,8 @@ Returns 0 if the file does not exist
 
 =cut
 
+
+
 sub EXISTS
 {
 	my $file = $_[0];
@@ -62,7 +64,7 @@ sub EXISTS
 		return 0;
 	}
 }
-
+####################################################################################################
 =pod
 
 =head3 IS_TEXT function
@@ -90,6 +92,8 @@ Returns 0 if the file is not text
 
 =cut
 
+
+
 sub IS_TEXT
 {
 	my $file = $_[0];
@@ -102,7 +106,7 @@ sub IS_TEXT
 		return 0;
 	}
 }
-
+####################################################################################################
 =pod
 
 =head3 IS_READABLE function
