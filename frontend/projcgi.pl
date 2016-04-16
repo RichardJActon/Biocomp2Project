@@ -47,7 +47,7 @@ table, th, td {
 <body class="w3-container">
 <p align ='center'>
 <a href="http://student.cryst.bbk.ac.uk/~ad002/projhome.html">
-<span title="Home page"><img src ='http://imageshack.com/a/img924/3898/wDpGUM.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
+<span title="Home page"><img src ='http://student.cryst.bbk.ac.uk/~ad002/ch17logo2.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
 <i class="fa fa-spinner w3-spin" style="font-size:64px" style="color:blue"></i>
 </a>
 </p>
@@ -120,9 +120,9 @@ print <<__EOF;
 <p> Please select a gene and submit to learn more. </p>
 <p align="center">
 <input type='submit' value='SUBMIT'/>
-</div>
-</div>
 </p>
+</div>
+</div>
 </form>
 </body>
 </html>
