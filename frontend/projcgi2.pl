@@ -97,7 +97,7 @@ __EOF
 # the raw sequence.                                                                     
 #   Note:                                                                               
 #   Highlighting colour: blue                                                 
-#	Number of nucleotides per line: 50 - [edit unpack (A50) to adjust]              
+#	Number of nucleotides per line: 99 - [edit unpack (A99) to adjust]              
 #########################################################################################
 
 #########################################################################################
@@ -120,7 +120,7 @@ $nucleo_seq =~ s!$value!<b>$value</b>!;
 
 print "<h2> DNA sequence with coding regions highlighted: </h2><br />";
 
-print "<p>$_</p>\n" for unpack '(A50)*', $nucleo_seq;
+print "<p>$_</p>\n" for unpack '(A99)*', $nucleo_seq;
 
 
 #########################################################################################
