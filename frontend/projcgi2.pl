@@ -96,7 +96,7 @@ __EOF
 # other gene details such as coding regions/amino acids require the modification of 	
 # the raw sequence.                                                                     
 #   Note:                                                                               
-#   Highlighting colour: #FF0000 = red                                                  
+#   Highlighting colour: blue                                                 
 #	Number of nucleotides per line: 50 - [edit unpack (A50) to adjust]              
 #########################################################################################
 
@@ -134,8 +134,8 @@ print "<p>$_</p>\n" for unpack '(A50)*', $nucleo_seq;
 #											
 # with a clear newline after every pair of DNA sequence and amino acid sequence.	
 #     Note:										
-#     Number of nucleotides per line: 101 [edit ($seq_length = 101) to adjust]		
-#     Amino acid colour: #FF0000 = red							
+#     Number of nucleotides per line: 99 [edit ($seq_length = 99) to adjust]		
+#     Amino acid colour: blue						
 #########################################################################################
 
 
@@ -156,7 +156,7 @@ my $upper_seq = uc($coding_seq);
 
 
 my $start_pos = 0;
-my $seq_length = 101;
+my $seq_length = 99;
 
 while ($start_pos < length($coding_seq)) {
 	print '<p>', substr ( $upper_seq, $start_pos, $seq_length), '</p>', "\n";
@@ -208,8 +208,11 @@ foreach my $codon (sort keys %codon_freq){
 		</tr>
 __EOF
 }
-
-
+#########################################################################################
+#
+#	Precalculated Codon usage frequencies and codon usage ratios for chromosome 17
+#
+#########################################################################################
 
 print <<__EOF;
 </table>
@@ -292,6 +295,7 @@ print <<__EOF;
 <tr><td>Phenylananine</td><td>ttt</td><td>1.42</td><td>48.96</td></tr>
 </table>
 __EOF
+
 #########################################################################################
 #				Restriction Enzymes 					
 # The 5', middle section and 3' regions of the sequence are separated using the 	

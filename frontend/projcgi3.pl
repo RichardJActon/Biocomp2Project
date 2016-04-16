@@ -36,6 +36,7 @@ b 		{color: yellow;
 -->
 </head>
 </style>
+<body>
 <p align ='center'>
 <a href="http://student.cryst.bbk.ac.uk/~ad002/projhome.html">
 <span title="Home page"><img src ='http://student.cryst.bbk.ac.uk/~ad002/ch17logo2.png' width='50%' height='9%'alt='Explore Chromosome 17' /></span>
@@ -83,7 +84,20 @@ print <<__EOF;
 <br />
 <br />
 <br />
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <p align='center'>
 <a href="http://student.cryst.bbk.ac.uk/~ad002/aboutus.html">
 <span title="Learn more"><img src='http://student.cryst.bbk.ac.uk/~ad002/aboutus.png' width='10%' height='5%' border='1' style="border-color:blue" /><span>
