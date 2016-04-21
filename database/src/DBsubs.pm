@@ -4,7 +4,7 @@ use warnings;
 
 =pod
 
-=head2 BDsubs Module
+=head1 L<BDsubs Module|index.html>
 
 =cut
 
@@ -41,7 +41,7 @@ File
 =over
 
 =item *
-Returns 1 if the file exists
+Returns 1 if the file exists 
 
 =item *
 Returns 0 if the file does not exist

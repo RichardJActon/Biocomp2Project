@@ -8,11 +8,21 @@ h1 {
     }
 
 h2 {
+    margin: 0em;
+    border: none;
+    background: black;
+    color: red;
     font: bold 16pt Helvetica, Arial, sans-serif;
+    padding: 0.2em;
     }
 
 h3 {
+    margin: 0em;
+    border: none;
+    background: black;
+    color: yellow;
     font: bold 14pt Helvetica, Arial, sans-serif;
+    padding: 0.2em;
     }
 
 h4 {
@@ -28,7 +38,10 @@ img {
     height: 20ex;
     }
 
-.index
+#index
     {
-    text-align: right;
+    float: right;
+    background: white;
+    width: 25em;
+    min-height: 100%;
     }

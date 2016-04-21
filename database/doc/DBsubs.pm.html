@@ -1,0 +1,254 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<link rel="stylesheet" href="DocStylesheet.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#BDsubs-Module">BDsubs Module</a>
+    <ul>
+      <li><a href="#File-Checks">File Checks</a>
+        <ul>
+          <li><a href="#EXISTS-function">EXISTS function</a>
+            <ul>
+              <li><a href="#Arguments">Arguments</a></li>
+              <li><a href="#Returns">Returns</a></li>
+            </ul>
+          </li>
+          <li><a href="#IS_TEXT-function">IS_TEXT function</a>
+            <ul>
+              <li><a href="#Arguments1">Arguments</a></li>
+              <li><a href="#Returns1">Returns</a></li>
+            </ul>
+          </li>
+          <li><a href="#IS_READABLE-function">IS_READABLE function</a>
+            <ul>
+              <li><a href="#Arguments2">Arguments</a></li>
+              <li><a href="#Returns2">Returns</a></li>
+            </ul>
+          </li>
+          <li><a href="#FILE_LINES_TO_ARRAY-Function">FILE_LINES_TO_ARRAY Function</a>
+            <ul>
+              <li><a href="#Arguments3">Arguments</a></li>
+              <li><a href="#Returns3">Returns</a></li>
+              <li><a href="#Synopsis-Reads-in-every-line-from-a-file-pushing-each-line-to-an-array-as-it-does-so-returns-this-array">Synopsis Reads in every line from a file pushing each line to an array as it does so, returns this array.</a></li>
+            </ul>
+          </li>
+          <li><a href="#HASH_LOCI_CONTENTS">HASH_LOCI_CONTENTS</a>
+            <ul>
+              <li><a href="#Arguments4">Arguments</a></li>
+              <li><a href="#Returns4">Returns</a></li>
+              <li><a href="#Synopsis">Synopsis</a></li>
+            </ul>
+          </li>
+          <li><a href="#EXTRACT_LOCUS_FEATURE">EXTRACT_LOCUS_FEATURE</a>
+            <ul>
+              <li><a href="#Arguments5">Arguments</a></li>
+              <li><a href="#Returns5">Returns</a></li>
+              <li><a href="#Synopsis-Extracts-features-of-interest-defined-by-a-regex-containg-a-capture-given-as-an-argument-from-the-values-of-a-hash-given-as-an-argument-returning-a-hash-with-the-same-key-as-input-hash-ref-and-values-corresponding-to-the-capture-in-the-regex">Synopsis Extracts features of interest defined by a regex containg a capture given as an argument from the values of a hash given as an argument, returning a hash with the same key as input hash ref and values corresponding to the capture in the regex.</a></li>
+            </ul>
+          </li>
+          <li><a href="#SUBSTITUTIONS">SUBSTITUTIONS</a>
+            <ul>
+              <li><a href="#Arguments6">Arguments</a></li>
+              <li><a href="#Returns6">Returns</a></li>
+              <li><a href="#Synopsis1">Synopsis</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="BDsubs-Module"><a>BDsubs Module</a></h1>
+
+<h2 id="File-Checks">File Checks</h2>
+
+<h3 id="EXISTS-function">EXISTS function</h3>
+
+<h4 id="Arguments">Arguments</h4>
+
+<ul>
+
+<li><p>File</p>
+
+</li>
+</ul>
+
+<h4 id="Returns">Returns</h4>
+
+<ul>
+
+<li><p>Returns 1 if the file exists</p>
+
+</li>
+<li><p>Returns 0 if the file does not exist</p>
+
+</li>
+</ul>
+
+<h3 id="IS_TEXT-function">IS_TEXT function</h3>
+
+<h4 id="Arguments1">Arguments</h4>
+
+<ul>
+
+<li><p>File</p>
+
+</li>
+</ul>
+
+<h4 id="Returns1">Returns</h4>
+
+<ul>
+
+<li><p>Returns 1 if the file is text</p>
+
+</li>
+<li><p>Returns 0 if the file is not text</p>
+
+</li>
+</ul>
+
+<h3 id="IS_READABLE-function">IS_READABLE function</h3>
+
+<h4 id="Arguments2">Arguments</h4>
+
+<ul>
+
+<li><p>File</p>
+
+</li>
+</ul>
+
+<h4 id="Returns2">Returns</h4>
+
+<ul>
+
+<li><p>Returns 1 if file is readable</p>
+
+</li>
+<li><p>Returns 0 if file is not readable</p>
+
+</li>
+</ul>
+
+<h3 id="FILE_LINES_TO_ARRAY-Function">FILE_LINES_TO_ARRAY Function</h3>
+
+<h4 id="Arguments3">Arguments</h4>
+
+<ul>
+
+<li><p>String containing name of input file</p>
+
+</li>
+</ul>
+
+<h4 id="Returns3">Returns</h4>
+
+<ul>
+
+<li><p>Array with one entry for each line of the file</p>
+
+</li>
+</ul>
+
+<h4 id="Synopsis-Reads-in-every-line-from-a-file-pushing-each-line-to-an-array-as-it-does-so-returns-this-array">Synopsis Reads in every line from a file pushing each line to an array as it does so, returns this array.</h4>
+
+<h3 id="HASH_LOCI_CONTENTS">HASH_LOCI_CONTENTS</h3>
+
+<h4 id="Arguments4">Arguments</h4>
+
+<ul>
+
+<li><p>Array ref of lines from the input file</p>
+
+</li>
+<li><p>Regex of locus start marker with capture for the unique identifier to become the keys of the hash</p>
+
+</li>
+<li><p>Regex to identify the end of the locus</p>
+
+</li>
+</ul>
+
+<h4 id="Returns4">Returns</h4>
+
+<ul>
+
+<li><p>Hash with keys corresponding to the unique identifier of each locus and values corresponding to the complete contents of the entry for that locus.</p>
+
+</li>
+</ul>
+
+<h4 id="Synopsis">Synopsis</h4>
+
+<p>Takes an array ref of input data, and regexes of start and end markers and output a hash with keys derived from a capture in the start marker and values derived from the contatonated contents of the array until a stop marker is reached.</p>
+
+<p>a key assumption is that the unique identifiers that are to become the hash keys are located in the first line of the entry.</p>
+
+<h3 id="EXTRACT_LOCUS_FEATURE">EXTRACT_LOCUS_FEATURE</h3>
+
+<h4 id="Arguments5">Arguments</h4>
+
+<ul>
+
+<li><p>Hash ref with values containing a concatonated string of all the values corresponding to a given key from the input file.</p>
+
+</li>
+<li><p>A regex containing a capture for the feature of interest from the string.</p>
+
+</li>
+</ul>
+
+<h4 id="Returns5">Returns</h4>
+
+<ul>
+
+<li><p>A hash with the same keys as the input hash and values corresponding to the the capture of the regex argument.</p>
+
+</li>
+</ul>
+
+<h4 id="Synopsis-Extracts-features-of-interest-defined-by-a-regex-containg-a-capture-given-as-an-argument-from-the-values-of-a-hash-given-as-an-argument-returning-a-hash-with-the-same-key-as-input-hash-ref-and-values-corresponding-to-the-capture-in-the-regex">Synopsis Extracts features of interest defined by a regex containg a capture given as an argument from the values of a hash given as an argument, returning a hash with the same key as input hash ref and values corresponding to the capture in the regex.</h4>
+
+<h3 id="SUBSTITUTIONS">SUBSTITUTIONS</h3>
+
+<h4 id="Arguments6">Arguments</h4>
+
+<ul>
+
+<li><p>Hash ref with values containing strings to be the subject of the substitution opperation(s).</p>
+
+</li>
+<li><p>Regex for the desired substitution operation(s).</p>
+
+</li>
+</ul>
+
+<h4 id="Returns6">Returns</h4>
+
+<ul>
+
+<li><p>Hash with the same keys as the input hash ref and, values corresponding to the original values of the hash ref after they have been subject to the substitution opperation(s) described in the reges provided as an argument.</p>
+
+</li>
+</ul>
+
+<h4 id="Synopsis1">Synopsis</h4>
+
+
+</body>
+
+</html>
+
+

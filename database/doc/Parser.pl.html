@@ -1,0 +1,230 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<link rel="stylesheet" href="DocStylesheet.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li>
+    <ul>
+      <li><a href="#Main-Parser-Script">Main Parser Script</a>
+        <ul>
+          <li><a href="#File-Checks">File Checks</a></li>
+          <li><a href="#loci-Genbank-Accession-Numbers">loci (Genbank Accession Numbers)</a>
+            <ul>
+              <li><a href="#Subroutines-used">Subroutines used:</a></li>
+            </ul>
+          </li>
+          <li><a href="#Feature-Extraction">Feature Extraction</a>
+            <ul>
+              <li><a href="#Locus_GI">Locus_GI</a></li>
+              <li><a href="#DNA_seq">DNA_seq</a></li>
+              <li><a href="#Product_Name">Product_Name</a></li>
+              <li><a href="#CDS_translated">CDS_translated</a></li>
+              <li><a href="#Reading_frame">Reading_frame</a></li>
+              <li><a href="#join">join</a></li>
+              <li><a href="#Location_Name">Location_Name</a></li>
+            </ul>
+          </li>
+          <li><a href="#Writing-outputs">Writing outputs</a></li>
+          <li><a href="#Loci-table-output">Loci table output</a></li>
+          <li><a href="#Chromosome_Locations-table-output">Chromosome_Locations table output</a></li>
+          <li><a href="#Exons-table-output">Exons table output</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#POD-ERRORS">POD ERRORS</a></li>
+</ul>
+
+<h2 id="Main-Parser-Script">Main Parser Script</h2>
+
+<ul>
+
+</ul>
+
+<h3 id="File-Checks">File Checks</h3>
+
+<ul>
+
+</ul>
+
+<h3 id="loci-Genbank-Accession-Numbers">loci (Genbank Accession Numbers)</h3>
+
+<ul>
+
+<p>This Section Extracts genebank accession numbers from each locus in a genbank file and writes them to the values of a hash. All of the lines associated with that locus are writen to the values of the hash.</p>
+
+</ul>
+
+<h4 id="Subroutines-used">Subroutines used:</h4>
+
+<ul>
+
+<li><p><a>HASH_LOCI_CONTENTS</a></p>
+
+</li>
+</ul>
+
+<h3 id="Feature-Extraction">Feature Extraction</h3>
+
+<ul>
+
+<p>This Section contains blocks which extract individual features from the Genbank file and stores them in a hash with Genebank Accession numbers / locus identifiers as its keys and the extracted feature as its values.</p>
+
+<p>Each Block uses two subroutines:</p>
+
+<ul>
+
+<li><p><a>HASH_LOCI_CONTENTS</a></p>
+
+</li>
+<li><p><a>SUBSTITUTIONS</a></p>
+
+</li>
+</ul>
+
+</ul>
+
+<h4 id="Locus_GI">Locus_GI</h4>
+
+<ul>
+
+<p>For each key in the loci hash this block extracts the Genbank identifer from the values of the loci hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. Genbank Identifier &quot;Locus_GI&quot; as their values.</p>
+
+</ul>
+
+<h4 id="DNA_seq">DNA_seq</h4>
+
+<ul>
+
+<p>For each key in the loci hash this block extracts the DNA sequence from the values of the loci hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. DNA sequence &quot;DNA_seq&quot; as their values.</p>
+
+</ul>
+
+<h4 id="Product_Name">Product_Name</h4>
+
+<ul>
+
+<p>For each key in the loci hash this block extracts the name of the protein product from the values of the loci hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. the name of the protein product &quot;Product_Name&quot; as their values.</p>
+
+</ul>
+
+<h4 id="CDS_translated">CDS_translated</h4>
+
+<ul>
+
+<p>For each key in the loci hash this block extracts the Protein amino acid sequence from the values of the loci hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. Protein sequence &quot;CDS_translated&quot; as their values.</p>
+
+</ul>
+
+<h4 id="Reading_frame">Reading_frame</h4>
+
+<ul>
+
+<p>For each key in the loci hash this block extracts the Reading frame of the first Exon from the values of the loci hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. The reading frame or offset from the DNA sequence start point of the protein coding sequence &quot;Reading_frame&quot; as their values.</p>
+
+</ul>
+
+<h4 id="join">join</h4>
+
+<ul>
+
+<p>For each key in the loci hash this block extracts the Exon Start and end positions from the values of the loci hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. the list of Exon Start and end sites &quot;join&quot; as their values.</p>
+
+<p>It then takes this hash with values of a string containing a list of exon start and end sites and produces two further hashes with the same keys but whose values are array refferences to 1) an array of Exon start positions and 2) an array of Exon end positions.</p>
+
+</ul>
+
+<h4 id="Location_Name">Location_Name</h4>
+
+<ul>
+
+<p>For each key in the loci hash this block extracts the chromosome location from the values of the loci hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. The karyotypic location in terms of chromosome number, arm and band &quot;Location_name&quot; as their values.</p>
+
+</ul>
+
+<h3 id="Writing-outputs">Writing outputs</h3>
+
+<ul>
+
+<p>This section opens the output file handles, Prints the results to thos files and then closes the file handles including that of the input file whislt performing checks of sucessfull closing of each file.</p>
+
+</ul>
+
+<h3 id="Loci-table-output">Loci table output</h3>
+
+<ul>
+
+<p>Print extracted content for Loci table to &quot;|&quot; seperated file</p>
+
+</ul>
+
+<h3 id="Chromosome_Locations-table-output">Chromosome_Locations table output</h3>
+
+<ul>
+
+<p>Print extracted content for Chromosome locations table to &quot;|&quot; seperated file</p>
+
+</ul>
+
+<h3 id="Exons-table-output">Exons table output</h3>
+
+<ul>
+
+<p>Print extracted content for Exon table to &quot;|&quot; seperated file 1 =back</p>
+
+</ul>
+
+<h1 id="POD-ERRORS">POD ERRORS</h1>
+
+<p>Hey! <b>The above document had some coding errors, which are explained below:</b></p>
+
+<dl>
+
+<dt id="Around-line-13">Around line 13:</dt>
+<dd>
+
+<p>=back without =over</p>
+
+</dd>
+<dt id="Around-line-26">Around line 26:</dt>
+<dd>
+
+<p>You forgot a &#39;=back&#39; before &#39;=head3&#39;</p>
+
+</dd>
+<dt id="Around-line-28">Around line 28:</dt>
+<dd>
+
+<p>=back without =over</p>
+
+</dd>
+<dt id="Around-line-77">Around line 77:</dt>
+<dd>
+
+<p>You forgot a &#39;=back&#39; before &#39;=head3&#39;</p>
+
+</dd>
+<dt id="Around-line-528">Around line 528:</dt>
+<dd>
+
+<p>=over without closing =back</p>
+
+</dd>
+</dl>
+
+
+</body>
+
+</html>
+
+

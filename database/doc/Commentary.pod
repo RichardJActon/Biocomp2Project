@@ -1,0 +1,23 @@
+=pod
+=head1 Commentary
+
+=head2 
+
+=over
+
+APIs
+quiries initially in the Database layer
+
+
+
+=back
+
+=head2 things learned
+
+=over
+
+
+
+=back
+
+=cut
