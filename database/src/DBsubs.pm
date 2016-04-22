@@ -327,13 +327,11 @@ sub EXTRACT_LOCUS_FEATURE
 		if ($v =~ /${featureRegex}/s)
 		{
 			$string = $1;
-			if (defined $string) {
-				$feature{$k} = $string;
-			}
-			else
-			{
-				$feature{$k} = "Parsing error feature not defined";
-			}
+			$feature{$k} = $string;
+		}
+		else
+		{
+			$feature{$k} = "Parsing error feature not defined";
 		}
 	}
 	############################################################
