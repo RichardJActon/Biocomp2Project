@@ -303,22 +303,7 @@ while (my($k,$v) = each %join) {
 	$exonEnds{$k} = \@exonEnds;
 }
 
-# #print STDOUT "\n\nexon starts: \n";
-# while (my($k,$v) = each %exonStarts) 
-# {
-# 	my @v = @{$v};
-# 	for (my $i = 0; $i < scalar @v; $i++) {
-# 		print STDOUT "$k|$v[$i]\n";
-# 	}
-# }
-# #print STDOUT "\n\nexon ends: \n";
-# while (my($k,$v) = each %exonEnds) 
-# {
-# 	my @v = @{$v};
-# 	for (my $i = 0; $i < scalar @v; $i++) {
-# 		print STDOUT "$k|$v[$i]\n";
-# 	}
-# }
+
 
 ####################################################################################################
 #####                                    	Location_Name                                      #####
