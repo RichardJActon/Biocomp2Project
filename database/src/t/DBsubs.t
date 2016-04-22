@@ -3,7 +3,7 @@ use warnings;
 use strict;
 use lib '..';
 use DBsubs;
-use Test::More tests => 17;
+use Test::More tests => 18;
 ### DBsubs.t
 =pod
 
@@ -188,8 +188,14 @@ ok(scalar values %hash == 3, "HASH_LOCI_CONTENTS returns a hash with 3 values");
 =cut
 
 ## 
-my %hash;
-$hash{1} = "a";
-$hash{2} = "b";
-$hash{3} = "c";
-$hash{4} = "d";
+my %inHash;
+$inHash{1} = "a";
+$inHash{2} = "b";
+$inHash{3} = "c";
+$inHash{4} = ();
+
+my $featureRegex = qr/[a]/;
+
+my %outHash = DBsubs::EXTRACT_LOCUS_FEATURE(\%inHash,$featureRegex);
+
+ok($inHash{4} eq "Parsing error feature not defined");

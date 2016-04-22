@@ -323,11 +323,11 @@ sub EXTRACT_LOCUS_FEATURE
 	############################################################
 	while (my($k,$v) = each %loci) 
 	{
-		my $string = "";
+		my $string = ();
 		if ($v =~ /${featureRegex}/s)
 		{
 			$string = $1;
-			if ("" ne $string) {
+			if (defined $string) {
 				$feature{$k} = $string;
 			}
 			else
