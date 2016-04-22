@@ -12,7 +12,9 @@ use DBsubs;
 
 =back
 
+=head3 Synopsis
 
+This Script takes text files in genbank format and extracts
 
 =over
 
@@ -89,7 +91,7 @@ the hash.
 =over
 
 =item *
-L<HASH_LOCI_CONTENTS|\>
+L<HASH_LOCI_CONTENTS|DBsubs.html#HASH_LOCI_CONTENTS>
 
 =back
 
@@ -99,22 +101,10 @@ print STDOUT "Processing $infile...\n";
 
 my @lines = DBsubs::FILE_LINES_TO_ARRAY($infile);
 
-# prints every line in file
-# for (my $i = 0; $i < scalar @lines; $i++) 
-# {
-# 	print "$lines[$i]\n";
-# }
-
 my $locusStartIdentifier = qr/^LOCUS\s{7}(\w+)\b/;
 my $locusEndIdentifier = qr/\/\/\n/;
-#my $locusRegex = qr/^LOCUS\s{7}(\w+)\b(.*)\/\/\n/s;
-my %loci = DBsubs::HASH_LOCI_CONTENTS(\@lines,$locusStartIdentifier,$locusEndIdentifier);
 
-# prints every locus entry in the file preceeded by its accession
-# while (my($k,$v) = each %loci) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
+my %loci = DBsubs::HASH_LOCI_CONTENTS(\@lines,$locusStartIdentifier,$locusEndIdentifier);
 
 ####################################################################################################
 ##### 								Feature Extraction										   #####
@@ -169,18 +159,7 @@ my $Locus_GI_substittions = qr/[A-Z]|\s|\n/;
 my %Locus_GI_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$Locus_GI_Regex);
 #substitute
 my %Locus_GI = DBsubs::SUBSTITUTIONS(\%Locus_GI_raw,$Locus_GI_substittions);
-#
-#prints the result of the extraction
-# while (my($k,$v) = each %Locus_GI_raw) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-# print "#########################\n";
-#prints the result of the substitution on the extraction
-# while (my($k,$v) = each %Locus_GI) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
+
 ####################################################################################################
 #####								      DNA_seq											   #####
 ####################################################################################################
@@ -206,15 +185,6 @@ my %DNA_seq_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$DNA_seq_Regex);
 #substitute
 my %DNA_seq = DBsubs::SUBSTITUTIONS(\%DNA_seq_raw,$DNA_seq_substittions);
 
-# while (my($k,$v) = each %DNA_seq_raw) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-# print "#########################\n";
-# while (my($k,$v) = each %DNA_seq) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
 ####################################################################################################
 #####								      Product_Name										   #####
 ####################################################################################################
@@ -240,15 +210,6 @@ my %Product_Name_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$Product_Name_Regex)
 #substitute
 my %Product_Name = DBsubs::SUBSTITUTIONS(\%Product_Name_raw,$Product_Name_substittions);
 
-# while (my($k,$v) = each %Product_Name_raw) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-# print "#########################\n";
-# while (my($k,$v) = each %Product_Name) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
 ####################################################################################################
 #####								      CDS_translated									   #####
 ####################################################################################################
@@ -274,17 +235,6 @@ my %CDS_translated_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$CDS_translated_Re
 #substitute
 my %CDS_translated = DBsubs::SUBSTITUTIONS(\%CDS_translated_raw,$CDS_translated_substittions);
 
-# #prints the result of the extraction
-# while (my($k,$v) = each %CDS_translated_raw) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-# print "#########################\n";
-# #prints the result of the substitution on the extraction
-# while (my($k,$v) = each %CDS_translated) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
 ####################################################################################################
 #####								      Reading_frame	    								   #####
 ####################################################################################################
@@ -311,17 +261,6 @@ my %Reading_frame_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$Reading_frame_Rege
 #substitute
 my %Reading_frame = DBsubs::SUBSTITUTIONS(\%Reading_frame_raw,$Reading_frame_substittions);
 
-#prints the result of the extraction
-# while (my($k,$v) = each %Reading_frame_raw) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-# print "#########################\n";
-# #prints the result of the substitution on the extraction
-# while (my($k,$v) = each %Reading_frame) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
 ####################################################################################################
 #####                                        join 	                                           #####
 ####################################################################################################
@@ -351,18 +290,7 @@ my %join_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$join_Regex);
 #substitute
 my %join = DBsubs::SUBSTITUTIONS(\%join_raw,$join_substittions);
 
-# while (my($k,$v) = each %join_raw) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-
-# print "#########################\n";
-
-# while (my($k,$v) = each %join) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-
+#Process Join locations into array
 my %exonStarts;
 my %exonEnds;
 

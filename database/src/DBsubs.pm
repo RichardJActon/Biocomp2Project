@@ -15,24 +15,22 @@ use warnings;
 
 =head2 File Checks
 
-=over
-
-
-
-=back
-
 =cut
 ########
 =pod
 
-=head3 EXISTS function
+=head3 EXISTS
+
+=head4 Synopsis
+
+Checks if a file exists
 
 =head4 Arguments
 
 =over
 
 =item *
-File 
+File name as string
 
 =back
 
@@ -49,9 +47,6 @@ Returns 0 if the file does not exist
 =back
 
 =cut
-
-
-
 sub EXISTS
 {
 	my $file = $_[0];
@@ -67,14 +62,18 @@ sub EXISTS
 ####################################################################################################
 =pod
 
-=head3 IS_TEXT function
+=head3 IS_TEXT
+
+=head4 Synopsis
+
+Checks if the file is a text file.
 
 =head4 Arguments
 
 =over
 
 =item *
-File 
+File name as string
 
 =back
 
@@ -91,9 +90,6 @@ Returns 0 if the file is not text
 =back
 
 =cut
-
-
-
 sub IS_TEXT
 {
 	my $file = $_[0];
@@ -109,7 +105,11 @@ sub IS_TEXT
 ####################################################################################################
 =pod
 
-=head3 IS_READABLE function
+=head3 IS_READABLE
+
+=head4 Synopsis
+
+Checks if the file is readable.
 
 =head4 Arguments
 
@@ -147,11 +147,24 @@ sub IS_READABLE
 }
 
 ####################################################################################################
+#####									Data processing subroutines							   #####
+####################################################################################################
+=pod
+
+=head2 Data processing subroutines
+
+=cut
+
+####################################################################################################
 ##### 								  FILE_LINES_TO_ARRAY									   #####
 ####################################################################################################
 =pod
 
-=head3 FILE_LINES_TO_ARRAY Function
+=head3 FILE_LINES_TO_ARRAY
+
+=head4 Synopsis
+
+Reads in every line from a file pushing each line to an array as it does so, returns this array.
 
 =head4 Arguments
 
@@ -170,9 +183,6 @@ String containing name of input file
 Array with one entry for each line of the file
 
 =back
-
-=head4 Synopsis
-Reads in every line from a file pushing each line to an array as it does so, returns this array.
 
 =cut
 sub FILE_LINES_TO_ARRAY
@@ -199,6 +209,15 @@ sub FILE_LINES_TO_ARRAY
 
 =head3 HASH_LOCI_CONTENTS
 
+=head4 Synopsis
+
+Takes an array ref of input data, and regexes of start and end markers and output a hash with keys derived
+ from a capture in the start marker and values derived from the contatonated contents of the array until a stop
+ marker is reached.
+
+a key assumption is that the unique identifiers that are to become the hash keys are located in the
+ first line of the entry.
+
 =head4 Arguments
 
 =over
@@ -223,15 +242,6 @@ Hash with keys corresponding to the unique identifier of each locus and values c
 complete contents of the entry for that locus.
 
 =back
-
-=head4 Synopsis
-
-Takes an array ref of input data, and regexes of start and end markers and output a hash with keys derived
- from a capture in the start marker and values derived from the contatonated contents of the array until a stop
- marker is reached.
-
-a key assumption is that the unique identifiers that are to become the hash keys are located in the
- first line of the entry.
 
 =cut
 sub HASH_LOCI_CONTENTS
@@ -272,6 +282,12 @@ sub HASH_LOCI_CONTENTS
 
 =head3 EXTRACT_LOCUS_FEATURE
 
+=head4 Synopsis
+
+Extracts features of interest defined by a regex containg a capture given as an argument from 
+the values of a hash given as an argument, returning a hash with the same key as input hash ref
+and values corresponding to the capture in the regex.
+
 =head4 Arguments
 
 =over
@@ -294,11 +310,6 @@ A hash with the same keys as the input hash and values corresponding to the the 
  regex argument.
 
 =back
-
-=head4 Synopsis
-Extracts features of interest defined by a regex containg a capture given as an argument from 
-the values of a hash given as an argument, returning a hash with the same key as input hash ref
-and values corresponding to the capture in the regex.
 
 =cut
 sub EXTRACT_LOCUS_FEATURE
@@ -335,12 +346,17 @@ sub EXTRACT_LOCUS_FEATURE
 
 =head3 SUBSTITUTIONS
 
+=head4 Synopsis
+
+Replaces characters in the values of a hash with a different set of characters, for example
+the removal of unwanted whitespace and newlines.
+
 =head4 Arguments
 
 =over
 
 =item *
-Hash ref with values containing strings to be the subject of the substitution opperation(s).
+Hash ref with values containing strings to be the subject of the substitution operation(s).
 
 =item *
 Regex for the desired substitution operation(s).
@@ -353,13 +369,10 @@ Regex for the desired substitution operation(s).
 
 =item *
 Hash with the same keys as the input hash ref and, values corresponding to the original values
-of the hash ref after they have been subject to the substitution opperation(s) described in the 
+of the hash ref after they have been subject to the substitution operation(s) described in the 
 reges provided as an argument.
 
 =back
-
-=head4 Synopsis
-
 
 =cut
 sub SUBSTITUTIONS
@@ -391,5 +404,6 @@ sub SUBSTITUTIONS
 }
 
 ####################################################################################################
+#####												END   									   #####
 ####################################################################################################
 1;

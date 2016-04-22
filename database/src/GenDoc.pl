@@ -11,28 +11,53 @@ use Pod::Html;
 ## ^ find subdirs?
 
 #pod2html
-my $in_dir = "../src";
-my $out_dir = "../doc";
-opendir(IN_DIR, $in_dir) or die "unable to open $in_dir\n";
-opendir(OUT_DIR, $out_dir) or die "unable to open $out_dir\n";
+my $SRC = "../src";
+my $DOC = "../doc";
+opendir(SRC, $SRC) or die "unable to open $SRC\n";
+opendir(DOC, $DOC) or die "unable to open $DOC\n";
 
-my @podfiles;
+my @srcfiles;
+my @srcfilenames;
 
-while (defined(my $file = readdir(IN_DIR))) {
+while (defined(my $file = readdir(SRC))) {
 	if ($file =~ /.*\.pl|.*\.pm|.*\.t$|.*\.pod/) {
-		push @podfiles, $file;
+		push @srcfiles, $file;
+		my $filename = $file;
+		$filename =~ s/\.pl|\.pm|\.t$|\.pod//;
+		push @srcfilenames, $filename;
 		#print "$file\n";
 	}
 }
 
-for (my $i = 0; $i < scalar @podfiles; $i++) {
-	pod2html("--podroot=../doc","--htmldir=../doc","--infile=$podfiles[$i]","--outfile=$out_dir/$podfiles[$i].html","--css=DocStylesheet.css");
+for (my $i = 0; $i < scalar @srcfiles; $i++) {
+	pod2html("--podroot=../doc","--htmldir=../doc","--infile=$srcfiles[$i]","--outfile=$DOC/$srcfilenames[$i].html","--css=DocStylesheet.css");
 }
 
 ######################
 INDEX_GEN::INDEXGEN(); 
-my $index = "../doc/index.pod";
-pod2html("--podroot=../doc","--htmldir=../doc","--infile=$index","--outfile=../doc/index.html","--css=DocStylesheet.css");
+
+my @docfiles;
+my @docfilenames;
+
+
+while (defined(my $file = readdir(DOC))) {
+	if ($file =~ /.*\.pod/) {
+		push @docfiles, $file;
+		my $filename = $file;
+		$filename =~ s/\.pod//;
+		push @docfilenames, $filename;
+		#print "$file\n";
+	}
+}
+
+for (my $i = 0; $i < scalar @docfiles; $i++) {
+	pod2html("--podroot=../doc","--htmldir=../doc","--infile=$DOC/$docfiles[$i]","--outfile=$DOC/$docfilenames[$i].html","--css=DocStylesheet.css");
+}
+
+
+
+# my $index = "../doc/index.pod";
+# pod2html("--podroot=../doc","--htmldir=../doc","--infile=$index","--outfile=../doc/index.html","--css=DocStylesheet.css");
 
 
 ########
@@ -48,5 +73,5 @@ pod2html("--podroot=../doc","--htmldir=../doc","--infile=$index","--outfile=../d
 
 ##############
 
-closedir(IN_DIR) or die "unable to close $in_dir\n";
-closedir(OUT_DIR) or die "unable to close $out_dir\n";
+closedir(SRC) or die "unable to close $SRC\n";
+closedir(DOC) or die "unable to close $DOC\n";
