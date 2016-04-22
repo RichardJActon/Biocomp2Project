@@ -331,19 +331,6 @@ my %Location_Name_raw = DBsubs::EXTRACT_LOCUS_FEATURE(\%loci,$Location_Name_Rege
 #substitute
 my %Location_Name = DBsubs::SUBSTITUTIONS(\%Location_Name_raw,$Location_Name_substittions);
 
-# while (my($k,$v) = each %Location_Name_raw) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-
-# print "#########################\n";
-
-# while (my($k,$v) = each %Location_Name) 
-# {
-# 	print "[$k]\n $v\n\n";
-# }
-
-
 ####################################################################################################
 #####										Writing Outputs									   #####
 ####################################################################################################
