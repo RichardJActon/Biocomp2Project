@@ -98,6 +98,8 @@ L<HASH_LOCI_CONTENTS|DBsubs.html#HASH_LOCI_CONTENTS>
 =cut
 
 print STDOUT "Processing $infile...\n";
+print STDOUT "Extracting genbank accession numbers and"
+." pairing them with the contents of each locus...\n";
 
 my @lines = DBsubs::FILE_LINES_TO_ARRAY($infile);
 
@@ -152,6 +154,8 @@ Genbank Identifier "Locus_GI" as their values.
 
 =cut
 
+print STDOUT "Extracting Locus GI numbers...\n";
+
 my $Locus_GI_Regex = qr/VERSION.*GI\:(.*)\nKEYWORDS/s;
 my $Locus_GI_substittions = qr/[A-Z]|\s|\n/;
 #
@@ -176,6 +180,8 @@ DNA sequence "DNA_seq" as their values.
 =back
 
 =cut
+
+print STDOUT "Extracting DNA sequences...\n";
 
 my $DNA_seq_Regex = qr/ORIGIN(.*)\/\/\n/s;
 my $DNA_seq_substittions = qr/[0-9]|\n|\s/;
@@ -202,6 +208,8 @@ i.e. the name of the protein product "Product_Name" as their values.
 
 =cut
 
+print STDOUT "Extracting gene product names...\n";
+
 my $Product_Name_Regex = qr/\/product="([^\"^\n]+)/s;
 my $Product_Name_substittions = qr/\n/;
 #
@@ -226,6 +234,8 @@ i.e. Protein sequence "CDS_translated" as their values.
 =back
 
 =cut
+
+print STDOUT "Extracting Protein Sequences...\n";
 
 my $CDS_translated_Regex = qr/\/translation="([^\"]+)/s;
 my $CDS_translated_substittions = qr/[0-9]|\n|\s/;
@@ -252,6 +262,8 @@ coding sequence "Reading_frame" as their values.
 =back
 
 =cut
+
+print STDOUT "Extracting reading frames...\n";
 
 my $Reading_frame_Regex = qr/\/codon_start=([^\n^\/]+)/s;
 my $Reading_frame_substittions = qr/\n|\s/;
@@ -281,6 +293,8 @@ array of Exon start positions and 2) an array of Exon end positions.
 =back
 
 =cut
+
+print STDOUT "Extracting intron-exon boundaries...\n";
 
 my $join_Regex = qr/.*join\(([^\)]+)/s;
 my $join_substittions = qr/\n|\<|\>|\s|\w+\.\d+:/;
@@ -322,6 +336,7 @@ target feature i.e. The karyotypic location in terms of chromosome number, arm a
 =back
 
 =cut
+print STDOUT "Extracting chromosome location names...\n";
 
 my $Location_Name_Regex = qr/\/map="([^\"]+)/s;
 my $Location_Name_substittions = qr/\n/;
