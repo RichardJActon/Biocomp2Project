@@ -340,11 +340,10 @@ my %Location_Name = DBsubs::SUBSTITUTIONS(\%Location_Name_raw,$Location_Name_sub
 
 =over
 
-This section opens the output file handles, Prints the results to thos files and then closes the 
-file handles including that of the input file whislt performing checks of sucessfull closing of each
+This section opens the output file handles, Prints the results to those files and then closes the 
+file handles including that of the input file whilst performing checks of successful closing of each
 file.
 
-=back
 
 =cut
 
@@ -358,10 +357,6 @@ open(LociTable, ">$LociTable");
 open(Chromosome_LocationsTable, ">$Chromosome_LocationsTable");
 open(ExonsTable, ">$ExonsTable");
 
-
-
-# print STDOUT "Closing files...\n";
-
 ####################################################################################################
 #####                            Export Contents of Loci table                                 #####
 ####################################################################################################
@@ -371,7 +366,7 @@ open(ExonsTable, ">$ExonsTable");
 
 =over
 
-Print extracted content for Loci table to "|" seperated file 
+Print extracted content for Loci table to "|" separated file 
 
 =back
 
@@ -403,7 +398,7 @@ while (my($k,$v) = each %loci) {
 
 =over
 
-Print extracted content for Chromosome locations table to "|" seperated file 
+Print extracted content for Chromosome locations table to "|" separated file 
 
 =back
 
@@ -427,7 +422,7 @@ while (my($k,$v) = each %loci) {
 
 =over
 
-Print extracted content for Exon table to "|" seperated file 1
+Print extracted content for Exon table to "|" separated file 1
 =back
 
 =cut
@@ -464,6 +459,7 @@ for (my $i = 0; $i < scalar @rows; $i++) {
 ####################################################################################################
 
 print STDOUT "Closing files...\n";
+
 close(LociTable) or die "Unable to close file: $LociTable\n";
 close(Chromosome_LocationsTable) or die "Unable to close file: $Chromosome_LocationsTable\n";
 close(ExonsTable) or die "Unable to close file: $ExonsTable\n";
