@@ -174,3 +174,22 @@ ok($hash{c} eq "xc\nc\ny\n", "HASH_LOCI_CONTENTS correct contents for third valu
 ok(scalar keys %hash == 3, "HASH_LOCI_CONTENTS returns a hash with 3 keys");
 ok(scalar values %hash == 3, "HASH_LOCI_CONTENTS returns a hash with 3 values");
 #
+####################################################################################################
+#####  									EXTRACT_LOCUS_FEATURE			 		       		   #####
+####################################################################################################
+=pod
+
+=head3 tests for the EXTRACT_LOCUS_FEATURE function
+
+=over
+
+=back
+
+=cut
+
+## 
+my %hash;
+$hash{1} = "a";
+$hash{2} = "b";
+$hash{3} = "c";
+$hash{4} = "d";
