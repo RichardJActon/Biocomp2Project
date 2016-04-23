@@ -41,7 +41,8 @@ data type has multiple values
 
 I used git for the first time on this project and found it really useful, for working on the same code-base on different platforms. I
 am still refining my use of this system, I have begun to develop some habits, but need to wok to continue committing with sufficient
-frequency and increase fluency with which I can use the reverting to particular versions feature.
+frequency, especially when working on multiple files I should practice to increase fluency with which I can use the reverting to 
+particular versions feature as I have not yet had much cause to undo changes that I have made in this project.
 
 =back
 

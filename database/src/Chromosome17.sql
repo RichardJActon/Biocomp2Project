@@ -1,4 +1,3 @@
--- 
 /*
 =pod
 
@@ -14,13 +13,30 @@
 
 =head2 Synopsis
 
-This script creates the database underpinning the "Explore Chromosome 17" website. 
+This script creates the database underpinning the "Explore Chromosome 17" website. The Database has three tables
+
+=over
+
+=item *
+Chromosome_Locations
+
+=item *
+Loci
+
+=item *
+Exons
+
+=back
+
+The Locical Schema of the database in represented in the UML diagram below:
 
 =begin html
 
 <p><img src="./Logical_Data_Model.PNG" alt="Logical Data Model"></p>
 
 =end html
+
+
 
 This version is for creating a database on a local machine. Changes had to be made to accommodate the limited permissions
 available on the Birkbeck server, for example the entire database cannot be dropped on the Birkbeck server so each table
