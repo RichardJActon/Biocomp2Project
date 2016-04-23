@@ -14,13 +14,10 @@
 
 We worked out most of our API in the initial sessions and mostly adhered to what we had planned between the top and middle layer
 
-
 We were initially planning on keeping the quires in the Database layer but Gabriele working on the middle layer decided that he
 would prefer to query the database directly from his layer so I ceased work on queries. This simplified the API development
 on the database end as I simply provided Gabriele with the physical schema of my database so that he could write queries for 
 it. 
-
-
 
 =back
 
@@ -28,12 +25,11 @@ it.
 
 =over
 
-
-
 We hosted the database for our website on the Birkbeck servers, the limited permissions meant that I could not create a web-user account
 with read only permissions to access the database.
 
-Could have 
+I could have extracted additional information from the genbank file, not just additional data types but multiple entries when a given 
+data type has multiple values
 
 =back
 
