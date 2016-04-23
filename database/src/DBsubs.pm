@@ -352,8 +352,7 @@ sub EXTRACT_LOCUS_FEATURE
 
 =head4 Synopsis
 
-Replaces characters in the values of a hash with a different set of characters, for example
-the removal of unwanted whitespace and newlines.
+Removes characters from the values of a hash, for example the removal of unwanted whitespace and newlines.
 
 =head4 Arguments
 
