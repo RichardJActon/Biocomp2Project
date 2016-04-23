@@ -1,4 +1,21 @@
 -- 
+/*
+=pod
+
+=head1 Database Creation Script for Chromosome17
+
+=head2 synopsis
+
+
+
+This version is for creating a database on a local machine. Changes had to be made to accommodate the limited permissions
+available on the Birkbeck server, for example the entire database cannot be dropped on the Birkbeck server so each table
+is dropped individually if they already exist in that version.
+
+=head2 
+
+=cut
+*/
 DROP DATABASE IF EXISTS Chromosome17;
 CREATE DATABASE Chromosome17;
 USE Chromosome17;

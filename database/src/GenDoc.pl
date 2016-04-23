@@ -30,26 +30,33 @@ my @srcfilenames;
 
 my @scripts;
 my @modules;
+my @sql;
 
 while (defined(my $file = readdir(SRC))) 
 {
-	if ($file =~ /.*\.pl|.*\.pm|.*\.pod/) 
+	if ($file =~ /.*\.pl|.*\.pm|.*\.pod|.*\.sql/) 
 	{
 		if ($file =~ /.*\.pl/) 
 		{
 			my $filename = $file;
-			$filename =~ s/\.pl|\.pm|\.t$|\.pod//;
+			$filename =~ s/\.pl//;
 			push @scripts, $filename;
 		}
 		elsif($file =~ /.*\.pm/) 
 		{
 			my $filename = $file;
-			$filename =~ s/\.pl|\.pm|\.t$|\.pod//;
+			$filename =~ s/\.pm//;
 			push @modules, $filename;
+		}
+		elsif($file =~ /.*\.sql/) 
+		{
+			my $filename = $file;
+			$filename =~ s/\.sql//;
+			push @sql, $filename;
 		}
 		push @srcfiles, $file;
 		my $filename = $file;
-		$filename =~ s/\.pl|\.pm|\.t$|\.pod//;
+		$filename =~ s/\.pl|\.pm|\.t$|\.pod|\.sql//;
 		push @srcfilenames, $filename;
 	}
 }
@@ -215,6 +222,28 @@ __EOF
 ;
 }
 #######################
+print INDEX <<__EOF 
+
+=head3 SQL test
+
+__EOF
+;
+#######################
+for (my $i = 0; $i < scalar @sql; $i++) 
+{
+print INDEX <<__EOF 
+
+=begin html
+
+<p><a href="./$sql[$i].html">$sql[$i]</a></p>
+
+=end html
+
+__EOF
+;
+}
+#######################
+
 print INDEX <<__EOF 
 
 =cut
