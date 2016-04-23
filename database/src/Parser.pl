@@ -10,13 +10,68 @@ use DBsubs;
 
 =head2 Main Parser Script
 
-=back
+=begin html
+
+<p><a href="./index.html">home</a></p>
+
+=end html
 
 =head3 Synopsis
 
-This Script takes text files in genbank format and extracts
+This script takes a text file in genbank format and extracts some features from it.
+
+=head4 Features extracted:
 
 =over
+
+=item *
+Genbank accession number "Genebank_Accession"
+
+=item *
+Genbank ID number for the locus "Locus_GI"
+
+=item *
+DNA sequence "DNA_seq"
+
+=item *
+the name of the product of the gene (usually the protein it produces) "Product Name"
+
+=item *
+the protein sequence "CDS_translated"
+
+=item *
+the reading frame of the first exon "Reading_Frame"
+
+=item *
+lists of exon start and end positions "join", later seperated into pairs of "StartPosition",
+ "EndPosition"
+
+=item *
+Chromosomal location "Location_Name"
+
+=back
+
+=head4 It then outputs these features in 3 text files:
+
+=over
+
+=item *
+loci.txt
+
+=item *
+chromloc.txt
+
+=item *
+exons.txt
+
+=back
+
+=over
+
+these files have are comprised of columns delineated by "|"s and row delineated by newline "\n"
+ characters. They are designed to be imported into a database.
+
+=back
 
 =cut
 
@@ -27,11 +82,12 @@ This Script takes text files in genbank format and extracts
 
 =head3 File Checks
 
-=back
-
-
-
 =over
+
+Checks on the input file for: its existence, being a text file and being readable before proceeding
+to process it.
+
+=back
 
 =cut
 
@@ -91,7 +147,12 @@ the hash.
 =over
 
 =item *
-L<HASH_LOCI_CONTENTS|DBsubs.html#HASH_LOCI_CONTENTS>
+
+=begin html
+
+<p><a href="./DBsubs.html#HASH_LOCI_CONTENTS">HASH_LOCI_CONTENTS</a></p>
+
+=end html
 
 =back
 
@@ -123,15 +184,25 @@ feature as its values.
 
 Each Block uses two subroutines:
 
+=back
+
 =over
 
 =item *
-L<HASH_LOCI_CONTENTS|\>
+
+=begin html
+
+<p><a href="./DBsubs.html#HASH_LOCI_CONTENTS">HASH_LOCI_CONTENTS</a></p>
+
+=end html
 
 =item *
-L<SUBSTITUTIONS|\>
 
-=back
+=begin html
+
+<p><a href="./DBsubs.html#SUBSTITUTIONS">SUBSTITUTIONS</a></p>
+
+=end html
 
 =back
 
@@ -359,6 +430,7 @@ This section opens the output file handles, Prints the results to those files an
 file handles including that of the input file whilst performing checks of successful closing of each
 file.
 
+=back
 
 =cut
 
@@ -438,6 +510,7 @@ while (my($k,$v) = each %loci) {
 =over
 
 Print extracted content for Exon table to "|" separated file 1
+
 =back
 
 =cut

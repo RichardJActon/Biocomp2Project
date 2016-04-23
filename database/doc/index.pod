@@ -3,6 +3,74 @@
 
 =head1 Documentation for Chromosome 17 Database
 
+B<Author: Richard J. Acton> 
+
+B<Date: 21-03-2016>
+
+B<Biocomputing 2 Project>
+
+git repository: L<https://github.com/RichardJActon/Biocomp2Project>
+
+Website URL: L<http://student.cryst.bbk.ac.uk/~ad002/projhome.html>
+
+=head2 Commentary
+
+=begin html
+
+<p><a href="./Commentary.html">Commentary</a></p>
+
+=end html
+
+=head2 Documentation
+
+=head3 Scripts
+
+=begin html
+
+<p><a href="./Parser.html">Parser</a></p>
+
+=end html
+
+
+=begin html
+
+<p><a href="./GenDoc.html">GenDoc</a></p>
+
+=end html
+
+
+=head3 Modules
+
+
+=begin html
+
+<p><a href="./DBsubs.html">DBsubs</a></p>
+
+=end html
+
+
+=begin html
+
+<p><a href="./Queries.html">Queries</a></p>
+
+=end html
+
+
+=head3 PODs - Files not documented inline
+
+
+=begin html
+
+<p><a href="./index.html">index</a></p>
+
+=end html
+
+
+=begin html
+
+<p><a href="./Commentary.html">Commentary</a></p>
+
+=end html
 
 
 =cut

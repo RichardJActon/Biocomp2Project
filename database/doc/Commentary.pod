@@ -2,6 +2,12 @@
 
 =head1 Commentary
 
+=begin html
+
+<p><a href="./index.html">home</a></p>
+
+=end html
+
 =head2 Development cycle and Group work
 
 =over
@@ -18,7 +24,7 @@ it.
 
 =back
 
-=head2 Challenges
+=head2 ~Challenges?
 
 =over
 
@@ -26,6 +32,8 @@ it.
 
 We hosted the database for our website on the Birkbeck servers, the limited permissions meant that I could not create a web-user account
 with read only permissions to access the database.
+
+Could have 
 
 =back
 

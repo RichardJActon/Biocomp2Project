@@ -4,7 +4,13 @@ use warnings;
 
 =pod
 
-=head1 L<BDsubs Module|index.html>
+=head1 BDsubs Module
+
+=begin html
+
+<p><a href="./index.html">home</a></p>
+
+=end html
 
 =cut
 

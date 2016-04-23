@@ -9,6 +9,12 @@ use Test::More tests => 20;
 
 =head2 DBsubs tests script
 
+=begin html
+
+<p><a href="./index.html">home</a></p>
+
+=end html
+
 =cut
 ####################################################################################################
 ##### 										EXISTS function									   #####
