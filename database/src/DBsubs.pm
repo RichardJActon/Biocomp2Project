@@ -217,12 +217,12 @@ sub FILE_LINES_TO_ARRAY
 
 =head4 Synopsis
 
-Takes an array ref of input data, and regexes of start and end markers and output a hash with keys derived
- from a capture in the start marker and values derived from the contatonated contents of the array until a stop
+Takes an array ref of input data, and regexes of start and end markers and outputs a hash with keys derived
+ from a capture in the start marker and values derived from the concatenated contents of the array until a stop
  marker is reached.
 
-a key assumption is that the unique identifiers that are to become the hash keys are located in the
- first line of the entry.
+I<A key assumption is that the unique identifiers that are to become the hash keys are located in the
+ first line of the entry.>
 
 =head4 Arguments
 
