@@ -4,9 +4,23 @@
 
 =head1 Database Creation Script for Chromosome17
 
-=head2 synopsis
+=head1 BDsubs Module
 
+=begin html
 
+<p><a href="./index.html">home</a></p>
+
+=end html
+
+=head2 Synopsis
+
+This script creates the database underpinning the "Explore Chromosome 17" website. 
+
+=begin html
+
+<p><img src="./Logical_Data_Model.PNG" alt="Logical Data Model"></p>
+
+=end html
 
 This version is for creating a database on a local machine. Changes had to be made to accommodate the limited permissions
 available on the Birkbeck server, for example the entire database cannot be dropped on the Birkbeck server so each table
@@ -33,8 +47,8 @@ CREATE TABLE Loci
 	Product_Name			TEXT		NOT NULL,
 	CDS_translated 			TEXT		NOT NULL,
 	CDS_untranslated		TEXT		DEFAULT NULL,
-	Reading_Frame			SMALLINT	NOT NULL, -- index?
-	PRIMARY KEY (Genbank_Accession)-- ,
+	Reading_Frame			SMALLINT	NOT NULL,
+	PRIMARY KEY (Genbank_Accession)
 )ENGINE = INNODB;
 
 CREATE TABLE Exons
@@ -42,10 +56,8 @@ CREATE TABLE Exons
 	StartPosition		SMALLINT	NOT NULL,
 	EndPosition			SMALLINT	NOT NULL,
 	Exon_ID				SMALLINT	NOT NULL AUTO_INCREMENT,
-	PRIMARY KEY (Exon_ID)-- ,
+	PRIMARY KEY (Exon_ID)
 )ENGINE = INNODB;  
- -- #############################
- -- #### NOT NULLS? foreign key problems>?
 
 ALTER TABLE Exons ADD CONSTRAINT exon_loci_Accession
 FOREIGN KEY (Genbank_Accession) REFERENCES Loci (Genbank_Accession) 
@@ -54,8 +66,3 @@ ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE Chromosome_Locations ADD CONSTRAINT chromLoc_loci_Accesssion
 FOREIGN KEY (Genbank_Accession) REFERENCES Loci (Genbank_Accession) 
 ON UPDATE CASCADE ON DELETE CASCADE;
-
-
--- ##load - > index
--- need auto increments on chrom id and exon id work out how these are dome
--- are there still mul keys - if so why?
