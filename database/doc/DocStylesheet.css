@@ -1,8 +1,8 @@
 h1  {
 	margin: 0em;
     border: none;
-    background: black;
-    color: white;
+    background: midnightblue;
+    color: red;
     font: bold 18pt Helvetica, Arial, sans-serif;
     padding: 0.25em;
     }
@@ -10,8 +10,8 @@ h1  {
 h2  {
     margin: 0em;
     border: none;
-    background: black;
-    color: red;
+    background: darkblue;
+    color: white;
     font: bold 16pt Helvetica, Arial, sans-serif;
     padding: 0.2em;
     }
@@ -19,8 +19,8 @@ h2  {
 h3  {
     margin: 0em;
     border: none;
-    background: grey;
-    color: yellow;
+    background: slategrey;
+    color: black;
     font: bold 14pt Helvetica, Arial, sans-serif;
     padding: 0.2em;
     }
@@ -40,8 +40,11 @@ img {
 
 #index
     {
+    margin: 1em;
     float: right;
-    background: white;
+    background: whitesmoke;
     width: 25em;
     min-height: 100%;
+    padding: 1em;
+    box-shadow: 0.3em 0.3em 0.5em 0.5em #888888;
     }

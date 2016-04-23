@@ -1,4 +1,13 @@
-﻿-- import "|" separated file into database
+﻿/*
+=pod
+
+=head1 Database Importer
+
+
+
+=cut
+*/
+-- import "|" separated file into database
 -- 
 LOAD DATA LOCAL INFILE 'loci.txt' INTO TABLE Loci
 FIELDS TERMINATED BY '|'
