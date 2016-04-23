@@ -3,8 +3,6 @@
 
 =head1 Database Creation Script for Chromosome17
 
-=head1 BDsubs Module
-
 =begin html
 
 <p><a href="./index.html">home</a></p>
