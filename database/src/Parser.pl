@@ -18,9 +18,30 @@ use DBsubs;
 
 =head3 Synopsis
 
-This script takes a text file in genbank format and extracts some features from it.
+This script takes a text file in genbank format and extracts some features from it. It then outputs
+ these features in 3 text files.
 
-=head4 Features extracted:
+these files have are comprised of columns delineated by "|"s and row delineated by newline "\n"
+ characters. They are designed to be imported into a database. The script takes a single argument
+ the name of the genbank file to be parsed.
+
+=head3 Arguments
+
+=over
+
+=item *
+Genbank file
+
+=back
+
+=head3 Returns
+
+Three files containing the features indicated:
+
+=over
+
+=item *
+loci.txt
 
 =over
 
@@ -42,38 +63,59 @@ the protein sequence "CDS_translated"
 =item *
 the reading frame of the first exon "Reading_Frame"
 
+=back
+
 =item *
-lists of exon start and end positions "join", later seperated into pairs of "StartPosition",
- "EndPosition"
+chromloc.txt
+
+=over
+
+=item *
+Genbank accession number "Genebank_Accession"
 
 =item *
 Chromosomal location "Location_Name"
 
 =back
 
-=head4 It then outputs these features in 3 text files:
-
-=over
-
-=item *
-loci.txt
-
-=item *
-chromloc.txt
-
 =item *
 exons.txt
 
-=back
-
 =over
 
-these files have are comprised of columns delineated by "|"s and row delineated by newline "\n"
- characters. They are designed to be imported into a database.
+=item *
+Genbank accession number "Genebank_Accession"
+
+=item *
+lists of exon start and end positions "join", later seperated into pairs of "StartPosition",
+ "EndPosition"
+
+=back
 
 =back
 
 =cut
+
+####################################################################################################
+##### 										Argument checks  								   #####
+####################################################################################################
+=pod
+
+=head3 Argument checks
+
+=over
+
+The script checks that it has only been given one argument before proceeding.
+
+=back
+
+=cut
+
+if (scalar @ARGV != 1) 
+{
+	print STDERR "This script takes 1 Argument - the genbank file to be parsed\n";
+	die
+}
 
 ####################################################################################################
 ##### 											File checks  								   ##### 
@@ -217,7 +259,7 @@ Each Block uses two subroutines:
 
 =over
 
-For each key in the loci hash this block extracts the Genbank identifer from the values of the loci
+For each key in the loci hash this block extracts the Genbank identifier from the values of the loci
 hash and creates a new hash with the same keys as the loci hash but with the target feature i.e. 
 Genbank Identifier "Locus_GI" as their values.
 
