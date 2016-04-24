@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<link rel="stylesheet" href="DocStylesheet.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#Commentary">Commentary</a>
+    <ul>
+      <li><a href="#Development-cycle-and-Group-work">Development cycle and Group work</a></li>
+      <li><a href="#Challenges">~Challenges?</a></li>
+      <li><a href="#Things-learned">Things learned</a>
+        <ul>
+          <li><a href="#git">git</a></li>
+          <li><a href="#POD---Plain-Old-Documentation">POD - Plain Old Documentation</a></li>
+          <li><a href="#Testing-using-test::more">Testing using test::more</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="Commentary">Commentary</h1>
+
+
+
+<p><a href="./index.html">home</a></p>
+
+<h2 id="Development-cycle-and-Group-work">Development cycle and Group work</h2>
+
+<ul>
+
+<p>We worked out most of our API in the initial sessions and mostly adhered to what we had planned between the top and middle layer</p>
+
+<p>We were initially planning on keeping the quires in the Database layer but Gabriele working on the middle layer decided that he would prefer to query the database directly from his layer so I ceased work on queries. This simplified the API development on the database end as I simply provided Gabriele with the physical schema of my database so that he could write queries for it.</p>
+
+</ul>
+
+<h2 id="Challenges">~Challenges?</h2>
+
+<ul>
+
+<p>We hosted the database for our website on the Birkbeck servers, the limited permissions meant that I could not create a web-user account with read only permissions to access the database.</p>
+
+<p>I could have extracted additional information from the genbank file, not just additional data types but multiple entries when a given data type has multiple values</p>
+
+</ul>
+
+<h2 id="Things-learned">Things learned</h2>
+
+<h3 id="git">git</h3>
+
+<ul>
+
+<p>I used git for the first time on this project and found it really useful, for working on the same code-base on different platforms. I am still refining my use of this system, I have begun to develop some habits, but need to wok to continue committing with sufficient frequency, especially when working on multiple files I should practice to increase fluency with which I can use the reverting to particular versions feature as I have not yet had much cause to undo changes that I have made in this project.</p>
+
+</ul>
+
+<h3 id="POD---Plain-Old-Documentation">POD - Plain Old Documentation</h3>
+
+<ul>
+
+<p>I have learned to use POD Perl&#39;s in-line documentation markup language during this project. I found that this changed the way that I commented code, because this markup needs to understandable out of the context provided by the code itself its tend to make it necessary to have more redundant content in comments than is usual and I&#39;m not sure about its impact of the readability of the code as it takes up a lot of space on the monitor. however writing the documentation in-line did save a lot of duplication of work buy comparison with writing a whole separate documentation.</p>
+
+<p>I had some trouble sorting out Pod2HTML to generate the documentation automatically</p>
+
+</ul>
+
+<h3 id="Testing-using-test::more">Testing using test::more</h3>
+
+<ul>
+
+<p>I learn to use some of the basic testing functionality in the test more module. We had already begun development before we covered test driven development which was a new concept to me but is an approach that I find very appealing in theory so would like to try it in practice. I found that is was quite difficult to develop test of some of the code I wrote for this project after the fact. I think test driven development would force me to think about error handling more during the development process as my basic approach tends to assume the best case scenario that the data will match the expected format, and when it does not unanticipated things can start happening. This was a particular challenge with the data for this project as many elements in the genbank file did not match the expected format</p>
+
+</ul>
+
+
+</body>
+
+</html>
+
+

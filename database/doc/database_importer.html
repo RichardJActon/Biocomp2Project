@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<link rel="stylesheet" href="DocStylesheet.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#Database-Importer">Database Importer</a>
+    <ul>
+      <li><a href="#Synopsis">Synopsis</a></li>
+      <li><a href="#Arguments">Arguments</a></li>
+      <li><a href="#Returns">Returns</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="Database-Importer">Database Importer</h1>
+
+
+
+<p><a href="./index.html">home</a></p>
+
+<h2 id="Synopsis">Synopsis</h2>
+
+<ul>
+
+<p>Takes the data output by the genbank file parser into 3 &quot;|&quot; separated files and imports each into their corresponding tables in the database. This script also builds the index for the database following the import of the data.</p>
+
+</ul>
+
+<h2 id="Arguments">Arguments</h2>
+
+<ul>
+
+<li><p>File named &quot;loci.txt&quot; containing columns: Genbank_Accession, Locus_GI, DNA_seq, Product_Name, CDS_translated, Reading_frame separated by &quot;|&quot; with each row on a new line &quot;\n&quot;.</p>
+
+</li>
+<li><p>File named &quot;chromloc.txt&quot; containing columns: Genbank_Accession, Location_Name separated by &quot;|&quot; with each row on a new line &quot;\n&quot;.</p>
+
+</li>
+<li><p>File named &quot;exons.txt&quot; containing columns: Genbank_Accession, StartPosition, EndPosition, Exon_ID separated by &quot;|&quot; with each row on a new line &quot;\n&quot;.</p>
+
+</li>
+</ul>
+
+<h2 id="Returns">Returns</h2>
+
+<ul>
+
+<li><p>The data is loaded into the database.</p>
+
+</li>
+</ul>
+
+
+</body>
+
+</html>
+
+
