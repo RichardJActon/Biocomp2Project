@@ -49,13 +49,6 @@ Website URL: L<http://student.cryst.bbk.ac.uk/~ad002/projhome.html>
 =end html
 
 
-=begin html
-
-<p><a href="./Queries.html">Queries</a></p>
-
-=end html
-
-
 =head3 PODs - Files not documented inline
 
 
@@ -83,7 +76,7 @@ Website URL: L<http://student.cryst.bbk.ac.uk/~ad002/projhome.html>
 =end html
 
 
-=head3 SQL test
+=head3 SQL Scripts
 
 
 =begin html

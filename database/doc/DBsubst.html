@@ -13,30 +13,28 @@
 
 
 <ul id="index">
-  <li>
+  <li><a href="#DBsubs-tests-script">DBsubs tests script</a>
     <ul>
-      <li><a href="#DBsubs-tests-script">DBsubs tests script</a>
-        <ul>
-          <li><a href="#Tests-for-the-EXISTS-function">Tests for the EXISTS function</a></li>
-          <li><a href="#tests-for-the-IS_TEXT-function">tests for the IS_TEXT function</a></li>
-          <li><a href="#tests-for-the-IS_READABLE-function">tests for the IS_READABLE function</a></li>
-          <li><a href="#tests-for-the-FILE_LINES_TO_ARRAY-function">tests for the FILE_LINES_TO_ARRAY function</a></li>
-          <li><a href="#tests-for-the-HASH_LOCI_CONTENTS-function">tests for the HASH_LOCI_CONTENTS function</a></li>
-          <li><a href="#tests-for-the-EXTRACT_LOCUS_FEATURE-function">tests for the EXTRACT_LOCUS_FEATURE function</a></li>
-          <li><a href="#tests-for-the-SUBSTITUTIONS-function">tests for the SUBSTITUTIONS function</a></li>
-        </ul>
-      </li>
+      <li><a href="#Tests-for-the-EXISTS-function">Tests for the EXISTS function</a></li>
+      <li><a href="#tests-for-the-IS_TEXT-function">tests for the IS_TEXT function</a></li>
+      <li><a href="#tests-for-the-IS_READABLE-function">tests for the IS_READABLE function</a></li>
+      <li><a href="#tests-for-the-FILE_LINES_TO_ARRAY-function">tests for the FILE_LINES_TO_ARRAY function</a></li>
+      <li><a href="#tests-for-the-HASH_LOCI_CONTENTS-function">tests for the HASH_LOCI_CONTENTS function</a></li>
+      <li><a href="#tests-for-the-EXTRACT_LOCUS_FEATURE-function">tests for the EXTRACT_LOCUS_FEATURE function</a></li>
+      <li><a href="#tests-for-the-SUBSTITUTIONS-function">tests for the SUBSTITUTIONS function</a></li>
     </ul>
   </li>
 </ul>
 
-<h2 id="DBsubs-tests-script">DBsubs tests script</h2>
+<h1 id="DBsubs-tests-script">DBsubs tests script</h1>
 
 
 
 <p><a href="./index.html">home</a></p>
 
-<h3 id="Tests-for-the-EXISTS-function">Tests for the EXISTS function</h3>
+<p>This script requires a file called TTF.txt with 4 line of text in it and a file called NotReadable.txt which is not readable to be located in the t directory.</p>
+
+<h2 id="Tests-for-the-EXISTS-function">Tests for the EXISTS function</h2>
 
 <dl>
 
@@ -54,24 +52,121 @@
 </dd>
 </dl>
 
-<h3 id="tests-for-the-IS_TEXT-function">tests for the IS_TEXT function</h3>
+<h2 id="tests-for-the-IS_TEXT-function">tests for the IS_TEXT function</h2>
 
-<ol>
+<dl>
 
-<li><p></p>
+<dt id="IS_TEXT-returns-1-when-file-is-text">4 IS_TEXT returns 1 when file is text</dt>
+<dd>
 
-</li>
-</ol>
+</dd>
+<dt id="IS_TEXT-returns-0-when-variable-empty">5 IS_TEXT returns 0 when variable empty</dt>
+<dd>
 
-<h3 id="tests-for-the-IS_READABLE-function">tests for the IS_READABLE function</h3>
+</dd>
+<dt id="IS_TEXT-returns-0-when-non-existent-file-name-used">6 IS_TEXT returns 0 when non-existent file name used</dt>
+<dd>
 
-<h3 id="tests-for-the-FILE_LINES_TO_ARRAY-function">tests for the FILE_LINES_TO_ARRAY function</h3>
+</dd>
+<dt id="IS_TEXT-returns-0-when-non-text-file-name-used">7 IS_TEXT returns 0 when non-text file name used</dt>
+<dd>
 
-<h3 id="tests-for-the-HASH_LOCI_CONTENTS-function">tests for the HASH_LOCI_CONTENTS function</h3>
+</dd>
+</dl>
 
-<h3 id="tests-for-the-EXTRACT_LOCUS_FEATURE-function">tests for the EXTRACT_LOCUS_FEATURE function</h3>
+<h2 id="tests-for-the-IS_READABLE-function">tests for the IS_READABLE function</h2>
 
-<h3 id="tests-for-the-SUBSTITUTIONS-function">tests for the SUBSTITUTIONS function</h3>
+<dl>
+
+<dt id="IS_READABLE-returns-1-when-file-is-readable">8 IS_READABLE returns 1 when file is readable</dt>
+<dd>
+
+</dd>
+<dt id="IS_READABLE-returns-0-when-variable-empty">9 IS_READABLE returns 0 when variable empty</dt>
+<dd>
+
+</dd>
+<dt id="IS_READABLE-returns-0-when-file-is-not-readable">10 IS_READABLE returns 0 when file is not readable</dt>
+<dd>
+
+</dd>
+</dl>
+
+<h2 id="tests-for-the-FILE_LINES_TO_ARRAY-function">tests for the FILE_LINES_TO_ARRAY function</h2>
+
+<dl>
+
+<dt id="FILE_LINES_TO_ARRAY-Successfully-returns-an-array">11 FILE_LINES_TO_ARRAY Successfully returns an array</dt>
+<dd>
+
+</dd>
+<dt id="FILE_LINES_TO_ARRAY-returns-an-array-with-4-lines">12 FILE_LINES_TO_ARRAY returns an array with 4 lines</dt>
+<dd>
+
+</dd>
+</dl>
+
+<h2 id="tests-for-the-HASH_LOCI_CONTENTS-function">tests for the HASH_LOCI_CONTENTS function</h2>
+
+<dl>
+
+<dt id="HASH_LOCI_CONTENTS-Successfully-returns-an-hash">13 HASH_LOCI_CONTENTS Successfully returns an hash</dt>
+<dd>
+
+</dd>
+<dt id="HASH_LOCI_CONTENTS-correct-contents-for-first-value">14 HASH_LOCI_CONTENTS correct contents for first value</dt>
+<dd>
+
+</dd>
+<dt id="HASH_LOCI_CONTENTS-correct-contents-for-second-value">15 HASH_LOCI_CONTENTS correct contents for second value</dt>
+<dd>
+
+</dd>
+<dt id="HASH_LOCI_CONTENTS-correct-contents-for-third-value">16 HASH_LOCI_CONTENTS correct contents for third value</dt>
+<dd>
+
+</dd>
+<dt id="HASH_LOCI_CONTENTS-returns-a-hash-with-3-keys">17 HASH_LOCI_CONTENTS returns a hash with 3 keys</dt>
+<dd>
+
+</dd>
+<dt id="HASH_LOCI_CONTENTS-returns-a-hash-with-3-values">18 HASH_LOCI_CONTENTS returns a hash with 3 values</dt>
+<dd>
+
+</dd>
+</dl>
+
+<h2 id="tests-for-the-EXTRACT_LOCUS_FEATURE-function">tests for the EXTRACT_LOCUS_FEATURE function</h2>
+
+<dl>
+
+<dt id="EXTRACT_LOCUS_FEATURE-returns-value-of-match-on-match-match">19 EXTRACT_LOCUS_FEATURE returns value of match on match match</dt>
+<dd>
+
+</dd>
+<dt id="EXTRACT_LOCUS_FEATURE-returns-error-on-not-match">20 EXTRACT_LOCUS_FEATURE returns error on not match</dt>
+<dd>
+
+</dd>
+<dt id="EXTRACT_LOCUS_FEATURE-returns-error-on-empty-value">21 EXTRACT_LOCUS_FEATURE returns error on empty value</dt>
+<dd>
+
+</dd>
+</dl>
+
+<h2 id="tests-for-the-SUBSTITUTIONS-function">tests for the SUBSTITUTIONS function</h2>
+
+<dl>
+
+<dt id="SUBSTITUTIONS-returns-flanking-characters-when-regex-matches">22 SUBSTITUTIONS returns flanking characters when regex matches</dt>
+<dd>
+
+</dd>
+<dt id="SUBSTITUTIONS-returns-original-contents-when-regex-does-not-match">23 SUBSTITUTIONS returns original contents when regex does not match</dt>
+<dd>
+
+</dd>
+</dl>
 
 
 </body>

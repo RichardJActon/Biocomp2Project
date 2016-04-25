@@ -13,54 +13,54 @@
 
 
 <ul id="index">
-  <li>
+  <li><a href="#Main-Parser-Script">Main Parser Script</a>
     <ul>
-      <li><a href="#Main-Parser-Script">Main Parser Script</a>
+      <li><a href="#Synopsis">Synopsis</a></li>
+      <li><a href="#Arguments">Arguments</a></li>
+      <li><a href="#Returns">Returns</a></li>
+      <li><a href="#Argument-checks">Argument checks</a></li>
+      <li><a href="#File-Checks">File Checks</a>
         <ul>
-          <li><a href="#Synopsis">Synopsis</a></li>
-          <li><a href="#Arguments">Arguments</a></li>
-          <li><a href="#Returns">Returns</a></li>
-          <li><a href="#Argument-checks">Argument checks</a></li>
-          <li><a href="#File-Checks">File Checks</a></li>
-          <li><a href="#loci-Genbank-Accession-Numbers">loci (Genbank Accession Numbers)</a>
-            <ul>
-              <li><a href="#Subroutines-used">Subroutines used:</a></li>
-            </ul>
-          </li>
-          <li><a href="#Feature-Extraction">Feature Extraction</a>
-            <ul>
-              <li><a href="#Locus_GI">Locus_GI</a></li>
-              <li><a href="#DNA_seq">DNA_seq</a></li>
-              <li><a href="#Product_Name">Product_Name</a></li>
-              <li><a href="#CDS_translated">CDS_translated</a></li>
-              <li><a href="#Reading_frame">Reading_frame</a></li>
-              <li><a href="#join">join</a></li>
-              <li><a href="#Location_Name">Location_Name</a></li>
-            </ul>
-          </li>
-          <li><a href="#Writing-outputs">Writing outputs</a></li>
-          <li><a href="#Loci-table-output">Loci table output</a></li>
-          <li><a href="#Chromosome_Locations-table-output">Chromosome_Locations table output</a></li>
-          <li><a href="#Exons-table-output">Exons table output</a></li>
+          <li><a href="#Subroutines-used">Subroutines used:</a></li>
         </ul>
       </li>
+      <li><a href="#loci-Genbank-Accession-Numbers">loci (Genbank Accession Numbers)</a>
+        <ul>
+          <li><a href="#Subroutines-used1">Subroutines used:</a></li>
+        </ul>
+      </li>
+      <li><a href="#Feature-Extraction">Feature Extraction</a>
+        <ul>
+          <li><a href="#Locus_GI">Locus_GI</a></li>
+          <li><a href="#DNA_seq">DNA_seq</a></li>
+          <li><a href="#Product_Name">Product_Name</a></li>
+          <li><a href="#CDS_translated">CDS_translated</a></li>
+          <li><a href="#Reading_frame">Reading_frame</a></li>
+          <li><a href="#join">join</a></li>
+          <li><a href="#Location_Name">Location_Name</a></li>
+        </ul>
+      </li>
+      <li><a href="#Writing-outputs">Writing outputs</a></li>
+      <li><a href="#Loci-table-output">Loci table output</a></li>
+      <li><a href="#Chromosome_Locations-table-output">Chromosome_Locations table output</a></li>
+      <li><a href="#Exons-table-output">Exons table output</a></li>
     </ul>
   </li>
 </ul>
 
-<h2 id="Main-Parser-Script">Main Parser Script</h2>
+<h1 id="Main-Parser-Script">Main Parser Script</h1>
 
 
 
 <p><a href="./index.html">home</a></p>
 
-<h3 id="Synopsis">Synopsis</h3>
+<h2 id="Synopsis">Synopsis</h2>
 
 <p>This script takes a text file in genbank format and extracts some features from it. It then outputs these features in 3 text files.</p>
 
 <p>these files have are comprised of columns delineated by &quot;|&quot;s and row delineated by newline &quot;\n&quot; characters. They are designed to be imported into a database. The script takes a single argument the name of the genbank file to be parsed.</p>
 
-<h3 id="Arguments">Arguments</h3>
+<h2 id="Arguments">Arguments</h2>
 
 <ul>
 
@@ -69,7 +69,7 @@
 </li>
 </ul>
 
-<h3 id="Returns">Returns</h3>
+<h2 id="Returns">Returns</h2>
 
 <p>Three files containing the features indicated:</p>
 
@@ -128,7 +128,7 @@
 </li>
 </ul>
 
-<h3 id="Argument-checks">Argument checks</h3>
+<h2 id="Argument-checks">Argument checks</h2>
 
 <ul>
 
@@ -136,7 +136,7 @@
 
 </ul>
 
-<h3 id="File-Checks">File Checks</h3>
+<h2 id="File-Checks">File Checks</h2>
 
 <ul>
 
@@ -144,7 +144,34 @@
 
 </ul>
 
-<h3 id="loci-Genbank-Accession-Numbers">loci (Genbank Accession Numbers)</h3>
+<h3 id="Subroutines-used">Subroutines used:</h3>
+
+<ul>
+
+<li><p></p>
+
+
+
+<p><a href="./DBsubs.html#EXISTS">EXISTS</a></p>
+
+</li>
+<li><p></p>
+
+
+
+<p><a href="./DBsubs.html#IS_TEXT">IS_TEXT</a></p>
+
+</li>
+<li><p></p>
+
+
+
+<p><a href="./DBsubs.html#IS_READABLE">IS_READABLE</a></p>
+
+</li>
+</ul>
+
+<h2 id="loci-Genbank-Accession-Numbers">loci (Genbank Accession Numbers)</h2>
 
 <ul>
 
@@ -152,7 +179,7 @@
 
 </ul>
 
-<h4 id="Subroutines-used">Subroutines used:</h4>
+<h3 id="Subroutines-used1">Subroutines used:</h3>
 
 <ul>
 
@@ -165,7 +192,7 @@
 </li>
 </ul>
 
-<h3 id="Feature-Extraction">Feature Extraction</h3>
+<h2 id="Feature-Extraction">Feature Extraction</h2>
 
 <ul>
 
@@ -193,7 +220,7 @@
 </li>
 </ul>
 
-<h4 id="Locus_GI">Locus_GI</h4>
+<h3 id="Locus_GI">Locus_GI</h3>
 
 <ul>
 
@@ -201,7 +228,7 @@
 
 </ul>
 
-<h4 id="DNA_seq">DNA_seq</h4>
+<h3 id="DNA_seq">DNA_seq</h3>
 
 <ul>
 
@@ -209,7 +236,7 @@
 
 </ul>
 
-<h4 id="Product_Name">Product_Name</h4>
+<h3 id="Product_Name">Product_Name</h3>
 
 <ul>
 
@@ -217,7 +244,7 @@
 
 </ul>
 
-<h4 id="CDS_translated">CDS_translated</h4>
+<h3 id="CDS_translated">CDS_translated</h3>
 
 <ul>
 
@@ -225,7 +252,7 @@
 
 </ul>
 
-<h4 id="Reading_frame">Reading_frame</h4>
+<h3 id="Reading_frame">Reading_frame</h3>
 
 <ul>
 
@@ -233,7 +260,7 @@
 
 </ul>
 
-<h4 id="join">join</h4>
+<h3 id="join">join</h3>
 
 <ul>
 
@@ -243,7 +270,7 @@
 
 </ul>
 
-<h4 id="Location_Name">Location_Name</h4>
+<h3 id="Location_Name">Location_Name</h3>
 
 <ul>
 
@@ -251,7 +278,7 @@
 
 </ul>
 
-<h3 id="Writing-outputs">Writing outputs</h3>
+<h2 id="Writing-outputs">Writing outputs</h2>
 
 <ul>
 
@@ -259,7 +286,7 @@
 
 </ul>
 
-<h3 id="Loci-table-output">Loci table output</h3>
+<h2 id="Loci-table-output">Loci table output</h2>
 
 <ul>
 
@@ -267,7 +294,7 @@
 
 </ul>
 
-<h3 id="Chromosome_Locations-table-output">Chromosome_Locations table output</h3>
+<h2 id="Chromosome_Locations-table-output">Chromosome_Locations table output</h2>
 
 <ul>
 
@@ -275,7 +302,7 @@
 
 </ul>
 
-<h3 id="Exons-table-output">Exons table output</h3>
+<h2 id="Exons-table-output">Exons table output</h2>
 
 <ul>
 

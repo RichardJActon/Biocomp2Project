@@ -61,7 +61,8 @@ while (defined(my $file = readdir(SRC)))
 	}
 }
 
-for (my $i = 0; $i < scalar @srcfiles; $i++) {
+for (my $i = 0; $i < scalar @srcfiles; $i++) 
+{
 	pod2html("--recurse","--podroot=../doc","--htmldir=../doc","--infile=$srcfiles[$i]","--outfile=$DOC/$srcfilenames[$i].html","--css=DocStylesheet.css");
 }
 #####################
@@ -82,7 +83,8 @@ while (defined(my $file = readdir(T)))
 	}
 }
 
-for (my $i = 0; $i < scalar @tfiles; $i++) {
+for (my $i = 0; $i < scalar @tfiles; $i++) 
+{
 	pod2html("--recurse","--podroot=../doc","--htmldir=../doc","--infile=$T/$tfiles[$i]","--outfile=$DOC/$tfilenames[$i].html","--css=DocStylesheet.css");
 }
 
@@ -93,7 +95,8 @@ my @docfiles;
 my @docfilenames;
 
 
-while (defined(my $file = readdir(DOC))) {
+while (defined(my $file = readdir(DOC))) 
+{
 	if ($file =~ /.*\.pod/) {
 		push @docfiles, $file;
 		my $filename = $file;
@@ -102,7 +105,8 @@ while (defined(my $file = readdir(DOC))) {
 	}
 }
 
-for (my $i = 0; $i < scalar @docfiles; $i++) {
+for (my $i = 0; $i < scalar @docfiles; $i++) 
+{
 	pod2html("--recurse","--podroot=../doc","--htmldir=../doc","--infile=$DOC/$docfiles[$i]","--outfile=$DOC/$docfilenames[$i].html","--css=DocStylesheet.css");
 }
 
@@ -224,7 +228,7 @@ __EOF
 #######################
 print INDEX <<__EOF 
 
-=head3 SQL test
+=head3 SQL Scripts
 
 __EOF
 ;

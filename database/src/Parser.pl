@@ -8,7 +8,7 @@ use DBsubs;
 ####################################################################################################
 =pod
 
-=head2 Main Parser Script
+=head1 Main Parser Script
 
 =begin html
 
@@ -16,7 +16,7 @@ use DBsubs;
 
 =end html
 
-=head3 Synopsis
+=head2 Synopsis
 
 This script takes a text file in genbank format and extracts some features from it. It then outputs
  these features in 3 text files.
@@ -25,7 +25,7 @@ these files have are comprised of columns delineated by "|"s and row delineated 
  characters. They are designed to be imported into a database. The script takes a single argument
  the name of the genbank file to be parsed.
 
-=head3 Arguments
+=head2 Arguments
 
 =over
 
@@ -34,7 +34,7 @@ Genbank file
 
 =back
 
-=head3 Returns
+=head2 Returns
 
 Three files containing the features indicated:
 
@@ -101,7 +101,7 @@ lists of exon start and end positions "join", later seperated into pairs of "Sta
 ####################################################################################################
 =pod
 
-=head3 Argument checks
+=head2 Argument checks
 
 =over
 
@@ -122,12 +122,42 @@ if (scalar @ARGV != 1)
 ####################################################################################################
 =pod
 
-=head3 File Checks
+=head2 File Checks
 
 =over
 
 Checks on the input file for: its existence, being a text file and being readable before proceeding
 to process it.
+
+=back
+
+=head3 Subroutines used:
+
+=over
+
+=item *
+
+=begin html
+
+<p><a href="./DBsubs.html#EXISTS">EXISTS</a></p>
+
+=end html
+
+=item *
+
+=begin html
+
+<p><a href="./DBsubs.html#IS_TEXT">IS_TEXT</a></p>
+
+=end html
+
+=item *
+
+=begin html
+
+<p><a href="./DBsubs.html#IS_READABLE">IS_READABLE</a></p>
+
+=end html
 
 =back
 
@@ -174,7 +204,7 @@ else
 ####################################################################################################
 =pod
 
-=head3 loci (Genbank Accession Numbers)
+=head2 loci (Genbank Accession Numbers)
 
 =over
 
@@ -184,7 +214,7 @@ the hash.
 
 =back
 
-=head4 Subroutines used: 
+=head3 Subroutines used: 
 
 =over
 
@@ -216,7 +246,7 @@ my %loci = DBsubs::HASH_LOCI_CONTENTS(\@lines,$locusStartIdentifier,$locusEndIde
 ####################################################################################################
 =pod
 
-=head3 Feature Extraction
+=head2 Feature Extraction
 
 =over
 
@@ -255,7 +285,7 @@ Each Block uses two subroutines:
 ####################################################################################################
 =pod
 
-=head4 Locus_GI
+=head3 Locus_GI
 
 =over
 
@@ -282,7 +312,7 @@ my %Locus_GI = DBsubs::SUBSTITUTIONS(\%Locus_GI_raw,$Locus_GI_substittions);
 ####################################################################################################
 =pod
 
-=head4 DNA_seq
+=head3 DNA_seq
 
 =over
 
@@ -309,7 +339,7 @@ my %DNA_seq = DBsubs::SUBSTITUTIONS(\%DNA_seq_raw,$DNA_seq_substittions);
 ####################################################################################################
 =pod
 
-=head4 Product_Name
+=head3 Product_Name
 
 =over
 
@@ -336,7 +366,7 @@ my %Product_Name = DBsubs::SUBSTITUTIONS(\%Product_Name_raw,$Product_Name_substi
 ####################################################################################################
 =pod
 
-=head4 CDS_translated
+=head3 CDS_translated
 
 =over
 
@@ -363,7 +393,7 @@ my %CDS_translated = DBsubs::SUBSTITUTIONS(\%CDS_translated_raw,$CDS_translated_
 ####################################################################################################
 =pod
 
-=head4 Reading_frame
+=head3 Reading_frame
 
 =over
 
@@ -391,7 +421,7 @@ my %Reading_frame = DBsubs::SUBSTITUTIONS(\%Reading_frame_raw,$Reading_frame_sub
 ####################################################################################################
 =pod
 
-=head4 join
+=head3 join
 
 =over
 
@@ -437,7 +467,7 @@ while (my($k,$v) = each %join) {
 ####################################################################################################
 =pod
 
-=head4 Location_Name
+=head3 Location_Name
 
 =over
 
@@ -464,7 +494,7 @@ my %Location_Name = DBsubs::SUBSTITUTIONS(\%Location_Name_raw,$Location_Name_sub
 ####################################################################################################
 =pod
 
-=head3 Writing outputs
+=head2 Writing outputs
 
 =over
 
@@ -491,7 +521,7 @@ open(ExonsTable, ">$ExonsTable");
 ####################################################################################################
 =pod
 
-=head3 Loci table output
+=head2 Loci table output
 
 =over
 
@@ -523,7 +553,7 @@ while (my($k,$v) = each %loci) {
 ####################################################################################################
 =pod
 
-=head3 Chromosome_Locations table output
+=head2 Chromosome_Locations table output
 
 =over
 
@@ -547,7 +577,7 @@ while (my($k,$v) = each %loci) {
 ####################################################################################################
 =pod
 
-=head3 Exons table output
+=head2 Exons table output
 
 =over
 

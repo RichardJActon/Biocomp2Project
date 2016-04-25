@@ -40,7 +40,83 @@ This version is for creating a database on a local machine. Changes had to be ma
 available on the Birkbeck server, for example the entire database cannot be dropped on the Birkbeck server so each table
 is dropped individually if they already exist in that version.
 
-=head2 
+=head2 Arguments
+
+=over
+
+=item *
+Database login information
+
+=back
+
+=head2 Returns
+
+Creates a database called Chromosome17 with the tables and fields: 
+
+=over
+
+=item *
+Chromosomes_Locations
+
+=over
+
+=item *
+Genbank_Accession (FK)
+
+=item *
+Location_Name
+
+=back
+
+=item *
+Loci
+
+=over
+
+=item *
+Genbank_Accesssion (PK)
+
+=item *
+Locus_GI
+
+=item *
+DNA_seq
+
+=item *
+Product_Name
+
+=item *
+CDS_translated
+
+=item *
+CDS_untranslated
+
+=item *
+Reading_Frame
+
+=back
+
+=item *
+Exons
+
+=over
+
+=item *
+Genbank_Accession (FK)
+
+=item *
+StartPosition
+
+=item *
+EndPosition
+
+=item *
+Exon_ID (Auto increment)
+
+=back
+
+=back
+
 
 =cut
 */

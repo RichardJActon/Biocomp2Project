@@ -12,24 +12,39 @@
 
 =over
 
-We worked out most of our API in the initial sessions and mostly adhered to what we had planned between the top and middle layer
+We worked out most of our API in the initial sessions and mostly adhered to what we had planned between the top and middle layer.
 
 We were initially planning on keeping the quires in the Database layer but Gabriele working on the middle layer decided that he
-would prefer to query the database directly from his layer so I ceased work on queries. This simplified the API development
-on the database end as I simply provided Gabriele with the physical schema of my database so that he could write queries for 
-it. 
+ would prefer to query the database directly from his layer so I ceased work on queries after writing a few dummy ones to practice
+ my perl DBI. This simplified the API development on the database end as I simply provided Gabriele with the physical schema of 
+ my database so that he could write queries for it. This did however mean the the middle layer was no longer strictly independent
+ of the design of the database layer. After laying out our individual tasks we worked more or less independently. We exchanged
+ information on how to make one another's code work together when testing live versions via email and github. 
 
 =back
 
-=head2 ~Challenges?
+=head2 Challenges and things I could have done differently
 
 =over
 
-We hosted the database for our website on the Birkbeck servers, the limited permissions meant that I could not create a web-user account
-with read only permissions to access the database.
-
 I could have extracted additional information from the genbank file, not just additional data types but multiple entries when a given 
-data type has multiple values
+ data type has multiple values, e.g. Loci with multiple coding sequences. Possibly by using a hash of hashes with genbank accession 
+ numbers as the top set of keys and numbered instances of a given feature as the second. This would have necessitated a more complex database
+ design as the current data model assumes one instance of properties like protein sequence per genbank accession number.
+
+I could have written subroutines to handle the print functions used to create the output files in the main Parser.pl script, passing them
+ the hashes, filenames and column delineator in order to further generalise my code. 
+
+We hosted the database for our website on the Birkbeck servers, the limited permissions meant that I could not create a web-user account
+ with read only permissions to access the database, I did however learn the SQL to do this and tried it out on a local version of the database.
+ The account currently used has permission to delete/edit the contents of the database which is clearly a security issue.
+
+I could have implemented something which made a list of all the loci with elements which did not parse correctly (see section on testing below)
+ and excluded them from the database entirely, rather than leaving the choice of what to do with partial information to higher levels.
+
+I originally built a CDS_untranslated field into the the database planning on using the module from the middle layer that would extract the 
+ coding DNA sequence from the complete gene sequence and store the coding DNA sequence in the database in order to increase the speed of 
+ retrieval of cDNA sequences but never completed this.
 
 =back
 
@@ -40,9 +55,11 @@ data type has multiple values
 =over
 
 I used git for the first time on this project and found it really useful, for working on the same code-base on different platforms. I
-am still refining my use of this system, I have begun to develop some habits, but need to wok to continue committing with sufficient
-frequency, especially when working on multiple files I should practice to increase fluency with which I can use the reverting to 
-particular versions feature as I have not yet had much cause to undo changes that I have made in this project.
+ am still refining my use of this system, I have begun to develop some habits, but need to wok to continue committing with sufficient
+ frequency, especially when working on multiple files I should practice to increase fluency with which I can use the reverting to 
+ particular versions feature as I have not yet had much cause to undo changes that I have made in this project. We made some use of the
+ functionality that lets you comment on lines of code in a particular version of the project to help one another refine our work. I also 
+ made use of the 'issues' feature to draw attention to particular things to address.
 
 =back
 
@@ -51,12 +68,16 @@ particular versions feature as I have not yet had much cause to undo changes tha
 =over
 
 I have learned to use POD Perl's in-line documentation markup language during this project. I found that this changed the way that I commented
-code, because this markup needs to understandable out of the context provided by the code itself its tend to make it necessary to have more
-redundant content in comments than is usual and I'm not sure about its impact of the readability of the code as it takes up a lot of space on
-the monitor. however writing the documentation in-line did save a lot of duplication of work buy comparison with writing a whole separate 
-documentation.
+ code, because this markup needs to understandable out of the context provided by the code itself it tends to make it necessary to have more
+ redundant content in comments than is usual and I'm not sure about its impact on the readability of the code as it takes up a lot of space on
+ the monitor. however writing the documentation in-line did save a lot of duplication of work buy comparison with writing a whole separate 
+ documentation. I also made of POD in my SQL scripts, simply by placing it in multi-line comments using /*...*/ syntax.
 
-I had some trouble sorting out Pod2HTML to generate the documentation automatically
+I had some trouble sorting out Pod2HTML to generate the documentation automatically and ended up having to write my own script to generate 
+ all the documentation in a batch. I also had trouble getting Pod2HTML to handle relative links and eventually ended up writing them in HTML.
+ I looked into using alternate POD to HTML converters but struggled to find any good ones, if I continue using pod I may end up writing my own
+ version - that way I will either fix the problem or at least understand why something that seems like it should be simple is harder than it
+ looks.
 
 =back
 
@@ -65,13 +86,14 @@ I had some trouble sorting out Pod2HTML to generate the documentation automatica
 =over
 
 I learn to use some of the basic testing functionality in the test more module. We had already begun development before we covered 
-test driven development which was a new concept to me but is an approach that I find very appealing in theory so would like to try 
-it in practice. I found that is was quite difficult to develop test of some of the code I wrote for this project after the fact. 
-I think test driven development would force me to think about error handling more during the development process as my basic approach
-tends to assume the best case scenario that the data will match the expected format, and when it does not unanticipated things
-can start happening. This was a particular challenge with the data for this project as many elements in the genbank file did not 
-match the expected format
-
+ test driven development which was a new concept to me but is an approach that I find very appealing in theory so would like to try 
+ it in practice. I found that is was quite difficult to develop test of some of the code I wrote for this project after the fact. 
+ I think test driven development would force me to think about error handling more during the development process as my basic approach
+ tends to assume the best case scenario that the data will match the expected format, and when it does not unanticipated things
+ can start happening. This was a particular challenge with the data for this project as many elements in the genbank file did not 
+ match the expected format, so the nature of the error may not be predictable. Mostly if the element I was searching for was not laid out
+ as expected I would just get an empty variable returned so I managed this by storing a standard error message in the hash returned by
+ the EXTRACT_LOCUS_FEATURE subroutine.
 
 =back
 

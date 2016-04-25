@@ -16,7 +16,8 @@
   <li><a href="#Database-Creation-Script-for-Chromosome17">Database Creation Script for Chromosome17</a>
     <ul>
       <li><a href="#Synopsis">Synopsis</a></li>
-      <li><a href="#"></a></li>
+      <li><a href="#Arguments">Arguments</a></li>
+      <li><a href="#Returns">Returns</a></li>
     </ul>
   </li>
 </ul>
@@ -52,7 +53,82 @@
 
 <p>This version is for creating a database on a local machine. Changes had to be made to accommodate the limited permissions available on the Birkbeck server, for example the entire database cannot be dropped on the Birkbeck server so each table is dropped individually if they already exist in that version.</p>
 
-<h2 id=""></h2>
+<h2 id="Arguments">Arguments</h2>
+
+<ul>
+
+<li><p>Database login information</p>
+
+</li>
+</ul>
+
+<h2 id="Returns">Returns</h2>
+
+<p>Creates a database called Chromosome17 with the tables and fields:</p>
+
+<ul>
+
+<li><p>Chromosomes_Locations</p>
+
+<ul>
+
+<li><p>Genbank_Accession (FK)</p>
+
+</li>
+<li><p>Location_Name</p>
+
+</li>
+</ul>
+
+</li>
+<li><p>Loci</p>
+
+<ul>
+
+<li><p>Genbank_Accesssion (PK)</p>
+
+</li>
+<li><p>Locus_GI</p>
+
+</li>
+<li><p>DNA_seq</p>
+
+</li>
+<li><p>Product_Name</p>
+
+</li>
+<li><p>CDS_translated</p>
+
+</li>
+<li><p>CDS_untranslated</p>
+
+</li>
+<li><p>Reading_Frame</p>
+
+</li>
+</ul>
+
+</li>
+<li><p>Exons</p>
+
+<ul>
+
+<li><p>Genbank_Accession (FK)</p>
+
+</li>
+<li><p>StartPosition</p>
+
+</li>
+<li><p>EndPosition</p>
+
+</li>
+<li><p>Exon_ID (Auto increment)</p>
+
+</li>
+</ul>
+
+</li>
+</ul>
 
 
 </body>

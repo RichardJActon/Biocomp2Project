@@ -391,7 +391,8 @@ sub SUBSTITUTIONS
 		my $tempFeature = "";
 		$tempFeature = $v;
 		$tempFeature =~ s/${substittions}//g;
-		if ("" ne $tempFeature) {
+		if ("" ne $tempFeature) 
+			{
 				$outHash{$k} = $tempFeature;
 			}
 			else
