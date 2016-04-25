@@ -13,6 +13,22 @@ git repository: L<https://github.com/RichardJActon/Biocomp2Project>
 
 Website URL: L<http://student.cryst.bbk.ac.uk/~ad002/projhome.html>
 
+=head2 Overview of how to use this program:
+
+=over
+
+=item 1
+Run the Parser.pl script with your genbank file as an argument.
+
+=item 2
+Run the Chromosome17.sql file on your SQL server to create the database.
+
+=item 3
+Run the database_importer.sql script from a directiry containing the file output by the Parser to import
+ the imformation into the database.
+
+=back
+
 =head2 Commentary
 
 =begin html
